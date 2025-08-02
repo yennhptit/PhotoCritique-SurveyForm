@@ -885,6 +885,12 @@
             overflow-wrap: break-word;
         }
 
+        .user-answered-questions-cell {
+            text-align: center;
+            font-weight: 600;
+            color: #1f2937;
+        }
+
         .status-badge {
             padding: 4px 8px;
             border-radius: 12px;
@@ -1472,11 +1478,11 @@
 
     <nav class="navigation">
         <div class="nav-tabs">
-            <a href="#" class="nav-tab active" data-tab="questions">Questions to Evaluate</a>
+            <a href="#" class="nav-tab active" data-tab="questions">Evaluate</a>
           
             <a href="#" class="nav-tab" data-tab="profile">Profile</a>
             <a href="#" class="nav-tab" data-tab="responses">All Responses</a>
-            <a href="#" class="nav-tab" data-tab="admin">All Questions</a>
+            <a href="#" class="nav-tab" data-tab="admin">All Request</a>
             <a href="#" class="nav-tab" data-tab="users">All Users</a>
 
         </div>
@@ -1571,9 +1577,9 @@
                             </select>
                         </div>
                         <div class="filter-group">
-                            <label for="questionFilter">Filter by Question:</label>
+                            <label for="questionFilter">Filter by Request:</label>
                             <select id="questionFilter" class="filter-select">
-                                <option value="all">All Questions</option>
+                                <option value="all">All Requests</option>
                             </select>
                         </div>
                         <div class="filter-actions">
@@ -1588,8 +1594,8 @@
                         <thead id="responsesTableHead">
                             <tr>
                                 <th>User</th>
-                                <th>Question #</th>
-                                <th>Question Prompt</th>
+                                <th>Request #</th>
+                                <th>Prompt</th>
                                 <th>Comments</th>
                                 <th>Date</th>
                                 <th>Actions</th>
@@ -1628,13 +1634,14 @@
                                 <th>Role</th>
                                 <th>Qualification</th>
                                 <th>Experience</th>
+                                <th>Answered Questions</th>
                                 <th>Status</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody id="usersTableBody">
                             <tr>
-                                <td colspan="7" style="text-align: center; padding: 40px; color: #6b7280;">
+                                <td colspan="8" style="text-align: center; padding: 40px; color: #6b7280;">
                                     Loading users...
                                 </td>
                             </tr>
@@ -1648,15 +1655,15 @@
         <div class="tab-content" id="adminTab">
             <div class="questions-container">
                 <div class="questions-header">
-                    <h2>All Questions</h2>
-                    <button id="addQuestionBtn" class="add-btn">Add New Question</button>
+                    <h2>All Requests</h2>
+                    <button id="addQuestionBtn" class="add-btn">Add New Request</button>
                 </div>
 
                 <div class="questions-table-container">
                     <table class="questions-table">
                         <thead>
                             <tr>
-                                <th>Question #</th>
+                                <th>Request #</th>
                                 <th>Prompt</th>
                                 <th>Input Image</th>
                                 <th>Output Images</th>
@@ -1721,7 +1728,7 @@
         <div id="addQuestionModal" class="modal">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3>Add New Question</h3>
+                    <h3>Add New Request</h3>
                     <span class="close" id="closeAddModal">&times;</span>
                 </div>
                 <form id="addQuestionForm">
@@ -2853,7 +2860,7 @@
             questionsGrid.innerHTML = questions.map((question, index) => `
             <div class="question-card">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-                        <h2 class="question-title">Question #${question.questionNumber}</h2>
+                        <h2 class="question-title">Request #${question.questionNumber}</h2>
                         ${question.hasAnswered ? 
                             '<span style="background: #10b981; color: white; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: 500;">✓ Answered</span>' : 
                             '<span style="background: #f59e0b; color: white; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: 500;">⏳ Pending</span>'
@@ -2971,7 +2978,7 @@
             
             // Update modal content
             modalImage.src = question.imageInput;
-            modalTitle.textContent = `Question #${questionNumber} - Input Image`;
+            modalTitle.textContent = `Request #${questionNumber} - Input Image`;
             imageCounter.textContent = '1 / 1';
             
             // Hide navigation buttons for single image
@@ -3050,7 +3057,7 @@
             
             // Update modal content
             modalImage.src = currentImages[currentImageIndex];
-            modalTitle.textContent = `Question #${questionNumber} - Output Images`;
+            modalTitle.textContent = `Request #${questionNumber} - Output Images`;
             imageCounter.textContent = `${currentImageIndex + 1} / ${currentImages.length}`;
             
             // Show/hide navigation buttons based on position
@@ -3099,7 +3106,7 @@
         }
 
         function evaluateImages(questionId, questionNumber) {
-            console.log(`Starting evaluation for Question #${questionNumber}`);
+            console.log(`Starting evaluation for Request #${questionNumber}`);
             // Redirect to evaluate.html with question data
             const question = questions.find(q => q._id === questionId);
             if (question) {
@@ -3156,13 +3163,13 @@
         // Function to populate question filter
         function populateQuestionFilter(questions) {
             const questionFilter = document.getElementById('questionFilter');
-            questionFilter.innerHTML = '<option value="all">All Questions</option>';
+            questionFilter.innerHTML = '<option value="all">All Requests</option>';
             
             // Questions đã được sắp xếp theo createdAt từ server
             questions.forEach((question, index) => {
                 const option = document.createElement('option');
                 option.value = question._id;
-                option.textContent = `Question #${index + 1}`;
+                option.textContent = `Request #${index + 1}`;
                 questionFilter.appendChild(option);
             });
         }
@@ -3298,7 +3305,7 @@
                                 <div class="user-username">@${response.userUsername || 'unknown'}</div>
                             </div>
                         </td>
-                        <td>Question #${response.questionNumber}</td>
+                        <td>Request #${response.questionNumber}</td>
                         <td>
                             <div class="question-prompt" title="${response.questionPrompt || 'No prompt'}">
                                 ${response.questionPrompt || 'No prompt'}
@@ -3492,7 +3499,7 @@
             if (users.length === 0) {
                 tbody.innerHTML = `
                     <tr>
-                        <td colspan="7" style="text-align: center; padding: 40px; color: #6b7280;">
+                        <td colspan="8" style="text-align: center; padding: 40px; color: #6b7280;">
                             No users found
                         </td>
                     </tr>
@@ -3511,6 +3518,9 @@
                         <td class="user-role-cell">${user.role || 'reviewer'}</td>
                         <td class="user-qualification-cell">${user.qualification || 'Not specified'}</td>
                         <td class="user-experience-cell">${user.experience || 'Not specified'}</td>
+                        <td class="user-answered-questions-cell">
+                            ${user.answeredQuestionsCount || 0} / ${user.totalQuestions || 0}
+                        </td>
                         <td>
                             <span class="status-badge ${statusClass}">${status}</span>
                         </td>
@@ -3527,7 +3537,7 @@
             const tbody = document.getElementById('usersTableBody');
             tbody.innerHTML = `
                 <tr>
-                    <td colspan="7" style="text-align: center; padding: 40px; color: #6b7280;">
+                    <td colspan="8" style="text-align: center; padding: 40px; color: #6b7280;">
                         <div style="display: flex; flex-direction: column; align-items: center; gap: 16px;">
                             <svg class="icon" fill="currentColor" viewBox="0 0 20 20" style="width: 32px; height: 32px;">
                                 <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1 9a1 1 0 110-2 1 1 0 010 2z" clip-rule="evenodd"/>
@@ -3618,7 +3628,7 @@
                 
                 return `
                     <tr>
-                        <td>Question #${questionNumber}</td>
+                        <td>Request #${questionNumber}</td>
                         <td class="question-prompt-cell">${question.prompt}</td>
                         <td>
                             <img src="${question.imageInput}" alt="Input" class="question-image" onerror="this.style.display='none'" onclick="showImageModal('${question.imageInput}', 'input', ${index})">
@@ -3722,7 +3732,7 @@
                 // Single input image
                 currentImages = [imageUrl];
                 currentImageIndex = 0;
-                modalTitle.textContent = `Question #${questionIndex + 1} - Input Image`;
+                modalTitle.textContent = `Request #${questionIndex + 1} - Input Image`;
             } else if (type === 'output') {
                 // Multiple output images
                 const question = window.allQuestionsData ? window.allQuestionsData[questionIndex] : null;
@@ -3731,11 +3741,11 @@
                         typeof output === 'object' ? output.image : output
                     );
                     currentImageIndex = outputIndex || 0;
-                    modalTitle.textContent = `Question #${questionIndex + 1} - Output Images`;
+                    modalTitle.textContent = `Request #${questionIndex + 1} - Output Images`;
                 } else {
                     currentImages = [imageUrl];
                     currentImageIndex = 0;
-                    modalTitle.textContent = `Question #${questionIndex + 1} - Output Image`;
+                    modalTitle.textContent = `Request #${questionIndex + 1} - Output Image`;
                 }
             }
             

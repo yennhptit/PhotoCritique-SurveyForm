@@ -1,3 +1,6 @@
+require('dotenv').config();
+
+
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
@@ -11,7 +14,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // MongoDB URI
-const uri = "mongodb+srv://admin:admin@cluster0.exqdxbm.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+const uri = process.env.MONGO_URI;
 
 const client = new MongoClient(uri, { serverApi: ServerApiVersion.v1 });
 
@@ -638,11 +641,42 @@ app.post('/save-evaluation', async (req, res) => {
 app.get('/all-users', async (req, res) => {
   try {
     const users = await userCollection.find({}).toArray();
+    const responseCollection = client.db("myAppDB").collection("Response");
+    const questionCollection = client.db("myAppDB").collection("Question");
     
-    console.log(`Found ${users.length} users`);
+    // Lấy tổng số câu hỏi có isDelete = false
+    const totalQuestions = await questionCollection.countDocuments({ isDelete: false });
+    
+    // Tính số câu hỏi đã trả lời cho mỗi user
+    const usersWithResponseCount = await Promise.all(users.map(async (user) => {
+      const { ObjectId } = require('mongodb');
+      
+      let userQueryId = user._id;
+      try {
+        if (typeof user._id === 'string' && ObjectId.isValid(user._id)) {
+          userQueryId = new ObjectId(user._id);
+        }
+      } catch (e) {
+        console.log('UserId is not a valid ObjectId, using as string');
+      }
+      
+      // Đếm số responses của user này cho các câu hỏi có isDelete = false
+      const answeredQuestionsCount = await responseCollection.countDocuments({
+        userId: userQueryId,
+        isDelete: false
+      });
+      
+      return {
+        ...user,
+        answeredQuestionsCount,
+        totalQuestions
+      };
+    }));
+    
+    console.log(`Found ${users.length} users with response counts`);
     
     res.status(200).json({ 
-      users: users
+      users: usersWithResponseCount
     });
     
   } catch (err) {
