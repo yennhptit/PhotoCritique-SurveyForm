@@ -7,10 +7,13 @@ const bodyParser = require('body-parser');
 const { MongoClient, ServerApiVersion } = require('mongodb');
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: ['https://surveyform-1.onrender.com', 'http://localhost:3000'],
+  credentials: true
+}));
 app.use(bodyParser.json());
 
 app.use(express.static(path.join(__dirname, 'public')));
@@ -18,6 +21,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Serve auth.js file
 app.get('/auth.js', (req, res) => {
   res.sendFile(path.join(__dirname, 'auth.js'));
+});
+
+// Serve home page
+app.get('/home', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'home.html'));
 });
 
 
@@ -38,6 +46,11 @@ client.connect()
     console.log("✅ Connected to MongoDB");
   })
   .catch(err => console.error("❌ MongoDB connection error:", err));
+
+// Serve login page
+app.get('/login', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'login.html'));
+});
 
 // API đăng nhập
 app.post('/login', async (req, res) => {
