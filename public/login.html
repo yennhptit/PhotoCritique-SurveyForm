@@ -94,8 +94,8 @@
             sessionStorage.setItem('userInfo', JSON.stringify(data.user));
             console.log('User data saved to sessionStorage:', data.user);
             
-            // Redirect đến home.html
-            window.location.href = 'home.html';
+            // Redirect đến /home.html
+            window.location.href = '/home.html';
         } else {
           alert(data.message);
         }

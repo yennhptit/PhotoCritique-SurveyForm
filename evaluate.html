@@ -404,7 +404,7 @@
                 displayQuestionData();
             } else {
                 alert('No question data found. Please go back to home page.');
-                window.location.href = 'home.html';
+                window.location.href = '/home.html';
             }
         }
 
@@ -526,7 +526,7 @@
             const userInfo = sessionStorage.getItem('userInfo');
             if (!userInfo) {
                 alert('User information not found. Please login again.');
-                window.location.href = 'login.html';
+                window.location.href = '/login.html';
                 return;
             }
 
@@ -583,7 +583,7 @@
                     sessionStorage.removeItem('evaluateQuestion');
                     
                     // Redirect back to home page
-                    window.location.href = 'home.html';
+                    window.location.href = '/home.html';
                 } else {
                     throw new Error(result.message || 'Failed to save evaluation');
                 }
