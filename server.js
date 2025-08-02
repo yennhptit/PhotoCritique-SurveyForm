@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-
+const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
@@ -14,6 +14,11 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Serve auth.js file
+app.get('/auth.js', (req, res) => {
+  res.sendFile(path.join(__dirname, 'auth.js'));
+});
 
 
 // MongoDB URI

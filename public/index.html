@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Evaluation System</title>
+    <script src="/auth.js"></script>
+    <script>
+        // Kiểm tra nếu user đã đăng nhập thì redirect về home
+        if (Auth.isAuthenticated()) {
+            window.location.href = '/home.html';
+        } else {
+            // Nếu chưa đăng nhập thì redirect về login
+            window.location.href = '/login.html';
+        }
+    </script>
+</head>
+<body>
+    <div style="text-align: center; padding: 50px; font-family: Arial, sans-serif;">
+        <h2>Redirecting...</h2>
+        <p>Please wait while we redirect you to the appropriate page.</p>
+    </div>
+</body>
+</html> 

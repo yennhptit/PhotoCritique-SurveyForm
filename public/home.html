@@ -1840,7 +1840,15 @@
         </div>
     </div>
 
+    <script src="/auth.js"></script>
     <script>
+        // Kiểm tra authentication ngay khi script được load
+        if (!Auth.checkAuthOnPageLoad()) {
+            // Nếu không authenticated, Auth.checkAuthOnPageLoad() sẽ redirect
+            // và code dưới đây sẽ không được thực thi
+            throw new Error('Authentication required');
+        }
+
         // Global variables
         let questions = [];
         let currentUser = null;
@@ -3848,8 +3856,8 @@
 
         function logout() {
             if (confirm('Are you sure you want to logout?')) {
-                // Redirect to login page or clear session
-                window.location.href = '/login.html';
+                // Sử dụng Auth class để logout
+                Auth.logout();
             }
         }
 
