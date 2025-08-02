@@ -1,0 +1,3865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Evaluation Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #f9fafb;
+            color: #1f2937;
+        }
+
+        .header {
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1f2937;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .user-role {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        .user-name {
+            color: #1f2937;
+            font-weight: 500;
+        }
+
+        .logout-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #6b7280;
+            text-decoration: none;
+            font-size: 14px;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: background-color 0.2s;
+        }
+
+        .logout-btn:hover {
+            background-color: #f3f4f6;
+        }
+
+        .navigation {
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 0 24px;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 32px;
+        }
+
+        .nav-tab {
+            padding: 16px 0;
+            color: #6b7280;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            border-bottom: 2px solid transparent;
+            transition: color 0.2s, border-color 0.2s;
+        }
+
+        .nav-tab.active {
+            color: #1f2937;
+            border-bottom-color: #3b82f6;
+        }
+
+        .nav-tab:hover {
+            color: #1f2937;
+        }
+
+        /* Tab Content Styles */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Profile Styles */
+        .profile-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+            padding: 24px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            margin-bottom: 32px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .profile-avatar {
+            width: 80px;
+            height: 80px;
+            background-color: #f3f4f6;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6b7280;
+        }
+
+        .profile-info {
+            flex: 1;
+        }
+
+        .profile-name {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 4px;
+        }
+
+        .profile-username {
+            font-size: 16px;
+            color: #6b7280;
+            margin: 0;
+        }
+
+        .profile-details {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .profile-section {
+            background-color: #f9fafb;
+            border-radius: 8px;
+            padding: 12px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .profile-section .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .profile-section h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1f2937;
+            margin: 0;
+        }
+
+        .profile-section .edit-label {
+            font-size: 12px;
+            color: #6b7280;
+            background: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            border: 1px solid #d1d5db;
+            cursor: pointer;
+            transition: background-color 0.2s, color 0.2s;
+        }
+
+        .profile-section .edit-label:hover {
+            background-color: #f3f4f6;
+            color: #374151;
+        }
+
+        .profile-section p {
+            font-size: 14px;
+            color: #4b5563;
+            margin: 0;
+            line-height: 1.5;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            white-space: pre-wrap;
+        }
+
+        .profile-section .editable-content {
+            padding: 4px;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+
+        .profile-section .edit-form {
+            display: none;
+            margin-top: 12px;
+        }
+
+        .profile-section .edit-form.active {
+            display: block;
+        }
+
+        .profile-section .edit-textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: inherit;
+            resize: vertical;
+            min-height: 80px;
+            margin-bottom: 8px;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            white-space: pre-wrap;
+            box-sizing: border-box;
+        }
+
+        .profile-section .edit-textarea:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .profile-section .edit-actions {
+            display: flex;
+            gap: 8px;
+            justify-content: flex-end;
+        }
+
+        .profile-section .edit-btn {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .profile-section .save-btn {
+            background-color: #10b981;
+            color: white;
+        }
+
+        .profile-section .save-btn:hover {
+            background-color: #059669;
+        }
+
+        .profile-section .cancel-btn {
+            background-color: #6b7280;
+            color: white;
+        }
+
+        .profile-section .cancel-btn:hover {
+            background-color: #4b5563;
+        }
+
+        /* Profile Modal Styles */
+        .profile-modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(4px);
+        }
+
+        .profile-modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            border-radius: 12px;
+            padding: 32px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .profile-modal-header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .profile-modal-header h2 {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 8px;
+        }
+
+        .profile-modal-header p {
+            color: #6b7280;
+            font-size: 14px;
+            margin: 0;
+        }
+
+        .profile-form .form-group {
+            margin-bottom: 20px;
+        }
+
+        .profile-form label {
+            display: block;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .profile-form .form-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: inherit;
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .profile-form .form-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .form-actions {
+            text-align: center;
+            margin-top: 24px;
+        }
+
+        .submit-btn {
+            background-color: #1f2937;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .submit-btn:hover {
+            background-color: #111827;
+        }
+
+        .submit-btn:disabled {
+            background-color: #9ca3af;
+            cursor: not-allowed;
+        }
+
+        .submit-btn:disabled:hover {
+            background-color: #9ca3af;
+        }
+
+        .main-content {
+            padding: 24px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .questions-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            width: 100%;
+        }
+
+        .questions-grid:has(.question-card:only-child) {
+            grid-template-columns: repeat(3, 1fr);
+            width: 100%;
+        }
+
+        /* Fallback for browsers that don't support :has() */
+        .questions-grid.single-question {
+            grid-template-columns: repeat(3, 1fr);
+            width: 100%;
+        }
+
+        .question-card {
+            background: white;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+            padding: 24px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            min-width: 350px;
+        }
+
+        .question-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 12px;
+        }
+
+        .question-description {
+            color: #6b7280;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .image-section {
+            margin-bottom: 24px;
+        }
+
+        .section-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 12px;
+        }
+
+        .input-image-placeholder {
+            width: 100%;
+            height: auto;
+            min-height: 200px;
+            max-height: 300px;
+            background-color: #f8fafc;
+            border: 2px dashed #d1d5db;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #9ca3af;
+            font-size: 14px;
+            cursor: pointer;
+            transition: border-color 0.2s;
+            overflow: hidden;
+        }
+
+        .input-image-placeholder:hover {
+            border-color: #3b82f6;
+        }
+
+        .input-image-placeholder img {
+            width: 100%;
+            height: auto;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 6px;
+            transition: transform 0.2s;
+        }
+
+        .input-image-placeholder:hover img {
+            transform: scale(1.02);
+        }
+
+        .output-images {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .output-image-placeholder {
+            aspect-ratio: 1;
+            background-color: #f8fafc;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #9ca3af;
+            font-size: 12px;
+            cursor: pointer;
+            transition: border-color 0.2s;
+            overflow: hidden;
+        }
+
+        .output-image-placeholder:hover {
+            border-color: #3b82f6;
+        }
+
+        .output-image-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 6px;
+            transition: transform 0.2s;
+        }
+
+        .output-image-placeholder:hover img {
+            transform: scale(1.05);
+        }
+
+        .evaluate-btn {
+            width: 100%;
+            background-color: #1f2937;
+            color: white;
+            border: none;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: background-color 0.2s;
+        }
+
+        .evaluate-btn:hover {
+            background-color: #111827;
+        }
+
+        .re-evaluate-btn {
+            background-color: #059669;
+        }
+
+        .re-evaluate-btn:hover {
+            background-color: #047857;
+        }
+
+        /* Responses Table Styles */
+        .responses-container {
+            background: white;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+            padding: 24px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .responses-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .responses-header h2 {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1f2937;
+            margin: 0;
+        }
+
+        .responses-stats {
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        .responses-table-container {
+            overflow-x: auto;
+            margin-bottom: 24px;
+        }
+
+        .responses-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        .responses-table th {
+            background-color: #f9fafb;
+            padding: 12px 16px;
+            text-align: left;
+            font-weight: 600;
+            color: #374151;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .responses-table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid #f3f4f6;
+            vertical-align: top;
+        }
+
+        .responses-table tr:hover {
+            background-color: #f9fafb;
+        }
+
+        .user-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .user-name {
+            font-weight: 500;
+            color: #1f2937;
+        }
+
+        .user-username {
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        .question-prompt {
+            max-width: 200px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .output-rating {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            font-size: 11px;
+            padding: 4px;
+            background-color: #f9fafb;
+            border-radius: 4px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .rating-item {
+            display: flex;
+            justify-content: space-between;
+            gap: 6px;
+            align-items: center;
+        }
+
+        .rating-label {
+            color: #6b7280;
+            min-width: 50px;
+            font-size: 10px;
+        }
+
+        .rating-value {
+            font-weight: 600;
+            color: #1f2937;
+            background-color: white;
+            padding: 1px 4px;
+            border-radius: 2px;
+            min-width: 20px;
+            text-align: center;
+            font-size: 10px;
+        }
+
+        .comments-cell {
+            max-width: 150px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .date-cell {
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        .delete-btn {
+            background-color: #ef4444;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .delete-btn:hover {
+            background-color: #dc2626;
+        }
+
+        .delete-btn:disabled {
+            background-color: #9ca3af;
+            cursor: not-allowed;
+        }
+
+        /* Pagination Styles */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin-top: 24px;
+        }
+
+        .pagination-btn {
+            padding: 8px 12px;
+            border: 1px solid #d1d5db;
+            background: white;
+            color: #374151;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        .pagination-btn:hover:not(:disabled) {
+            background-color: #f3f4f6;
+            border-color: #9ca3af;
+        }
+
+        .pagination-btn:disabled {
+            color: #9ca3af;
+            cursor: not-allowed;
+        }
+
+        .pagination-btn.active {
+            background-color: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
+        }
+
+        .pagination-info {
+            color: #6b7280;
+            font-size: 14px;
+            margin: 0 16px;
+        }
+
+        /* Filter Styles */
+        .filter-section {
+            background-color: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 24px;
+        }
+
+        .filter-row {
+            display: flex;
+            align-items: end;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            min-width: 200px;
+        }
+
+        .filter-group label {
+            font-size: 12px;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .filter-select {
+            padding: 8px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 14px;
+            background-color: white;
+            color: #374151;
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .filter-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .filter-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .filter-btn {
+            background-color: #3b82f6;
+            color: white;
+        }
+
+        .filter-btn:hover {
+            background-color: #2563eb;
+        }
+
+        .filter-btn.clear-btn {
+            background-color: #6b7280;
+        }
+
+        .filter-btn.clear-btn:hover {
+            background-color: #4b5563;
+        }
+
+        /* Users Table Styles */
+        .users-container {
+            background: white;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+            padding: 24px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .users-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .users-header h2 {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1f2937;
+            margin: 0;
+        }
+
+        .users-table-container {
+            overflow-x: auto;
+        }
+
+        .users-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        .users-table th {
+            background-color: #f9fafb;
+            padding: 12px 16px;
+            text-align: left;
+            font-weight: 600;
+            color: #374151;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .users-table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid #f3f4f6;
+            vertical-align: top;
+        }
+
+        .users-table tr:hover {
+            background-color: #f9fafb;
+        }
+
+        .user-name-cell {
+            font-weight: 500;
+            color: #1f2937;
+        }
+
+        .user-username-cell {
+            font-family: monospace;
+            color: #6b7280;
+        }
+
+        .user-role-cell {
+            text-transform: capitalize;
+        }
+
+        .user-qualification-cell,
+        .user-experience-cell {
+            max-width: 200px;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .status-badge {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .status-active {
+            background-color: #d1fae5;
+            color: #065f46;
+        }
+
+        .status-deleted {
+            background-color: #fee2e2;
+            color: #991b1b;
+        }
+
+        /* Questions Table Styles */
+        .questions-container {
+            padding: 24px;
+        }
+
+        .questions-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .questions-header h2 {
+            margin: 0;
+            color: #1f2937;
+        }
+
+        .add-btn {
+            background-color: #10b981;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .add-btn:hover {
+            background-color: #059669;
+        }
+
+        .questions-table-container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .questions-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .questions-table th {
+            background-color: #f9fafb;
+            padding: 12px 16px;
+            text-align: left;
+            font-weight: 600;
+            color: #374151;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .questions-table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid #f3f4f6;
+            vertical-align: top;
+        }
+
+        .questions-table tr:hover {
+            background-color: #f9fafb;
+        }
+
+        .question-prompt-cell {
+            max-width: 300px;
+            word-wrap: break-word;
+        }
+
+        .question-image {
+            width: 120px;
+            height: auto;
+            max-height: 120px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s;
+            border: 2px solid #e5e7eb;
+        }
+
+        .question-image:hover {
+            transform: scale(1.05);
+            border-color: #3b82f6;
+        }
+
+        .output-images-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 6px;
+            max-width: 240px;
+        }
+
+        .output-image {
+            width: 100%;
+            height: auto;
+            max-height: 80px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: transform 0.2s;
+            border: 1px solid #e5e7eb;
+        }
+
+        .output-image:hover {
+            transform: scale(1.05);
+            border-color: #3b82f6;
+        }
+
+        .status-badge {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .status-active {
+            background-color: #d1fae5;
+            color: #065f46;
+        }
+
+        .status-deleted {
+            background-color: #fee2e2;
+            color: #991b1b;
+        }
+
+        .delete-btn {
+            background-color: #ef4444;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .delete-btn:hover {
+            background-color: #dc2626;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 0;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 24px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .modal-header h3 {
+            margin: 0;
+            color: #1f2937;
+        }
+
+        .close {
+            color: #6b7280;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: #374151;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            padding: 0 24px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        .form-group textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .output-image-input {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 8px;
+            align-items: center;
+        }
+
+        .output-input-row {
+            display: flex;
+            gap: 8px;
+            flex: 1;
+        }
+
+        .output-input-row input {
+            flex: 1;
+        }
+
+        .output-input-row input[type="url"] {
+            flex: 2;
+        }
+
+        .output-input-row input[type="text"] {
+            flex: 1;
+        }
+
+        .remove-output-btn {
+            background-color: #ef4444;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .add-output-btn {
+            background-color: #3b82f6;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            margin-top: 8px;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+            padding: 20px 24px;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .submit-btn {
+            background-color: #10b981;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .cancel-btn {
+            background-color: #6b7280;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        /* Image Modal Styles */
+        .image-modal-content {
+            max-width: 90vw;
+            max-height: 90vh;
+            width: auto;
+            height: auto;
+        }
+
+        .image-modal-body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            min-height: 400px;
+        }
+
+        .image-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-width: calc(100% - 120px);
+        }
+
+        .image-container img {
+            max-width: 100%;
+            max-height: 70vh;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .nav-btn {
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.2s;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .nav-btn:hover {
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        .prev-btn {
+            left: 20px;
+        }
+
+        .next-btn {
+            right: 20px;
+        }
+
+        .nav-btn:disabled {
+            background-color: rgba(0, 0, 0, 0.3);
+            cursor: not-allowed;
+        }
+
+        .image-modal-footer {
+            padding: 16px 24px;
+            text-align: center;
+            border-top: 1px solid #e5e7eb;
+            background-color: #f9fafb;
+        }
+
+        #imageCounter {
+            color: #6b7280;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* Full Screen Modal Styles */
+        .fullscreen-modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        .fullscreen-overlay {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .fullscreen-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 10;
+        }
+
+        .fullscreen-header h3 {
+            margin: 0;
+            color: white;
+            font-size: 18px;
+        }
+
+        .fullscreen-close {
+            color: white;
+            font-size: 32px;
+            font-weight: bold;
+            cursor: pointer;
+            background: rgba(0, 0, 0, 0.5);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.2s;
+        }
+
+        .fullscreen-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .fullscreen-body {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 80px 20px 60px 20px;
+            overflow: hidden;
+        }
+
+        .fullscreen-image-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+        }
+
+        .fullscreen-image-container img {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            background-color: rgba(255, 255, 255, 0.1);
+            object-fit: contain;
+            display: block;
+        }
+
+        .fullscreen-nav-btn {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            backdrop-filter: blur(10px);
+        }
+
+        .fullscreen-nav-btn:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .fullscreen-nav-btn.prev-btn {
+            left: 30px;
+        }
+
+        .fullscreen-nav-btn.next-btn {
+            right: 30px;
+        }
+
+        .fullscreen-nav-btn:disabled {
+            background-color: rgba(255, 255, 255, 0.1);
+            cursor: not-allowed;
+            transform: translateY(-50%) scale(1);
+        }
+
+        .fullscreen-footer {
+            padding: 20px 30px;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+
+        #fullScreenCounter {
+            color: white;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        /* Ensure images display at their natural aspect ratio */
+        .fullscreen-image-container img {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .icon {
+            width: 16px;
+            height: 16px;
+        }
+
+        @media (max-width: 768px) {
+            .questions-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-tabs {
+                gap: 16px;
+                overflow-x: auto;
+            }
+            
+            .header {
+                padding: 12px 16px;
+            }
+            
+            .main-content {
+                padding: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1 class="header-title">Image Evaluation Dashboard</h1>
+        <div class="user-info">
+            <div class="user-role">
+                <svg class="icon" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/>
+                </svg>
+                <!-- <span>Administrator</span> -->
+                <span class="user-name">Admin</span>
+            </div>
+            <a href="#" class="logout-btn" onclick="logout()">
+                <svg class="icon" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M3 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z" clip-rule="evenodd"/>
+                </svg>
+                Logout
+            </a>
+        </div>
+    </header>
+
+    <nav class="navigation">
+        <div class="nav-tabs">
+            <a href="#" class="nav-tab active" data-tab="questions">Questions to Evaluate</a>
+          
+            <a href="#" class="nav-tab" data-tab="profile">Profile</a>
+            <a href="#" class="nav-tab" data-tab="responses">All Responses</a>
+            <a href="#" class="nav-tab" data-tab="admin">All Questions</a>
+            <a href="#" class="nav-tab" data-tab="users">All Users</a>
+
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <!-- Questions Tab Content -->
+        <div class="tab-content active" id="questionsTab">
+            <div class="questions-grid" id="questionsGrid">
+                <!-- Questions will be loaded dynamically from server -->
+                <div class="loading-placeholder">
+                    <div style="text-align: center; padding: 40px; color: #6b7280;">
+                        <div style="margin-bottom: 16px;">
+                            <svg class="icon" fill="currentColor" viewBox="0 0 20 20" style="width: 32px; height: 32px;">
+                                <path fill-rule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clip-rule="evenodd"/>
+                        </svg>
+                        </div>
+                        <div>Loading questions...</div>
+                    </div>
+                </div>
+                    </div>
+                </div>
+
+        <!-- Profile Tab Content -->
+        <div class="tab-content" id="profileTab">
+            <div class="profile-container">
+                <div class="profile-header">
+                    <div class="profile-avatar">
+                        <svg class="icon" fill="currentColor" viewBox="0 0 20 20" style="width: 64px; height: 64px;">
+                            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/>
+                            </svg>
+                        </div>
+                    <div class="profile-info">
+                        <h2 class="profile-name" id="profileName">Loading...</h2>
+                        <p class="profile-username" id="profileUsername">Loading...</p>
+                        </div>
+                        </div>
+                <div class="profile-details">
+                    <div class="profile-section">
+                        <div class="section-header">
+                            <h3>Experience</h3>
+                            <span class="edit-label" onclick="startEdit('experience')">✏️ Edit</span>
+                        </div>
+                        <div class="editable-content">
+                            <p id="profileExperience">Loading...</p>
+                        </div>
+                        <div class="edit-form" id="experienceEditForm">
+                            <textarea class="edit-textarea" id="experienceEditTextarea" placeholder="Describe your experience in image evaluation..."></textarea>
+                            <div class="edit-actions">
+                                <button class="edit-btn save-btn" onclick="saveEdit('experience')">Save</button>
+                                <button class="edit-btn cancel-btn" onclick="cancelEdit('experience')">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="profile-section">
+                        <div class="section-header">
+                            <h3>Qualification</h3>
+                            <span class="edit-label" onclick="startEdit('qualification')">✏️ Edit</span>
+                        </div>
+                        <div class="editable-content">
+                            <p id="profileQualification">Loading...</p>
+                        </div>
+                        <div class="edit-form" id="qualificationEditForm">
+                            <textarea class="edit-textarea" id="qualificationEditTextarea" placeholder="Describe your educational background and qualifications..."></textarea>
+                            <div class="edit-actions">
+                                <button class="edit-btn save-btn" onclick="saveEdit('qualification')">Save</button>
+                                <button class="edit-btn cancel-btn" onclick="cancelEdit('qualification')">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    </div>
+                </div>
+
+        <!-- All Responses Tab Content -->
+        <div class="tab-content" id="responsesTab">
+            <div class="responses-container">
+                <div class="responses-header">
+                    <h2>All Responses</h2>
+                    <div class="responses-stats">
+                        <span id="totalResponses">Loading...</span> responses
+                    </div>
+            </div>
+
+                <!-- Filter Section -->
+                <div class="filter-section">
+                    <div class="filter-row">
+                        <div class="filter-group">
+                            <label for="userFilter">Filter by User:</label>
+                            <select id="userFilter" class="filter-select">
+                                <option value="all">All Users</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="questionFilter">Filter by Question:</label>
+                            <select id="questionFilter" class="filter-select">
+                                <option value="all">All Questions</option>
+                            </select>
+                        </div>
+                        <div class="filter-actions">
+                            <button id="applyFilter" class="filter-btn">Apply Filter</button>
+                            <button id="clearFilter" class="filter-btn clear-btn">Clear Filter</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="responses-table-container">
+                    <table class="responses-table">
+                        <thead id="responsesTableHead">
+                            <tr>
+                                <th>User</th>
+                                <th>Question #</th>
+                                <th>Question Prompt</th>
+                                <th>Comments</th>
+                                <th>Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="responsesTableBody">
+                            <tr>
+                                <td colspan="6" style="text-align: center; padding: 40px; color: #6b7280;">
+                                    Loading responses...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="pagination" id="pagination">
+                    <!-- Pagination will be generated here -->
+                </div>
+                    </div>
+                </div>
+
+        <!-- All Users Tab Content -->
+        <div class="tab-content" id="usersTab">
+            <div class="users-container">
+                <div class="users-header">
+                    <h2>All Users</h2>
+                    <button id="addUserBtn" class="add-btn">Add New User</button>
+                        </div>
+                
+                <div class="users-table-container">
+                    <table class="users-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Username</th>
+                                <th>Role</th>
+                                <th>Qualification</th>
+                                <th>Experience</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="usersTableBody">
+                            <tr>
+                                <td colspan="7" style="text-align: center; padding: 40px; color: #6b7280;">
+                                    Loading users...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                        </div>
+                        </div>
+                    </div>
+
+        <!-- All Questions Tab Content -->
+        <div class="tab-content" id="adminTab">
+            <div class="questions-container">
+                <div class="questions-header">
+                    <h2>All Questions</h2>
+                    <button id="addQuestionBtn" class="add-btn">Add New Question</button>
+                </div>
+
+                <div class="questions-table-container">
+                    <table class="questions-table">
+                        <thead>
+                            <tr>
+                                <th>Question #</th>
+                                <th>Prompt</th>
+                                <th>Input Image</th>
+                                <th>Output Images</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="questionsTableBody">
+                            <tr>
+                                <td colspan="6" style="text-align: center; padding: 40px; color: #6b7280;">
+                                    Loading questions...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add User Modal -->
+        <div id="addUserModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Add New User</h3>
+                    <span class="close" id="closeAddUserModal">&times;</span>
+                </div>
+                <form id="addUserForm">
+                    <div class="form-group">
+                        <label for="userName">Full Name:</label>
+                        <input type="text" id="userName" name="name" required placeholder="Enter full name (e.g., Nguyễn Hải Yến)">
+                    </div>
+                    <div class="form-group">
+                        <label for="userUsername">Username:</label>
+                        <input type="text" id="userUsername" name="username" readonly placeholder="Will be generated from name">
+                    </div>
+                    <div class="form-group">
+                        <label for="userRole">Role:</label>
+                        <select id="userRole" name="role" required>
+                            <option value="reviewer" selected>Reviewer</option>
+                            <option value="admin">Admin</option>
+                            
+                        </select>
+                    </div>
+                    <div style="margin-top: 16px; padding: 12px; background-color: #f3f4f6; border-radius: 6px; border-left: 4px solid #3b82f6;">
+                        <small style="color: #6b7280; font-size: 12px;">
+                            <strong>Note:</strong> Default password will be set to "password123" for all new users.
+                        </small>
+                    </div>
+                    <div class="form-group" style="display: none;">
+                        <label for="userPassword">Password:</label>
+                        <input type="text" id="userPassword" name="password" readonly value="password123">
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="submit-btn" id="addUserSubmitBtn" disabled>Add User</button>
+                        <button type="button" class="cancel-btn" id="cancelAddUserBtn">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Add Question Modal -->
+        <div id="addQuestionModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Add New Question</h3>
+                    <span class="close" id="closeAddModal">&times;</span>
+                </div>
+                <form id="addQuestionForm">
+                    <div class="form-group">
+                        <label for="questionPrompt">Prompt:</label>
+                        <textarea id="questionPrompt" name="prompt" required placeholder="Enter the question prompt..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="questionImageInput">Input Image URL:</label>
+                        <input type="url" id="questionImageInput" name="imageInput" required placeholder="https://example.com/image.jpg">
+                    </div>
+                    <div class="form-group">
+                        <label>Output Images:</label>
+                        <div id="outputImagesContainer">
+                            <div class="output-image-input">
+                                <div class="output-input-row">
+                                    <input type="url" name="outputUrls[]" required placeholder="https://example.com/output1.jpg">
+                                    <input type="text" name="outputSrcs[]" required placeholder="Source (e.g., Pinterest, DALL-E)">
+                                </div>
+                                <button type="button" class="remove-output-btn" onclick="removeOutputImage(this)">Remove</button>
+                            </div>
+                        </div>
+                        <button type="button" id="addOutputBtn" class="add-output-btn">Add Another Output Image</button>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="submit-btn">Add Question</button>
+                        <button type="button" class="cancel-btn" id="cancelAddBtn">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Image Modal for Questions -->
+        <div id="imageModal" class="modal">
+            <div class="modal-content image-modal-content">
+                <div class="modal-header">
+                    <h3 id="imageModalTitle">Image View</h3>
+                    <span class="close" id="closeImageModal">&times;</span>
+                </div>
+                <div class="image-modal-body">
+                    <button class="nav-btn prev-btn" id="prevImageBtn">&lt;</button>
+                    <div class="image-container">
+                        <img id="modalImage" src="" alt="Modal Image">
+                    </div>
+                    <button class="nav-btn next-btn" id="nextImageBtn">&gt;</button>
+                </div>
+                <div class="image-modal-footer">
+                    <span id="imageCounter">1 / 1</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Full Screen Image Modal -->
+        <div id="fullScreenModal" class="fullscreen-modal">
+            <div class="fullscreen-overlay">
+                <div class="fullscreen-header">
+                    <h3 id="fullScreenTitle">Image View</h3>
+                    <span class="fullscreen-close" id="closeFullScreenModal">&times;</span>
+                </div>
+                <div class="fullscreen-body">
+                    <button class="fullscreen-nav-btn prev-btn" id="fullScreenPrevBtn">&lt;</button>
+                    <div class="fullscreen-image-container">
+                        <img id="fullScreenImage" src="" alt="Full Screen Image">
+                    </div>
+                    <button class="fullscreen-nav-btn next-btn" id="fullScreenNextBtn">&gt;</button>
+                </div>
+                <div class="fullscreen-footer">
+                    <span id="fullScreenCounter">1 / 1</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-content" id="adminTab">
+            <div style="text-align: center; padding: 40px; color: #6b7280;">
+                <h3>Admin Panel</h3>
+                <p>This feature is coming soon...</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Image Modal -->
+    <div id="imageModal" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.8);">
+        <div style="position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
+            <img id="modalImage" src="" alt="Enlarged Image" style="max-width: 90%; max-height: 90%; object-fit: contain; border-radius: 8px;">
+            <button onclick="closeImageModal()" style="position: absolute; top: 20px; right: 30px; color: white; font-size: 28px; font-weight: bold; background: none; border: none; cursor: pointer;">&times;</button>
+        </div>
+    </div>
+
+    <!-- Profile Completion Modal -->
+    <div id="profileModal" class="profile-modal">
+        <div class="profile-modal-content">
+            <div class="profile-modal-header">
+                <h2>Complete Your Profile</h2>
+                <p>Please provide your experience and qualification information to continue.</p>
+            </div>
+            <form id="profileForm" class="profile-form">
+                <div class="form-group">
+                    <label for="experience">Experience *</label>
+                    <textarea id="experience" name="experience" class="form-input" placeholder="Describe your experience in image evaluation..." required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="qualification">Qualification *</label>
+                    <textarea id="qualification" name="qualification" class="form-input" placeholder="Describe your educational background and qualifications..." required></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="submit-btn">Save Profile</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let questions = [];
+        let currentUser = null;
+        let currentPage = 1;
+        let totalPages = 1;
+        let maxOutputs = 0;
+        let currentFilters = { userId: 'all', questionId: 'all' };
+
+        // Load questions from server when page loads
+        document.addEventListener('DOMContentLoaded', async function() {
+            console.log('DOM Content Loaded - Starting initialization...');
+            await loadUserInfo();
+            loadQuestions();
+            
+            // Force update profile display after a short delay
+            setTimeout(() => {
+                console.log('Force updating profile display...');
+                updateProfileDisplay();
+            }, 1000);
+        });
+
+        // Function to load and display user information
+        async function loadUserInfo() {
+            console.log('loadUserInfo called');
+            
+            // Get user info from sessionStorage (set during login)
+            const userInfo = sessionStorage.getItem('userInfo');
+            if (userInfo) {
+                try {
+                    currentUser = JSON.parse(userInfo);
+                    console.log('User from sessionStorage:', currentUser);
+                    
+                    const userNameElement = document.querySelector('.user-name');
+                    if (userNameElement && currentUser.name) {
+                        userNameElement.textContent = currentUser.name;
+                    }
+                    
+                    // Load fresh user data from server to get latest experience and qualification
+                    await loadFreshUserData();
+                    
+                    // Always load profile information to display current state
+                    loadProfileInfo();
+                    
+                    // Check if user needs to complete profile
+                    if (!currentUser.experience || !currentUser.qualification) {
+                        showProfileCompletionModal();
+                    }
+                    
+                    // Setup tab navigation (this will hide admin tabs for non-admin users)
+                    setupTabNavigation();
+                    
+                    // Hide admin-only tab contents for non-admin users
+                    const isAdmin = currentUser && currentUser.role === 'admin';
+                    if (!isAdmin) {
+                        const adminTabContents = ['responsesTab', 'adminTab', 'usersTab'];
+                        adminTabContents.forEach(tabId => {
+                            const tabContent = document.getElementById(tabId);
+                            if (tabContent) {
+                                tabContent.style.display = 'none';
+                            }
+                        });
+                    }
+                } catch (error) {
+                    console.error('Error parsing userInfo:', error);
+                    redirectToLogin();
+                }
+            } else {
+                console.log('No user info in sessionStorage, redirecting to login');
+                redirectToLogin();
+            }
+        }
+
+        // Function to redirect to login page
+        function redirectToLogin() {
+            console.log('Redirecting to login page...');
+            window.location.href = 'login.html';
+        }
+
+        // Function to test login (for debugging)
+        async function testLogin() {
+            try {
+                console.log('Testing login with admin/admin...');
+                const response = await fetch('http://localhost:3000/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        username: 'admin',
+                        password: 'admin'
+                    })
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log('Login successful:', data);
+                    
+                    // Set sessionStorage
+                    sessionStorage.setItem('userInfo', JSON.stringify(data.user));
+                    console.log('User info saved to sessionStorage');
+                    
+                    // Reload page to test
+                    window.location.reload();
+                } else {
+                    const errorData = await response.json();
+                    console.log('Login failed:', response.status, errorData);
+                }
+            } catch (error) {
+                console.error('Error testing login:', error);
+                console.log('Make sure server is running on http://localhost:3000');
+            }
+        }
+
+        // Function to manually set user data (for testing)
+        function setTestUserData() {
+            const testUser = {
+                _id: "test123",
+                username: "admin",
+                name: "Admin User",
+                experience: "5 years in image evaluation",
+                qualification: "Master's degree in Computer Science"
+            };
+            
+            sessionStorage.setItem('userInfo', JSON.stringify(testUser));
+            console.log('Test user data set:', testUser);
+            
+            // Update current user and display immediately
+            currentUser = testUser;
+            updateProfileDisplay();
+            
+            // Update user name in header
+            const userNameElement = document.querySelector('.user-name');
+            if (userNameElement) {
+                userNameElement.textContent = testUser.name;
+            }
+            
+            console.log('Profile updated with test data');
+        }
+
+        // Function to clear session and start fresh
+        function clearSession() {
+            sessionStorage.clear();
+            localStorage.clear();
+            currentUser = null;
+            console.log('Session cleared');
+            
+            // Update display to show "Not specified"
+            updateProfileDisplay();
+            
+            // Clear user name in header
+            const userNameElement = document.querySelector('.user-name');
+            if (userNameElement) {
+                userNameElement.textContent = 'Guest';
+            }
+        }
+
+        // Make functions available globally for console testing
+        window.testLogin = testLogin;
+        window.setTestUserData = setTestUserData;
+        window.debugProfileLoading = debugProfileLoading;
+        window.updateProfileDisplay = updateProfileDisplay;
+        window.clearSession = clearSession;
+
+        // Function to update profile display immediately
+        function updateProfileDisplay() {
+            console.log('updateProfileDisplay called');
+            
+            // Check sessionStorage
+            const userInfo = sessionStorage.getItem('userInfo');
+            console.log('sessionStorage userInfo:', userInfo);
+            
+            if (userInfo) {
+                try {
+                    const parsedUser = JSON.parse(userInfo);
+                    console.log('Parsed user from sessionStorage:', parsedUser);
+                    currentUser = parsedUser;
+                } catch (error) {
+                    console.error('Error parsing userInfo:', error);
+                }
+            }
+            
+            console.log('currentUser:', currentUser);
+            
+            const profileExperience = document.getElementById('profileExperience');
+            const profileQualification = document.getElementById('profileQualification');
+            
+            console.log('Elements found:', {
+                profileExperience: !!profileExperience,
+                profileQualification: !!profileQualification
+            });
+            
+            if (profileExperience) {
+                const experienceText = currentUser && currentUser.experience ? currentUser.experience : 'Not specified';
+                profileExperience.textContent = experienceText;
+                console.log('Updated profileExperience with:', experienceText);
+            } else {
+                console.error('profileExperience element not found!');
+            }
+            
+            if (profileQualification) {
+                const qualificationText = currentUser && currentUser.qualification ? currentUser.qualification : 'Not specified';
+                profileQualification.textContent = qualificationText;
+                console.log('Updated profileQualification with:', qualificationText);
+            } else {
+                console.error('profileQualification element not found!');
+            }
+        }
+
+        // Function to debug and fix profile loading
+        function debugProfileLoading() {
+            console.log('=== DEBUG PROFILE LOADING ===');
+            
+            // Check all possible storage locations
+            console.log('sessionStorage userInfo:', sessionStorage.getItem('userInfo'));
+            console.log('localStorage userInfo:', localStorage.getItem('userInfo'));
+            
+            // Check current user
+            console.log('currentUser:', currentUser);
+            
+            // Check elements
+            const profileExperience = document.getElementById('profileExperience');
+            const profileQualification = document.getElementById('profileQualification');
+            console.log('profileExperience element:', profileExperience);
+            console.log('profileQualification element:', profileQualification);
+            
+            // Check if elements exist and their current content
+            if (profileExperience) {
+                console.log('profileExperience current text:', profileExperience.textContent);
+            }
+            if (profileQualification) {
+                console.log('profileQualification current text:', profileQualification.textContent);
+            }
+            
+            // Try to force update
+            updateProfileDisplay();
+            
+            // If no user data, try to load from server
+            if (!currentUser || !currentUser._id) {
+                console.log('No user data found, trying to load from server...');
+                loadUserFromServer();
+            }
+        }
+
+        // Function to load fresh user data from server
+        async function loadFreshUserData() {
+            try {
+                if (!currentUser) {
+                    console.log('No current user, cannot load fresh data');
+                    return;
+                }
+                
+                // Try different ways to identify user
+                let userId = currentUser._id || currentUser.id;
+                if (!userId && currentUser.username) {
+                    userId = currentUser.username;
+                }
+                
+                if (!userId) {
+                    console.log('No user ID or username found, cannot load fresh data');
+                    return;
+                }
+                
+                console.log('Loading fresh user data from server for:', userId);
+                
+                const response = await fetch(`http://localhost:3000/debug-user/${userId}`);
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.user) {
+                        // Update current user with fresh data from server
+                        currentUser = { ...currentUser, ...data.user };
+                        sessionStorage.setItem('userInfo', JSON.stringify(currentUser));
+                        console.log('Fresh user data loaded:', currentUser);
+                        console.log('Experience:', currentUser.experience);
+                        console.log('Qualification:', currentUser.qualification);
+                    } else {
+                        console.log('No user data returned from server');
+                    }
+                } else {
+                    console.log('Failed to load user data from server:', response.status, response.statusText);
+                    // Don't redirect here, just log the error
+                }
+            } catch (error) {
+                console.error('Error loading fresh user data:', error);
+            }
+        }
+
+        // Function to load user data from server
+        async function loadUserFromServer() {
+            try {
+                // Try to get username from any available source
+                let username = null;
+                
+                // Check if we have any user info
+                const userInfo = sessionStorage.getItem('userInfo');
+                if (userInfo) {
+                    try {
+                        const user = JSON.parse(userInfo);
+                        username = user.username;
+                    } catch (e) {
+                        console.error('Error parsing userInfo:', e);
+                    }
+                }
+                
+                // If no username, try to get from localStorage or other sources
+                if (!username) {
+                    username = localStorage.getItem('username') || 'admin'; // fallback
+                }
+                
+                console.log('Trying to load user data for username:', username);
+                
+                const response = await fetch(`http://localhost:3000/debug-user/${username}`);
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.user) {
+                        currentUser = data.user;
+                        sessionStorage.setItem('userInfo', JSON.stringify(currentUser));
+                        console.log('User data loaded from server:', currentUser);
+                        updateProfileDisplay();
+                    }
+                }
+            } catch (error) {
+                console.error('Error loading user from server:', error);
+            }
+        }
+
+                // Function to load profile information
+        function loadProfileInfo() {
+            if (!currentUser) {
+                console.log('No current user, cannot load profile info');
+                return;
+            }
+
+            console.log('Loading profile info for user:', currentUser);
+            console.log('Experience:', currentUser.experience);
+            console.log('Qualification:', currentUser.qualification);
+
+            // Update profile elements
+            const profileName = document.getElementById('profileName');
+            const profileUsername = document.getElementById('profileUsername');
+            const profileExperience = document.getElementById('profileExperience');
+            const profileQualification = document.getElementById('profileQualification');
+            
+            console.log('Profile elements found:', {
+                profileName: !!profileName,
+                profileUsername: !!profileUsername,
+                profileExperience: !!profileExperience,
+                profileQualification: !!profileQualification
+            });
+            
+            if (profileName) {
+                profileName.textContent = currentUser.name || 'Not specified';
+            }
+            if (profileUsername) {
+                profileUsername.textContent = currentUser.username || 'Not specified';
+            }
+            if (profileExperience) {
+                const experienceText = currentUser.experience || 'Not specified';
+                profileExperience.textContent = experienceText;
+                console.log('Updated profileExperience with:', experienceText);
+            }
+            if (profileQualification) {
+                const qualificationText = currentUser.qualification || 'Not specified';
+                profileQualification.textContent = qualificationText;
+                console.log('Updated profileQualification with:', qualificationText);
+            }
+            
+            // Also call updateProfileDisplay to ensure it's updated
+            updateProfileDisplay();
+        }
+
+        // Function to start editing a field
+        function startEdit(fieldName) {
+            const editForm = document.getElementById(fieldName + 'EditForm');
+            const editableContent = document.querySelector(`#profile${fieldName.charAt(0).toUpperCase() + fieldName.slice(1)}`).parentElement;
+            const textarea = document.getElementById(fieldName + 'EditTextarea');
+            const currentValue = currentUser[fieldName] || '';
+            
+            // Set current value in textarea
+            textarea.value = currentValue;
+            
+            // Hide the current content
+            editableContent.style.display = 'none';
+            
+            // Show edit form
+            editForm.classList.add('active');
+            
+            // Focus on textarea
+            textarea.focus();
+            
+            // Auto-resize textarea
+            autoResizeTextarea(textarea);
+        }
+
+        // Function to save edit
+        async function saveEdit(fieldName) {
+            const textarea = document.getElementById(fieldName + 'EditTextarea');
+            const newValue = textarea.value.trim();
+            
+            if (!newValue) {
+                alert('Please enter a value for ' + fieldName);
+                return;
+            }
+            
+            // Disable save button to prevent double submission
+            const saveBtn = textarea.parentElement.querySelector('.save-btn');
+            const originalText = saveBtn.textContent;
+            saveBtn.disabled = true;
+            saveBtn.textContent = 'Saving...';
+            
+            try {
+                // Prepare update data
+                const updateData = {
+                    experience: currentUser.experience || '',
+                    qualification: currentUser.qualification || ''
+                };
+                updateData[fieldName] = newValue;
+                
+                // Call save function
+                const success = await saveProfileInfo(updateData.experience, updateData.qualification);
+                
+                if (success) {
+                    // Update local display
+                    const displayElement = document.getElementById('profile' + fieldName.charAt(0).toUpperCase() + fieldName.slice(1));
+                    displayElement.textContent = newValue;
+                    
+                    // Hide edit form and show updated content
+                    const editForm = document.getElementById(fieldName + 'EditForm');
+                    const editableContent = document.querySelector(`#profile${fieldName.charAt(0).toUpperCase() + fieldName.slice(1)}`).parentElement;
+                    
+                    editForm.classList.remove('active');
+                    editableContent.style.display = 'block';
+                    
+                    alert(fieldName.charAt(0).toUpperCase() + fieldName.slice(1) + ' updated successfully!');
+                }
+            } catch (error) {
+                console.error('Error saving edit:', error);
+                alert('Failed to save changes. Please try again.');
+            } finally {
+                // Re-enable save button
+                saveBtn.disabled = false;
+                saveBtn.textContent = originalText;
+            }
+        }
+
+        // Function to cancel edit
+        function cancelEdit(fieldName) {
+            const editForm = document.getElementById(fieldName + 'EditForm');
+            const editableContent = document.querySelector(`#profile${fieldName.charAt(0).toUpperCase() + fieldName.slice(1)}`).parentElement;
+            const textarea = document.getElementById(fieldName + 'EditTextarea');
+            
+            // Clear textarea
+            textarea.value = '';
+            
+            // Hide edit form
+            editForm.classList.remove('active');
+            
+            // Show the current content again
+            editableContent.style.display = 'block';
+        }
+
+        // Function to auto-resize textarea
+        function autoResizeTextarea(textarea) {
+            textarea.style.height = 'auto';
+            textarea.style.height = textarea.scrollHeight + 'px';
+        }
+
+        // Add event listeners for textarea auto-resize
+        document.addEventListener('DOMContentLoaded', function() {
+            const textareas = document.querySelectorAll('.edit-textarea');
+            textareas.forEach(textarea => {
+                textarea.addEventListener('input', function() {
+                    autoResizeTextarea(this);
+                });
+            });
+        });
+
+        // Function to setup tab navigation
+        function setupTabNavigation() {
+            const navTabs = document.querySelectorAll('.nav-tab');
+            
+            // Check if current user is admin
+            const isAdmin = currentUser && currentUser.role === 'admin';
+            
+            // Hide admin-only tabs for non-admin users
+            navTabs.forEach(tab => {
+                const tabType = tab.getAttribute('data-tab');
+                if (['responses', 'admin', 'users'].includes(tabType) && !isAdmin) {
+                    tab.style.display = 'none';
+                }
+            });
+            
+            navTabs.forEach(tab => {
+                tab.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all tabs
+                    navTabs.forEach(t => t.classList.remove('active'));
+                    
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                    
+                    // Hide all tab contents
+                    const tabContents = document.querySelectorAll('.tab-content');
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    
+                    // Show selected tab content
+                    const targetTab = this.getAttribute('data-tab');
+                    const targetContent = document.getElementById(targetTab + 'Tab');
+                    if (targetContent) {
+                        targetContent.classList.add('active');
+                        
+                        // Load responses when switching to responses tab
+                        if (targetTab === 'responses') {
+                            loadFilterData();
+                            loadAllResponses();
+                        }
+                        
+                        // Load questions when switching to admin tab
+                        if (targetTab === 'admin') {
+                            loadAllQuestions();
+                        }
+                        
+                        // Load users when switching to users tab
+                        if (targetTab === 'users') {
+                            loadAllUsers();
+                        }
+                    }
+                });
+            });
+        }
+
+        // Function to show profile completion modal
+        async function showProfileCompletionModal() {
+            const modal = document.getElementById('profileModal');
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            
+            // Debug user info first
+            await debugUserInfo();
+            
+            // Pre-fill existing data if available
+            if (currentUser.experience) {
+                document.getElementById('experience').value = currentUser.experience;
+            }
+            if (currentUser.qualification) {
+                document.getElementById('qualification').value = currentUser.qualification;
+            }
+        }
+
+        // Function to hide profile completion modal
+        function hideProfileCompletionModal() {
+            const modal = document.getElementById('profileModal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Function to debug user info
+        async function debugUserInfo() {
+            try {
+                const userId = currentUser._id || currentUser.username;
+                const response = await fetch(`http://localhost:3000/debug-user/${userId}`);
+                const data = await response.json();
+                console.log('Debug user info:', data);
+                return data;
+            } catch (error) {
+                console.error('Error debugging user:', error);
+                return null;
+            }
+        }
+
+        // Function to refresh user data from server
+        async function refreshUserData() {
+            try {
+                const userId = currentUser._id || currentUser.username;
+                const response = await fetch(`http://localhost:3000/debug-user/${userId}`);
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.user) {
+                        // Update current user with fresh data from server
+                        currentUser = { ...currentUser, ...data.user };
+                        sessionStorage.setItem('userInfo', JSON.stringify(currentUser));
+                        console.log('User data refreshed from server:', currentUser);
+                    }
+                }
+            } catch (error) {
+                console.error('Error refreshing user data:', error);
+            }
+        }
+
+        // Function to save profile information
+        async function saveProfileInfo(experience, qualification) {
+            try {
+                console.log('Current user data:', currentUser);
+                
+                // Try to use _id first, fallback to username
+                const userId = currentUser._id || currentUser.username;
+                
+                const requestBody = {
+                    userId: userId,
+                    experience: experience,
+                    qualification: qualification
+                };
+                
+                console.log('Sending update request:', requestBody);
+                
+                const response = await fetch('http://localhost:3000/update-profile', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(requestBody)
+                });
+
+                const responseData = await response.json();
+                console.log('Server response:', responseData);
+
+                if (response.ok) {
+                    // Update local user data
+                    currentUser.experience = experience;
+                    currentUser.qualification = qualification;
+                    
+                    // Update sessionStorage
+                    sessionStorage.setItem('userInfo', JSON.stringify(currentUser));
+                    
+                    // Refresh user data from server to ensure consistency
+                    await refreshUserData();
+                    
+                    // Hide modal and load profile
+                    hideProfileCompletionModal();
+                    loadProfileInfo();
+                    
+                    return true;
+                } else {
+                    throw new Error(responseData.message || 'Failed to update profile');
+                }
+            } catch (error) {
+                console.error('Error updating profile:', error);
+                alert('Failed to save profile information: ' + error.message);
+                return false;
+            }
+        }
+
+        // Setup profile form submission
+        document.addEventListener('DOMContentLoaded', function() {
+            const profileForm = document.getElementById('profileForm');
+            if (profileForm) {
+                profileForm.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    
+                    const experience = document.getElementById('experience').value.trim();
+                    const qualification = document.getElementById('qualification').value.trim();
+                    
+                    if (!experience || !qualification) {
+                        alert('Please fill in both experience and qualification fields.');
+                        return;
+                    }
+                    
+                    // Disable submit button to prevent double submission
+                    const submitBtn = this.querySelector('.submit-btn');
+                    const originalText = submitBtn.textContent;
+                    submitBtn.disabled = true;
+                    submitBtn.textContent = 'Saving...';
+                    
+                    try {
+                        const success = await saveProfileInfo(experience, qualification);
+                        if (success) {
+                            alert('Profile updated successfully!');
+                        }
+                    } finally {
+                        // Re-enable submit button
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = originalText;
+                    }
+                });
+            }
+            
+            // Setup filter event listeners
+            const applyFilterBtn = document.getElementById('applyFilter');
+            const clearFilterBtn = document.getElementById('clearFilter');
+            
+            if (applyFilterBtn) {
+                applyFilterBtn.addEventListener('click', function() {
+                    const userFilter = document.getElementById('userFilter');
+                    const questionFilter = document.getElementById('questionFilter');
+                    
+                    currentFilters.userId = userFilter.value;
+                    currentFilters.questionId = questionFilter.value;
+                    
+                    // Reset to page 1 when applying filter
+                    loadAllResponses(1);
+                });
+            }
+            
+            if (clearFilterBtn) {
+                clearFilterBtn.addEventListener('click', function() {
+                    const userFilter = document.getElementById('userFilter');
+                    const questionFilter = document.getElementById('questionFilter');
+                    
+                    userFilter.value = 'all';
+                    questionFilter.value = 'all';
+                    
+                    currentFilters.userId = 'all';
+                    currentFilters.questionId = 'all';
+                    
+                    // Reset to page 1 when clearing filter
+                    loadAllResponses(1);
+                });
+            }
+            
+            // Setup questions modal event listeners
+            // Setup add user modal
+            const addUserBtn = document.getElementById('addUserBtn');
+            const addUserModal = document.getElementById('addUserModal');
+            const closeAddUserModal = document.getElementById('closeAddUserModal');
+            const cancelAddUserBtn = document.getElementById('cancelAddUserBtn');
+            const addUserForm = document.getElementById('addUserForm');
+
+            if (addUserBtn) {
+                addUserBtn.addEventListener('click', function() {
+                    addUserModal.style.display = 'block';
+                });
+            }
+
+            if (closeAddUserModal) {
+                closeAddUserModal.addEventListener('click', function() {
+                    addUserModal.style.display = 'none';
+                });
+            }
+
+            if (cancelAddUserBtn) {
+                cancelAddUserBtn.addEventListener('click', function() {
+                    addUserModal.style.display = 'none';
+                });
+            }
+
+            // Close modal when clicking outside
+            if (addUserModal) {
+                addUserModal.addEventListener('click', function(e) {
+                    if (e.target === addUserModal) {
+                        addUserModal.style.display = 'none';
+                    }
+                });
+            }
+
+            // Setup username generation from name input
+            const userNameInput = document.getElementById('userName');
+            const userUsernameInput = document.getElementById('userUsername');
+            const addUserSubmitBtn = document.getElementById('addUserSubmitBtn');
+
+            if (userNameInput) {
+                userNameInput.addEventListener('input', async function() {
+                    const name = this.value.trim();
+                    
+                    if (name.length > 0) {
+                        // Generate base username
+                        const baseUsername = generateUsername(name);
+                        // Check if unique and get final username
+                        const finalUsername = await generateUniqueUsername(baseUsername);
+                        userUsernameInput.value = finalUsername;
+                        
+                        // Enable submit button
+                        addUserSubmitBtn.disabled = false;
+                    } else {
+                        userUsernameInput.value = '';
+                        addUserSubmitBtn.disabled = true;
+                    }
+                });
+            }
+
+            const addQuestionBtn = document.getElementById('addQuestionBtn');
+            const addQuestionModal = document.getElementById('addQuestionModal');
+            const closeAddModal = document.getElementById('closeAddModal');
+            const cancelAddBtn = document.getElementById('cancelAddBtn');
+            const addQuestionForm = document.getElementById('addQuestionForm');
+            const addOutputBtn = document.getElementById('addOutputBtn');
+            
+            if (addQuestionBtn) {
+                addQuestionBtn.addEventListener('click', function() {
+                    addQuestionModal.style.display = 'block';
+                });
+            }
+            
+            if (closeAddModal) {
+                closeAddModal.addEventListener('click', function() {
+                    addQuestionModal.style.display = 'none';
+                });
+            }
+            
+            if (cancelAddBtn) {
+                cancelAddBtn.addEventListener('click', function() {
+                    addQuestionModal.style.display = 'none';
+                });
+            }
+            
+            if (addOutputBtn) {
+                addOutputBtn.addEventListener('click', function() {
+                    addOutputImageInput();
+                });
+            }
+
+            // Setup add user form submission
+            if (addUserForm) {
+                addUserForm.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    
+                    const formData = new FormData(this);
+                    const name = formData.get('name').trim();
+                    const username = formData.get('username');
+                    const role = formData.get('role');
+                    const password = formData.get('password');
+                    
+                    if (!name || !username || !role || !password) {
+                        alert('Please fill in all required fields.');
+                        return;
+                    }
+                    
+                    try {
+                        console.log('Adding user with generated username:', username);
+                        
+                        const response = await fetch('http://localhost:3000/add-user', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({
+                                name: name,
+                                username: username,
+                                role: role,
+                                password: password
+                            })
+                        });
+                        
+                        if (response.ok) {
+                            alert(`User added successfully! Username: ${username}`);
+                            addUserModal.style.display = 'none';
+                            this.reset();
+                            // Reset password field to default value
+                            document.getElementById('userPassword').value = 'password123';
+                            // Disable submit button
+                            document.getElementById('addUserSubmitBtn').disabled = true;
+                            loadAllUsers(); // Reload users table
+                        } else {
+                            const error = await response.json();
+                            alert('Error adding user: ' + error.message);
+                        }
+                    } catch (error) {
+                        console.error('Error adding user:', error);
+                        alert('Failed to add user. Please try again.');
+                    }
+                });
+            }
+            
+            if (addQuestionForm) {
+                addQuestionForm.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    
+                    const formData = new FormData(this);
+                    const prompt = formData.get('prompt');
+                    const imageInput = formData.get('imageInput');
+                    const outputUrls = formData.getAll('outputUrls[]').filter(url => url.trim() !== '');
+                    const outputSrcs = formData.getAll('outputSrcs[]').filter(src => src.trim() !== '');
+                    
+                    if (!prompt || !imageInput || outputUrls.length === 0) {
+                        alert('Please fill in all required fields.');
+                        return;
+                    }
+                    
+                    if (outputUrls.length !== outputSrcs.length) {
+                        alert('Please fill in both URL and Source for all output images.');
+                        return;
+                    }
+                    
+                    // Create outputs array with image and src
+                    const outputs = outputUrls.map((url, index) => ({
+                        image: url,
+                        src: outputSrcs[index] || 'Unknown'
+                    }));
+                    
+                    try {
+                        const response = await fetch('http://localhost:3000/add-question', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({
+                                prompt: prompt,
+                                imageInput: imageInput,
+                                outputs: outputs
+                            })
+                        });
+                        
+                        if (response.ok) {
+                            alert('Question added successfully!');
+                            addQuestionModal.style.display = 'none';
+                            this.reset();
+                            loadAllQuestions(); // Reload questions table
+                        } else {
+                            const error = await response.json();
+                            alert('Error adding question: ' + error.message);
+                        }
+                    } catch (error) {
+                        console.error('Error adding question:', error);
+                        alert('Failed to add question. Please try again.');
+                    }
+                });
+            }
+            
+            // Setup image modal event listeners
+            const fullScreenModal = document.getElementById('fullScreenModal');
+            const closeFullScreenModalBtn = document.getElementById('closeFullScreenModal');
+            const fullScreenPrevBtn = document.getElementById('fullScreenPrevBtn');
+            const fullScreenNextBtn = document.getElementById('fullScreenNextBtn');
+            
+            if (closeFullScreenModalBtn) {
+                closeFullScreenModalBtn.addEventListener('click', closeImageModal);
+            }
+            
+            if (fullScreenPrevBtn) {
+                fullScreenPrevBtn.addEventListener('click', showPreviousImage);
+            }
+            
+            if (fullScreenNextBtn) {
+                fullScreenNextBtn.addEventListener('click', showNextImage);
+            }
+            
+            // Close modal when clicking outside
+            if (fullScreenModal) {
+                fullScreenModal.addEventListener('click', function(e) {
+                    if (e.target === fullScreenModal) {
+                        closeImageModal();
+                    }
+                });
+            }
+            
+            // Keyboard navigation
+            document.addEventListener('keydown', function(e) {
+                if (fullScreenModal && fullScreenModal.style.display === 'block') {
+                    if (e.key === 'Escape') {
+                        closeImageModal();
+                    } else if (e.key === 'ArrowLeft') {
+                        showPreviousImage();
+                    } else if (e.key === 'ArrowRight') {
+                        showNextImage();
+                    }
+                }
+            });
+        });
+
+        // Function to truncate text to specified length
+        function truncateText(text, maxLength) {
+            if (text.length <= maxLength) {
+                return text;
+            }
+            
+            // Find the last space before maxLength
+            const truncated = text.substring(0, maxLength);
+            const lastSpaceIndex = truncated.lastIndexOf(' ');
+            
+            if (lastSpaceIndex > 0) {
+                return truncated.substring(0, lastSpaceIndex) + '...';
+            } else {
+                return truncated + '...';
+            }
+        }
+
+        // Function to load questions from server
+        async function loadQuestions() {
+            try {
+                // Get current user info
+                const userInfo = sessionStorage.getItem('userInfo');
+                let userId = null;
+                
+                if (userInfo) {
+                    const currentUser = JSON.parse(userInfo);
+                    userId = currentUser._id || currentUser.username;
+                }
+                
+                // Build URL with userId parameter
+                const url = userId ? 
+                    `http://localhost:3000/questions?userId=${encodeURIComponent(userId)}` :
+                    'http://localhost:3000/questions';
+                
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                questions = data.questions || [];
+                console.log('Loaded questions:', questions); // Debug log
+                
+                renderQuestions();
+            } catch (error) {
+                console.error('Error loading questions:', error);
+                showError('Failed to load questions. Please try again later.');
+            }
+        }
+
+        // Function to render questions
+        function renderQuestions() {
+            const questionsGrid = document.getElementById('questionsGrid');
+            
+            if (questions.length === 0) {
+                questionsGrid.innerHTML = `
+                    <div style="text-align: center; padding: 40px; color: #6b7280;">
+                        <div style="margin-bottom: 16px;">
+                            <svg class="icon" fill="currentColor" viewBox="0 0 20 20" style="width: 32px; height: 32px;">
+                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                    </svg>
+            </div>
+                        <div>No questions available</div>
+                    </div>
+                `;
+                return;
+            }
+
+            // Grid always has 3 columns, no need for special single-question class
+
+            questionsGrid.innerHTML = questions.map((question, index) => `
+            <div class="question-card">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                        <h2 class="question-title">Question #${question.questionNumber}</h2>
+                        ${question.hasAnswered ? 
+                            '<span style="background: #10b981; color: white; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: 500;">✓ Answered</span>' : 
+                            '<span style="background: #f59e0b; color: white; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: 500;">⏳ Pending</span>'
+                        }
+                    </div>
+                <p class="question-description">
+                        ${truncateText(question.prompt || 'No description available', 50)}
+                </p>
+                
+                <div class="image-section">
+                    <div class="section-label">Input Image:</div>
+                        <div class="input-image-placeholder" onclick="uploadInputImage('${question._id}', ${question.questionNumber})">
+                            ${question.imageInput && question.imageInput.trim() !== '' ? 
+                                `<img src="${question.imageInput}" alt="Input Image" style="width: 100%; height: 100%; object-fit: cover; border-radius: 6px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">` :
+                                ''
+                            }
+                            <svg class="icon" fill="currentColor" viewBox="0 0 20 20" style="${question.imageInput && question.imageInput.trim() !== '' ? 'display: none;' : 'display: flex;'}">
+                            <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="image-section">
+                    <div class="section-label">Output Images (3):</div>
+                    <div class="output-images">
+                            ${generateOutputImagePlaceholders(question.outputs || [], question._id, question.questionNumber)}
+                    </div>
+                </div>
+
+                    <button class="evaluate-btn ${question.hasAnswered ? 're-evaluate-btn' : ''}" onclick="evaluateImages('${question._id}', ${question.questionNumber})">
+                            <svg class="icon" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/>
+                        <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/>
+                            </svg>
+                    ${question.hasAnswered ? 'Re-Evaluate Images' : 'Evaluate Images'}
+                </button>
+                        </div>
+            `).join('');
+        }
+
+        // Function to generate output image placeholders
+        function generateOutputImagePlaceholders(outputImages, questionId, questionNumber) {
+            const maxImages = 3;
+            const totalImages = outputImages.length;
+            let html = '';
+            
+            for (let i = 0; i < maxImages; i++) {
+                const imageObj = outputImages[i];
+                const imageUrl = imageObj && imageObj.image ? imageObj.image : '';
+                const hasImage = imageUrl && imageUrl.trim() !== '';
+                const isLastImage = i === maxImages - 1;
+                const hasMoreImages = totalImages > maxImages;
+                const remainingCount = totalImages - maxImages;
+                
+                html += `
+                    <div class="output-image-placeholder" onclick="viewOutputImage('${questionId}', ${i}, ${questionNumber})" style="position: relative;">
+                        ${hasImage ? 
+                            `<img src="${imageUrl}" alt="Output Image ${i + 1}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">` :
+                            ''
+                        }
+                        <svg class="icon" fill="currentColor" viewBox="0 0 20 20" style="${hasImage ? 'display: none;' : 'display: flex;'}">
+                                <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd"/>
+                            </svg>
+                        ${isLastImage && hasMoreImages ? `
+                            <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.6); border-radius: 4px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 18px;">
+                                +${remainingCount}
+                        </div>
+                        ` : ''}
+                    </div>
+                `;
+            }
+            
+            return html;
+        }
+
+        // Function to show error message
+        function showError(message) {
+            const questionsGrid = document.getElementById('questionsGrid');
+            questionsGrid.innerHTML = `
+                <div style="text-align: center; padding: 40px; color: #ef4444;">
+                    <div style="margin-bottom: 16px;">
+                        <svg class="icon" fill="currentColor" viewBox="0 0 20 20" style="width: 32px; height: 32px;">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1 9a1 1 0 110-2 1 1 0 010 2z" clip-rule="evenodd"/>
+                            </svg>
+                        </div>
+                    <div>${message}</div>
+                    <button onclick="loadQuestions()" style="margin-top: 16px; padding: 8px 16px; background: #3b82f6; color: white; border: none; border-radius: 6px; cursor: pointer;">
+                        Retry
+                    </button>
+                    </div>
+            `;
+        }
+
+        // Function to show input image in modal
+        function uploadInputImage(questionId, questionNumber) {
+            console.log('Show input image for question:', questionId);
+            
+            // Find the question
+            const question = questions.find(q => q._id === questionId);
+            if (!question || !question.imageInput) {
+                alert('No input image available');
+                return;
+            }
+            
+            const modal = document.getElementById('fullScreenModal');
+            const modalImage = document.getElementById('fullScreenImage');
+            const modalTitle = document.getElementById('fullScreenTitle');
+            const imageCounter = document.getElementById('fullScreenCounter');
+            const prevBtn = document.getElementById('fullScreenPrevBtn');
+            const nextBtn = document.getElementById('fullScreenNextBtn');
+            
+            // Set current images and index
+            currentImages = [question.imageInput];
+            currentImageIndex = 0;
+            
+            // Update modal content
+            modalImage.src = question.imageInput;
+            modalTitle.textContent = `Question #${questionNumber} - Input Image`;
+            imageCounter.textContent = '1 / 1';
+            
+            // Hide navigation buttons for single image
+            prevBtn.style.display = 'none';
+            nextBtn.style.display = 'none';
+            
+            modal.style.display = 'block';
+        }
+
+        // Function to view output image
+        function viewOutputImage(questionId, imageIndex, questionNumber) {
+            console.log('View output image:', questionId, imageIndex);
+            
+            // Find the question
+            const question = questions.find(q => q._id === questionId);
+            if (!question) {
+                alert('Question not found');
+                return;
+            }
+            
+            const totalImages = question.outputs.length;
+            const maxImages = 3;
+            
+            // If clicking on the last image and there are more images, show the last actual image
+            if (imageIndex === maxImages - 1 && totalImages > maxImages) {
+                imageIndex = totalImages - 1; // Show the last actual image
+            }
+            
+            // Show single image in modal with navigation
+            const imageObj = question.outputs[imageIndex];
+            const imageUrl = imageObj && imageObj.image ? imageObj.image : '';
+            if (imageUrl) {
+                showImageModalWithNavigation(question.outputs, imageIndex, questionId, questionNumber);
+            } else {
+                alert('No image available');
+            }
+        }
+
+        // Function to show image in modal
+        function showImageModal(imageUrl, title) {
+            const modal = document.getElementById('fullScreenModal');
+            const modalImage = document.getElementById('fullScreenImage');
+            const modalTitle = document.getElementById('fullScreenTitle');
+            const imageCounter = document.getElementById('fullScreenCounter');
+            const prevBtn = document.getElementById('fullScreenPrevBtn');
+            const nextBtn = document.getElementById('fullScreenNextBtn');
+            
+            // Set current images and index
+            currentImages = [imageUrl];
+            currentImageIndex = 0;
+            
+            // Update modal content
+            modalImage.src = imageUrl;
+            modalTitle.textContent = title;
+            imageCounter.textContent = '1 / 1';
+            
+            // Hide navigation buttons for single image
+            prevBtn.style.display = 'none';
+            nextBtn.style.display = 'none';
+            
+            modal.style.display = 'block';
+        }
+
+        // Function to show image modal with navigation
+        function showImageModalWithNavigation(images, currentIndex, questionId, questionNumber) {
+            const modal = document.getElementById('fullScreenModal');
+            const modalImage = document.getElementById('fullScreenImage');
+            const modalTitle = document.getElementById('fullScreenTitle');
+            const imageCounter = document.getElementById('fullScreenCounter');
+            const prevBtn = document.getElementById('fullScreenPrevBtn');
+            const nextBtn = document.getElementById('fullScreenNextBtn');
+            
+            // Set current images and index for navigation
+            currentImages = images.map(img => img.image || img);
+            currentImageIndex = currentIndex;
+            
+            // Update modal content
+            modalImage.src = currentImages[currentImageIndex];
+            modalTitle.textContent = `Question #${questionNumber} - Output Images`;
+            imageCounter.textContent = `${currentImageIndex + 1} / ${currentImages.length}`;
+            
+            // Show/hide navigation buttons based on position
+            if (currentImages.length > 1) {
+                // Show previous button only if not at first image
+                prevBtn.style.display = currentImageIndex > 0 ? 'flex' : 'none';
+                // Show next button only if not at last image
+                nextBtn.style.display = currentImageIndex < currentImages.length - 1 ? 'flex' : 'none';
+            } else {
+                // Hide both buttons if only one image
+                prevBtn.style.display = 'none';
+                nextBtn.style.display = 'none';
+            }
+            
+            prevBtn.disabled = currentImageIndex === 0;
+            nextBtn.disabled = currentImageIndex === currentImages.length - 1;
+            
+            modal.style.display = 'block';
+        }
+
+        // Function to navigate between images
+        function navigateImage(newIndex, questionId, questionNumber) {
+            if (newIndex >= 0 && newIndex < currentImages.length) {
+                currentImageIndex = newIndex;
+                updateModalImage();
+            }
+        }
+
+        // Function to close image modal
+        function closeImageModal() {
+            const modal = document.getElementById('imageModal');
+            modal.style.display = 'none';
+            
+            // Reset modal content to original state
+            modal.innerHTML = `
+                <div style="position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
+                    <img id="modalImage" src="" alt="Enlarged Image" style="max-width: 90%; max-height: 90%; object-fit: contain; border-radius: 8px;">
+                    <button onclick="closeImageModal()" style="position: absolute; top: 20px; right: 30px; color: white; font-size: 28px; font-weight: bold; background: none; border: none; cursor: pointer;">&times;</button>
+                </div>
+            `;
+            
+            // Clear stored data
+            delete modal.dataset.currentIndex;
+            delete modal.dataset.questionId;
+            delete modal.dataset.images;
+        }
+
+        function evaluateImages(questionId, questionNumber) {
+            console.log(`Starting evaluation for Question #${questionNumber}`);
+            // Redirect to evaluate.html with question data
+            const question = questions.find(q => q._id === questionId);
+            if (question) {
+                // Store question data in sessionStorage for evaluate.html to use
+                sessionStorage.setItem('evaluateQuestion', JSON.stringify({
+                    id: questionId,
+                    number: questionNumber,
+                    prompt: question.prompt,
+                    imageInput: question.imageInput,
+                    outputs: question.outputs
+                }));
+                
+                // Redirect to evaluate.html
+                window.location.href = 'evaluate.html';
+            } else {
+                alert('Question not found');
+            }
+        }
+
+        // Function to load filter data (users and questions)
+        async function loadFilterData() {
+            try {
+                // Load users list
+                const usersResponse = await fetch('http://localhost:3000/users-list');
+                if (usersResponse.ok) {
+                    const usersData = await usersResponse.json();
+                    populateUserFilter(usersData.users);
+                }
+                
+                // Load questions list
+                const questionsResponse = await fetch('http://localhost:3000/questions-list');
+                if (questionsResponse.ok) {
+                    const questionsData = await questionsResponse.json();
+                    populateQuestionFilter(questionsData.questions);
+                }
+            } catch (error) {
+                console.error('Error loading filter data:', error);
+            }
+        }
+
+        // Function to populate user filter
+        function populateUserFilter(users) {
+            const userFilter = document.getElementById('userFilter');
+            userFilter.innerHTML = '<option value="all">All Users</option>';
+            
+            users.forEach(user => {
+                const option = document.createElement('option');
+                option.value = user._id;
+                option.textContent = `${user.name} (@${user.username})`;
+                userFilter.appendChild(option);
+            });
+        }
+
+        // Function to populate question filter
+        function populateQuestionFilter(questions) {
+            const questionFilter = document.getElementById('questionFilter');
+            questionFilter.innerHTML = '<option value="all">All Questions</option>';
+            
+            // Questions đã được sắp xếp theo createdAt từ server
+            questions.forEach((question, index) => {
+                const option = document.createElement('option');
+                option.value = question._id;
+                option.textContent = `Question #${index + 1}`;
+                questionFilter.appendChild(option);
+            });
+        }
+
+        // Function to load all responses
+        async function loadAllResponses(page = 1) {
+            try {
+                const params = new URLSearchParams({
+                    page: page,
+                    limit: 10,
+                    userId: currentFilters.userId,
+                    questionId: currentFilters.questionId
+                });
+                
+                const response = await fetch(`http://localhost:3000/all-responses?${params}`);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                
+                currentPage = data.pagination.currentPage;
+                totalPages = data.pagination.totalPages;
+                maxOutputs = data.maxOutputs || 0;
+                
+                renderResponsesTableHeader();
+                renderResponsesTable(data.responses);
+                renderPagination(data.pagination);
+                updateResponsesStats(data.pagination.totalResponses);
+                
+            } catch (error) {
+                console.error('Error loading responses:', error);
+                showResponsesError('Failed to load responses. Please try again later.');
+            }
+        }
+
+        // Function to render responses table header
+        function renderResponsesTableHeader() {
+            const thead = document.getElementById('responsesTableHead');
+            const tr = thead.querySelector('tr');
+            
+            // Clear existing output columns
+            const existingOutputs = tr.querySelectorAll('th[data-output]');
+            existingOutputs.forEach(th => th.remove());
+            
+            // Add output columns theo thứ tự từ 1 đến maxOutputs
+            // Sử dụng insertBefore với thứ tự ngược lại để đảm bảo Output 1, 2, 3, 4
+            for (let i = maxOutputs; i >= 1; i--) {
+                const th = document.createElement('th');
+                th.textContent = `Output ${i}`;
+                th.setAttribute('data-output', i);
+                
+                // Insert before Comments column (4th position: User, Question#, Prompt, Comments, Date, Actions)
+                const commentsTh = tr.children[3]; // Comments is at index 3
+                tr.insertBefore(th, commentsTh);
+            }
+        }
+
+        // Function to render responses table
+        function renderResponsesTable(responses) {
+            const tbody = document.getElementById('responsesTableBody');
+            
+            console.log('Rendering responses with maxOutputs:', maxOutputs);
+            console.log('Sample response ratings:', responses[0]?.ratings);
+            
+            if (responses.length === 0) {
+                const totalCols = 6 + maxOutputs; // User, Question#, Prompt, Outputs, Comments, Date, Actions
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="${totalCols}" style="text-align: center; padding: 40px; color: #6b7280;">
+                            No responses found
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+            
+            tbody.innerHTML = responses.map(response => {
+                const ratings = response.ratings || {};
+                
+                // Tạo HTML cho từng output theo thứ tự từ 1 đến maxOutputs
+                const outputColumns = [];
+                for (let i = 1; i <= maxOutputs; i++) {
+                    const ratingKey = `image${i}`;
+                    const rating = ratings[ratingKey];
+                    
+                    if (rating) {
+                        const outputHtml = `
+                            <div class="output-rating">
+                                <div class="rating-item">
+                                    <span class="rating-label">Overall:</span>
+                                    <span class="rating-value">${rating.overall || 'N/A'}</span>
+                                </div>
+                                <div class="rating-item">
+                                    <span class="rating-label">Accuracy:</span>
+                                    <span class="rating-value">${rating.accuracy || 'N/A'}</span>
+                                </div>
+                                <div class="rating-item">
+                                    <span class="rating-label">Naturalness:</span>
+                                    <span class="rating-value">${rating.naturalness || 'N/A'}</span>
+                                </div>
+                                <div class="rating-item">
+                                    <span class="rating-label">Sharpness:</span>
+                                    <span class="rating-value">${rating.sharpness || 'N/A'}</span>
+                                </div>
+                                <div class="rating-item">
+                                    <span class="rating-label">Ranking:</span>
+                                    <span class="rating-value">${rating.ranking || 'N/A'}</span>
+                                </div>
+                            </div>
+                        `;
+                        outputColumns.push(outputHtml);
+                    } else {
+                        outputColumns.push('<span style="color: #6b7280;">No data</span>');
+                    }
+                }
+                
+                const date = new Date(response.createdAt).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+                
+                // Tạo output columns HTML theo thứ tự từ 1 đến maxOutputs
+                const outputColumnsHtml = outputColumns.map(html => `<td>${html}</td>`).join('');
+                
+                return `
+                    <tr>
+                        <td>
+                            <div class="user-info">
+                                <div class="user-name">${response.userName || 'Unknown'}</div>
+                                <div class="user-username">@${response.userUsername || 'unknown'}</div>
+                            </div>
+                        </td>
+                        <td>Question #${response.questionNumber}</td>
+                        <td>
+                            <div class="question-prompt" title="${response.questionPrompt || 'No prompt'}">
+                                ${response.questionPrompt || 'No prompt'}
+                            </div>
+                        </td>
+                        ${outputColumnsHtml}
+                        <td>
+                            <div class="comments-cell" title="${response.comments || 'No comments'}">
+                                ${response.comments || 'No comments'}
+                            </div>
+                        </td>
+                        <td class="date-cell">${date}</td>
+                        <td>
+                            <button class="delete-btn" onclick="deleteResponse('${response._id}')" title="Delete response">
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        // Function to render pagination
+        function renderPagination(pagination) {
+            const paginationContainer = document.getElementById('pagination');
+            
+            if (pagination.totalPages <= 1) {
+                paginationContainer.innerHTML = '';
+                return;
+            }
+            
+            let paginationHtml = '';
+            
+            // Previous button
+            paginationHtml += `
+                <button class="pagination-btn" onclick="loadAllResponses(${pagination.currentPage - 1})" 
+                        ${!pagination.hasPrevPage ? 'disabled' : ''}>
+                    Previous
+                </button>
+            `;
+            
+            // Page numbers
+            const startPage = Math.max(1, pagination.currentPage - 2);
+            const endPage = Math.min(pagination.totalPages, pagination.currentPage + 2);
+            
+            for (let i = startPage; i <= endPage; i++) {
+                paginationHtml += `
+                    <button class="pagination-btn ${i === pagination.currentPage ? 'active' : ''}" 
+                            onclick="loadAllResponses(${i})">
+                        ${i}
+                    </button>
+                `;
+            }
+            
+            // Next button
+            paginationHtml += `
+                <button class="pagination-btn" onclick="loadAllResponses(${pagination.currentPage + 1})" 
+                        ${!pagination.hasNextPage ? 'disabled' : ''}>
+                    Next
+                </button>
+            `;
+            
+            // Page info
+            paginationHtml += `
+                <div class="pagination-info">
+                    Page ${pagination.currentPage} of ${pagination.totalPages}
+                </div>
+            `;
+            
+            paginationContainer.innerHTML = paginationHtml;
+        }
+
+        // Function to update responses stats
+        function updateResponsesStats(totalResponses) {
+            const statsElement = document.getElementById('totalResponses');
+            statsElement.textContent = totalResponses;
+        }
+
+        // Function to show responses error
+        function showResponsesError(message) {
+            const tbody = document.getElementById('responsesTableBody');
+            const totalCols = 6 + maxOutputs; // User, Question#, Prompt, Outputs, Comments, Date, Actions
+            tbody.innerHTML = `
+                <tr>
+                    <td colspan="${totalCols}" style="text-align: center; padding: 40px; color: #ef4444;">
+                        <div style="margin-bottom: 16px;">
+                            <svg class="icon" fill="currentColor" viewBox="0 0 20 20" style="width: 32px; height: 32px;">
+                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1 9a1 1 0 110-2 1 1 0 010 2z" clip-rule="evenodd"/>
+                    </svg>
+                        </div>
+                        <div>${message}</div>
+                        <button onclick="loadAllResponses()" style="margin-top: 16px; padding: 8px 16px; background: #3b82f6; color: white; border: none; border-radius: 6px; cursor: pointer;">
+                            Retry
+                        </button>
+                    </td>
+                </tr>
+            `;
+        }
+
+        // Function to generate username from full name
+        function generateUsername(fullName) {
+            // Remove diacritics and convert to lowercase
+            const normalized = fullName.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+            const words = normalized.toLowerCase().split(' ').filter(word => word.length > 0);
+            
+            if (words.length === 0) return 'user';
+            
+            if (words.length === 1) {
+                return words[0].substring(0, 6); // Take first 6 characters
+            }
+            
+            // Take first letter of each word except the last one, then full last word
+            let username = '';
+            
+            // Add first letter of each word except the last one
+            for (let i = 0; i < words.length - 1; i++) {
+                username += words[i].charAt(0);
+            }
+            
+            // Add the full last word
+            username += words[words.length - 1];
+            
+            // Limit to 6 characters total
+            username = username.substring(0, 6);
+            
+            // Remove any special characters and ensure only letters
+            username = username.replace(/[^a-z]/g, '');
+            
+            // If username is empty after cleaning, use fallback
+            if (username.length === 0) {
+                username = 'user' + Math.floor(Math.random() * 1000);
+            }
+            
+            return username;
+        }
+
+        // Function to check if username exists and generate unique one
+        async function generateUniqueUsername(baseUsername) {
+            try {
+                const response = await fetch('http://localhost:3000/check-username/' + baseUsername);
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.exists) {
+                        // Username exists, try with numbers
+                        let counter = 1;
+                        let newUsername = baseUsername + counter;
+                        
+                        while (true) {
+                            const checkResponse = await fetch('http://localhost:3000/check-username/' + newUsername);
+                            if (checkResponse.ok) {
+                                const checkData = await checkResponse.json();
+                                if (!checkData.exists) {
+                                    return newUsername;
+                                }
+                            }
+                            counter++;
+                            newUsername = baseUsername + counter;
+                        }
+                    } else {
+                        return baseUsername;
+                    }
+                }
+                return baseUsername;
+            } catch (error) {
+                console.error('Error checking username:', error);
+                return baseUsername;
+            }
+        }
+
+        // Function to load all users
+        async function loadAllUsers() {
+            try {
+                const response = await fetch('http://localhost:3000/all-users');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                
+                renderUsersTable(data.users);
+                
+            } catch (error) {
+                console.error('Error loading users:', error);
+                showUsersError('Failed to load users. Please try again later.');
+            }
+        }
+
+        // Function to render users table
+        function renderUsersTable(users) {
+            const tbody = document.getElementById('usersTableBody');
+            
+            if (users.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="7" style="text-align: center; padding: 40px; color: #6b7280;">
+                            No users found
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+            
+            tbody.innerHTML = users.map(user => {
+                const status = user.isDelete ? 'Deleted' : 'Active';
+                const statusClass = user.isDelete ? 'status-deleted' : 'status-active';
+                
+                return `
+                    <tr>
+                        <td class="user-name-cell">${user.name || 'Not specified'}</td>
+                        <td class="user-username-cell">${user.username || 'Not specified'}</td>
+                        <td class="user-role-cell">${user.role || 'reviewer'}</td>
+                        <td class="user-qualification-cell">${user.qualification || 'Not specified'}</td>
+                        <td class="user-experience-cell">${user.experience || 'Not specified'}</td>
+                        <td>
+                            <span class="status-badge ${statusClass}">${status}</span>
+                        </td>
+                        <td>
+                            ${!user.isDelete ? `<button class="delete-btn" onclick="deleteUser('${user._id}')" title="Delete user">Delete</button>` : ''}
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        // Function to show users error
+        function showUsersError(message) {
+            const tbody = document.getElementById('usersTableBody');
+            tbody.innerHTML = `
+                <tr>
+                    <td colspan="7" style="text-align: center; padding: 40px; color: #6b7280;">
+                        <div style="display: flex; flex-direction: column; align-items: center; gap: 16px;">
+                            <svg class="icon" fill="currentColor" viewBox="0 0 20 20" style="width: 32px; height: 32px;">
+                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1 9a1 1 0 110-2 1 1 0 010 2z" clip-rule="evenodd"/>
+                            </svg>
+                            <div>${message}</div>
+                            <button onclick="loadAllUsers()" style="margin-top: 16px; padding: 8px 16px; background: #3b82f6; color: white; border: none; border-radius: 6px; cursor: pointer;">
+                                Retry
+                </button>
+            </div>
+                    </td>
+                </tr>
+            `;
+        }
+
+        // Function to delete user
+        async function deleteUser(userId) {
+            if (!confirm('Are you sure you want to delete this user?')) {
+                return;
+            }
+
+            try {
+                const response = await fetch('http://localhost:3000/delete-user', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ userId })
+                });
+
+                if (response.ok) {
+                    alert('User deleted successfully!');
+                    loadAllUsers(); // Reload users table
+                } else {
+                    const error = await response.json();
+                    alert('Error deleting user: ' + error.message);
+                }
+            } catch (error) {
+                console.error('Error deleting user:', error);
+                alert('Failed to delete user. Please try again.');
+            }
+        }
+
+        // Function to load all questions
+        async function loadAllQuestions() {
+            try {
+                const response = await fetch('http://localhost:3000/all-questions');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                
+                // Store questions data globally for image modal
+                window.allQuestionsData = data.questions;
+                
+                renderQuestionsTable(data.questions);
+                
+            } catch (error) {
+                console.error('Error loading questions:', error);
+                showQuestionsError('Failed to load questions. Please try again later.');
+            }
+        }
+
+        // Function to render questions table
+        function renderQuestionsTable(questions) {
+            const tbody = document.getElementById('questionsTableBody');
+            
+            if (questions.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="6" style="text-align: center; padding: 40px; color: #6b7280;">
+                            No questions found
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+            
+            tbody.innerHTML = questions.map((question, index) => {
+                const questionNumber = index + 1;
+                const status = question.isDelete ? 'Deleted' : 'Active';
+                const statusClass = question.isDelete ? 'status-deleted' : 'status-active';
+                
+                // Render output images
+                const outputImagesHtml = question.outputs ? question.outputs.map((output, outputIndex) => {
+                    const imageUrl = typeof output === 'object' ? output.image : output;
+                    return `<img src="${imageUrl}" alt="Output" class="output-image" onerror="this.style.display='none'" onclick="showImageModal('${imageUrl}', 'output', ${index}, ${outputIndex})">`;
+                }).join('') : '';
+                
+                return `
+                    <tr>
+                        <td>Question #${questionNumber}</td>
+                        <td class="question-prompt-cell">${question.prompt}</td>
+                        <td>
+                            <img src="${question.imageInput}" alt="Input" class="question-image" onerror="this.style.display='none'" onclick="showImageModal('${question.imageInput}', 'input', ${index})">
+                        </td>
+                        <td>
+                            <div class="output-images-grid">
+                                ${outputImagesHtml}
+        </div>
+                        </td>
+                        <td>
+                            <span class="status-badge ${statusClass}">${status}</span>
+                        </td>
+                        <td>
+                            ${!question.isDelete ? `<button class="delete-btn" onclick="deleteQuestion('${question._id}')" title="Delete question">Delete</button>` : ''}
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        // Function to show questions error
+        function showQuestionsError(message) {
+            const tbody = document.getElementById('questionsTableBody');
+            tbody.innerHTML = `
+                <tr>
+                    <td colspan="6" style="text-align: center; padding: 40px; color: #ef4444;">
+                        ${message}
+                    </td>
+                </tr>
+            `;
+        }
+
+        // Function to delete question
+        async function deleteQuestion(questionId) {
+            if (!confirm('Are you sure you want to delete this question?')) {
+                return;
+            }
+            
+            try {
+                const response = await fetch('http://localhost:3000/delete-question', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ questionId })
+                });
+                
+                if (response.ok) {
+                    alert('Question deleted successfully!');
+                    loadAllQuestions(); // Reload questions table
+                } else {
+                    const error = await response.json();
+                    alert('Error deleting question: ' + error.message);
+                }
+            } catch (error) {
+                console.error('Error deleting question:', error);
+                alert('Failed to delete question. Please try again.');
+            }
+        }
+
+        // Function to add output image input
+        function addOutputImageInput() {
+            const container = document.getElementById('outputImagesContainer');
+            const newInput = document.createElement('div');
+            newInput.className = 'output-image-input';
+            newInput.innerHTML = `
+                <div class="output-input-row">
+                    <input type="url" name="outputUrls[]" required placeholder="https://example.com/output.jpg">
+                    <input type="text" name="outputSrcs[]" required placeholder="Source (e.g., Pinterest, DALL-E)">
+                </div>
+                <button type="button" class="remove-output-btn" onclick="removeOutputImage(this)">Remove</button>
+            `;
+            container.appendChild(newInput);
+        }
+
+        // Function to remove output image input
+        function removeOutputImage(button) {
+            const container = document.getElementById('outputImagesContainer');
+            if (container.children.length > 1) {
+                button.parentElement.remove();
+            } else {
+                alert('You must have at least one output image.');
+            }
+        }
+
+        // Global variables for image modal
+        let currentImages = [];
+        let currentImageIndex = 0;
+        let currentQuestionIndex = -1;
+
+        // Function to show image modal
+        function showImageModal(imageUrl, type, questionIndex, outputIndex = null) {
+            const modal = document.getElementById('fullScreenModal');
+            const modalImage = document.getElementById('fullScreenImage');
+            const modalTitle = document.getElementById('fullScreenTitle');
+            const imageCounter = document.getElementById('fullScreenCounter');
+            
+            currentQuestionIndex = questionIndex;
+            
+            if (type === 'input') {
+                // Single input image
+                currentImages = [imageUrl];
+                currentImageIndex = 0;
+                modalTitle.textContent = `Question #${questionIndex + 1} - Input Image`;
+            } else if (type === 'output') {
+                // Multiple output images
+                const question = window.allQuestionsData ? window.allQuestionsData[questionIndex] : null;
+                if (question && question.outputs) {
+                    currentImages = question.outputs.map(output => 
+                        typeof output === 'object' ? output.image : output
+                    );
+                    currentImageIndex = outputIndex || 0;
+                    modalTitle.textContent = `Question #${questionIndex + 1} - Output Images`;
+                } else {
+                    currentImages = [imageUrl];
+                    currentImageIndex = 0;
+                    modalTitle.textContent = `Question #${questionIndex + 1} - Output Image`;
+                }
+            }
+            
+            // Update modal content
+            modalImage.src = currentImages[currentImageIndex];
+            imageCounter.textContent = `${currentImageIndex + 1} / ${currentImages.length}`;
+            
+            // Show/hide navigation buttons
+            const prevBtn = document.getElementById('fullScreenPrevBtn');
+            const nextBtn = document.getElementById('fullScreenNextBtn');
+            
+            prevBtn.style.display = currentImages.length > 1 ? 'flex' : 'none';
+            nextBtn.style.display = currentImages.length > 1 ? 'flex' : 'none';
+            
+            prevBtn.disabled = currentImageIndex === 0;
+            nextBtn.disabled = currentImageIndex === currentImages.length - 1;
+            
+            modal.style.display = 'block';
+        }
+
+        // Function to navigate to previous image
+        function showPreviousImage() {
+            if (currentImageIndex > 0) {
+                currentImageIndex--;
+                updateModalImage();
+            }
+        }
+
+        // Function to navigate to next image
+        function showNextImage() {
+            if (currentImageIndex < currentImages.length - 1) {
+                currentImageIndex++;
+                updateModalImage();
+            }
+        }
+
+        // Function to update modal image
+        function updateModalImage() {
+            const modalImage = document.getElementById('fullScreenImage');
+            const imageCounter = document.getElementById('fullScreenCounter');
+            const prevBtn = document.getElementById('fullScreenPrevBtn');
+            const nextBtn = document.getElementById('fullScreenNextBtn');
+            
+            modalImage.src = currentImages[currentImageIndex];
+            imageCounter.textContent = `${currentImageIndex + 1} / ${currentImages.length}`;
+            
+            // Show/hide navigation buttons based on position
+            if (currentImages.length > 1) {
+                // Show previous button only if not at first image
+                prevBtn.style.display = currentImageIndex > 0 ? 'flex' : 'none';
+                // Show next button only if not at last image
+                nextBtn.style.display = currentImageIndex < currentImages.length - 1 ? 'flex' : 'none';
+            } else {
+                // Hide both buttons if only one image
+                prevBtn.style.display = 'none';
+                nextBtn.style.display = 'none';
+            }
+            
+            prevBtn.disabled = currentImageIndex === 0;
+            nextBtn.disabled = currentImageIndex === currentImages.length - 1;
+        }
+
+        // Function to close image modal
+        function closeImageModal() {
+            const modal = document.getElementById('fullScreenModal');
+            modal.style.display = 'none';
+            currentImages = [];
+            currentImageIndex = 0;
+            currentQuestionIndex = -1;
+        }
+
+        // Function to delete response
+        async function deleteResponse(responseId) {
+            if (!confirm('Are you sure you want to delete this response? This action cannot be undone.')) {
+                return;
+            }
+            
+            try {
+                const response = await fetch('http://localhost:3000/delete-response', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ responseId })
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                alert('Response deleted successfully!');
+                
+                // Reload current page
+                loadAllResponses(currentPage);
+                
+            } catch (error) {
+                console.error('Error deleting response:', error);
+                alert('Failed to delete response. Please try again.');
+            }
+        }
+
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                // Redirect to login page or clear session
+                window.location.href = 'login.html';
+            }
+        }
+
+        // Navigation functionality
+        document.querySelectorAll('.nav-tab').forEach(tab => {
+            tab.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Remove active class from all tabs
+                document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+                
+                // Add active class to clicked tab
+                this.classList.add('active');
+                
+                // Here you would implement the actual navigation logic
+                console.log('Navigating to:', this.textContent);
+            });
+        });
+    </script>
+</body>
+</html>
+
+ 
