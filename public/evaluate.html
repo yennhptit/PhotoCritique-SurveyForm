@@ -1095,7 +1095,7 @@
                 console.log('Loading existing response for userId:', userId, 'questionId:', questionId);
 
                 // Fetch existing response
-                const response = await fetch(`http://localhost:3000/get-response?userId=${encodeURIComponent(userId)}&questionId=${encodeURIComponent(questionId)}`);
+                const response = await fetch(`https://surveyform-kxkk.onrender.com/get-response?userId=${encodeURIComponent(userId)}&questionId=${encodeURIComponent(questionId)}`);
                 
                 if (response.ok) {
                     const result = await response.json();
@@ -1362,7 +1362,7 @@
                 console.log('Sending evaluation data:', evaluationData);
 
                 // Send to server
-                const response = await fetch('http://localhost:3000/save-evaluation', {
+                const response = await fetch('https://surveyform-kxkk.onrender.com/save-evaluation', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
