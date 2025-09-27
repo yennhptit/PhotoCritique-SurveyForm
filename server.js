@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(cors({
-  origin: ['https://surveyform-1.onrender.com', 'http://localhost:3000'],
+  origin: ['https://surveyform-kxkk.onrender.com', 'https://surveyform-1.onrender.com', 'http://localhost:3000'],
   credentials: true
 }));
 app.use(bodyParser.json());
@@ -23,7 +23,20 @@ app.get('/auth.js', (req, res) => {
   res.sendFile(path.join(__dirname, 'auth.js'));
 });
 
+// Health check endpoint
+app.get('/health', (req, res) => {
+  res.status(200).json({ 
+    status: 'OK', 
+    timestamp: new Date().toISOString(),
+    uptime: process.uptime()
+  });
+});
+
 // Serve home page
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'home.html'));
+});
+
 app.get('/home', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'home.html'));
 });
@@ -50,9 +63,13 @@ client.connect()
     const db = client.db("myAppDB");
     userCollection = db.collection("User");
     questionCollection = db.collection("Question");
+    responseCollection = db.collection("Response");
     console.log("✅ Connected to MongoDB");
   })
-  .catch(err => console.error("❌ MongoDB connection error:", err));
+  .catch(err => {
+    console.error("❌ MongoDB connection error:", err);
+    process.exit(1); // Exit if can't connect to MongoDB
+  });
 
 // Serve login page
 app.get('/login', (req, res) => {
@@ -85,14 +102,14 @@ app.get('/questions', async (req, res) => {
     const limitNum = parseInt(limit);
     const skip = (pageNum - 1) * limitNum;
     
-    console.log(`Fetching questions - page: ${pageNum}, limit: ${limitNum}, userId: ${userId}`);
+    console.log(`Fetching questions - page: ${pageNum}, limit: ${limitNum}, userId: ${userId}, status: ${status}`);
+    console.log('Collections available:', { userCollection: !!userCollection, questionCollection: !!questionCollection, responseCollection: !!responseCollection });
     
     // Tối ưu: Lấy responses trước để có thể filter ở database level
     let userResponses = [];
     let answeredQuestions = new Map();
     
     if (userId) {
-      const responseCollection = client.db("myAppDB").collection("Response");
       const { ObjectId } = require('mongodb');
       
       let userQueryId = userId;
@@ -281,6 +298,9 @@ app.get('/debug-user/:identifier', async (req, res) => {
   const { identifier } = req.params;
   
   try {
+    console.log('Debug user request for:', identifier);
+    console.log('Collections available:', { userCollection: !!userCollection, questionCollection: !!questionCollection, responseCollection: !!responseCollection });
+    
     const { ObjectId } = require('mongodb');
     let user = null;
     
@@ -1100,6 +1120,7 @@ app.post('/clear-cache', (req, res) => {
   res.status(200).json({ message: "Cache cleared successfully" });
 });
 
-app.listen(PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`🚀 Server running on port ${PORT}`);
+  console.log(`🌐 Environment: ${process.env.NODE_ENV || 'development'}`);
 });
