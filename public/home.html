@@ -222,10 +222,7 @@
         }
 
         .output-images {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-            margin-bottom: 24px;
+            display: none; /* Hidden output images */
         }
 
         .output-image-placeholder {
@@ -1516,12 +1513,7 @@
         }
 
         .preview-outputs-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            height: 100%;
-            overflow-y: auto;
-            padding-right: 5px;
+            display: none; /* Hidden output images in preview */
         }
 
         .preview-output-item {
@@ -1673,13 +1665,13 @@
             }
             
             .preview-outputs-grid {
-                grid-template-columns: repeat(3, 1fr);
+                display: none; /* Hidden output images */
             }
         }
 
         @media (max-width: 768px) {
             .preview-outputs-grid {
-                grid-template-columns: repeat(2, 1fr);
+                display: none; /* Hidden output images */
             }
             
             .preview-gallery-container {
@@ -1793,12 +1785,7 @@
                     </div>
                 </div>
                 
-                <div class="preview-right-panel">
-                    <div class="preview-section-title">Output Images</div>
-                    <div id="previewOutputsGrid" class="preview-outputs-grid">
-                        <!-- Output images will be dynamically populated here -->
-                    </div>
-                </div>
+                <!-- Output Images panel removed -->
             </div>
         </div>
     </div>
@@ -3023,12 +3010,7 @@
                         </div>
                     </div>
 
-                    <div class="image-section">
-                        <div class="section-label">Output Images :</div>
-                        <div class="output-images">
-                                ${generateOutputImagePlaceholders(question.outputs || [], question._id, questionNumber, index)}
-                        </div>
-                    </div>
+                    <!-- Output Images section removed -->
 
                         <button class="evaluate-btn ${question.isComplete ? 're-evaluate-btn' : ''}" onclick="evaluateImages('${question._id}', ${questionNumber})">
                                 <svg class="icon" fill="currentColor" viewBox="0 0 20 20">
