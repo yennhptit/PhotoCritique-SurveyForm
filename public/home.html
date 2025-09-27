@@ -106,286 +106,34 @@
             display: block;
         }
 
-        /* Profile Styles */
-        .profile-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 12px;
-            border: 1px solid #e5e7eb;
-            padding: 24px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-        }
-
-        .profile-header {
-            display: flex;
-            align-items: center;
-            gap: 24px;
-            margin-bottom: 32px;
-            padding-bottom: 24px;
-            border-bottom: 1px solid #e5e7eb;
-        }
-
-        .profile-avatar {
-            width: 80px;
-            height: 80px;
-            background-color: #f3f4f6;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #6b7280;
-        }
-
-        .profile-info {
-            flex: 1;
-        }
-
-        .profile-name {
-            font-size: 24px;
-            font-weight: 600;
-            color: #1f2937;
-            margin-bottom: 4px;
-        }
-
-        .profile-username {
-            font-size: 16px;
-            color: #6b7280;
-            margin: 0;
-        }
-
-        .profile-details {
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-        }
-
-        .profile-section {
-            background-color: #f9fafb;
-            border-radius: 8px;
-            padding: 12px;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        .profile-section .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 8px;
-        }
-
-        .profile-section h3 {
-            font-size: 16px;
-            font-weight: 600;
-            color: #1f2937;
-            margin: 0;
-        }
-
-        .profile-section .edit-label {
-            font-size: 12px;
-            color: #6b7280;
-            background: white;
-            padding: 2px 6px;
-            border-radius: 4px;
-            border: 1px solid #d1d5db;
-            cursor: pointer;
-            transition: background-color 0.2s, color 0.2s;
-        }
-
-        .profile-section .edit-label:hover {
-            background-color: #f3f4f6;
-            color: #374151;
-        }
-
-        .profile-section p {
-            font-size: 14px;
-            color: #4b5563;
-            margin: 0;
-            line-height: 1.5;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-            white-space: pre-wrap;
-        }
-
-        .profile-section .editable-content {
-            padding: 4px;
-            border-radius: 4px;
-            transition: background-color 0.2s;
-        }
-
-        .profile-section .edit-form {
-            display: none;
-            margin-top: 12px;
-        }
-
-        .profile-section .edit-form.active {
-            display: block;
-        }
-
-        .profile-section .edit-textarea {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #d1d5db;
-            border-radius: 6px;
-            font-size: 14px;
-            font-family: inherit;
-            resize: vertical;
-            min-height: 80px;
-            margin-bottom: 8px;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-            white-space: pre-wrap;
-            box-sizing: border-box;
-        }
-
-        .profile-section .edit-textarea:focus {
-            outline: none;
-            border-color: #3b82f6;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-        }
-
-        .profile-section .edit-actions {
-            display: flex;
-            gap: 8px;
-            justify-content: flex-end;
-        }
-
-        .profile-section .edit-btn {
-            padding: 6px 12px;
-            border: none;
-            border-radius: 4px;
-            font-size: 12px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-
-        .profile-section .save-btn {
-            background-color: #10b981;
-            color: white;
-        }
-
-        .profile-section .save-btn:hover {
-            background-color: #059669;
-        }
-
-        .profile-section .cancel-btn {
-            background-color: #6b7280;
-            color: white;
-        }
-
-        .profile-section .cancel-btn:hover {
-            background-color: #4b5563;
-        }
-
-        /* Profile Modal Styles */
-        .profile-modal {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(4px);
-        }
-
-        .profile-modal-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
-            border-radius: 12px;
-            padding: 32px;
-            width: 90%;
-            max-width: 500px;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        }
-
-        .profile-modal-header {
-            text-align: center;
-            margin-bottom: 24px;
-        }
-
-        .profile-modal-header h2 {
-            font-size: 24px;
-            font-weight: 600;
-            color: #1f2937;
-            margin-bottom: 8px;
-        }
-
-        .profile-modal-header p {
-            color: #6b7280;
-            font-size: 14px;
-            margin: 0;
-        }
-
-        .profile-form .form-group {
-            margin-bottom: 20px;
-        }
-
-        .profile-form label {
-            display: block;
-            font-weight: 600;
-            color: #1f2937;
-            margin-bottom: 8px;
-            font-size: 14px;
-        }
-
-        .profile-form .form-input {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #d1d5db;
-            border-radius: 6px;
-            font-size: 14px;
-            font-family: inherit;
-            resize: vertical;
-            min-height: 80px;
-        }
-
-        .profile-form .form-input:focus {
-            outline: none;
-            border-color: #3b82f6;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-        }
-
-        .form-actions {
-            text-align: center;
-            margin-top: 24px;
-        }
-
-        .submit-btn {
-            background-color: #1f2937;
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 6px;
-            font-size: 14px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-
-        .submit-btn:hover {
-            background-color: #111827;
-        }
-
-        .submit-btn:disabled {
-            background-color: #9ca3af;
-            cursor: not-allowed;
-        }
-
-        .submit-btn:disabled:hover {
-            background-color: #9ca3af;
-        }
 
         .main-content {
             padding: 24px;
             max-width: 1400px;
             margin: 0 auto;
+        }
+
+        .questions-container {
+            width: 100%;
+        }
+
+        .questions-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .questions-header h2 {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1f2937;
+            margin: 0;
+        }
+
+        .questions-stats {
+            color: #6b7280;
+            font-size: 14px;
         }
 
         .questions-grid {
@@ -441,10 +189,8 @@
         }
 
         .input-image-placeholder {
-            width: 100%;
-            height: auto;
-            min-height: 200px;
-            max-height: 300px;
+            width: calc(100% - 48px);
+            aspect-ratio: 1;
             background-color: #f8fafc;
             border: 2px dashed #d1d5db;
             border-radius: 8px;
@@ -456,6 +202,7 @@
             cursor: pointer;
             transition: border-color 0.2s;
             overflow: hidden;
+            margin: 0 16px;
         }
 
         .input-image-placeholder:hover {
@@ -464,9 +211,8 @@
 
         .input-image-placeholder img {
             width: 100%;
-            height: auto;
-            max-height: 100%;
-            object-fit: contain;
+            height: 100%;
+            object-fit: cover;
             border-radius: 6px;
             transition: transform 0.2s;
         }
@@ -542,371 +288,7 @@
             background-color: #047857;
         }
 
-        /* Responses Table Styles */
-        .responses-container {
-            background: white;
-            border-radius: 12px;
-            border: 1px solid #e5e7eb;
-            padding: 24px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-        }
 
-        .responses-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 24px;
-            padding-bottom: 16px;
-            border-bottom: 1px solid #e5e7eb;
-        }
-
-        .responses-header h2 {
-            font-size: 24px;
-            font-weight: 600;
-            color: #1f2937;
-            margin: 0;
-        }
-
-        .responses-stats {
-            color: #6b7280;
-            font-size: 14px;
-        }
-
-        .responses-table-container {
-            overflow-x: auto;
-            margin-bottom: 24px;
-        }
-
-        .responses-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 14px;
-        }
-
-        .responses-table th {
-            background-color: #f9fafb;
-            padding: 12px 16px;
-            text-align: left;
-            font-weight: 600;
-            color: #374151;
-            border-bottom: 1px solid #e5e7eb;
-        }
-
-        .responses-table td {
-            padding: 12px 16px;
-            border-bottom: 1px solid #f3f4f6;
-            vertical-align: top;
-        }
-
-        .responses-table tr:hover {
-            background-color: #f9fafb;
-        }
-
-        .user-info {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
-        .user-name {
-            font-weight: 500;
-            color: #1f2937;
-        }
-
-        .user-username {
-            font-size: 12px;
-            color: #6b7280;
-        }
-
-        .question-prompt {
-            max-width: 200px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-
-        .output-rating {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-            font-size: 11px;
-            padding: 4px;
-            background-color: #f9fafb;
-            border-radius: 4px;
-            border: 1px solid #e5e7eb;
-        }
-
-        .rating-item {
-            display: flex;
-            justify-content: space-between;
-            gap: 6px;
-            align-items: center;
-        }
-
-        .rating-label {
-            color: #6b7280;
-            min-width: 50px;
-            font-size: 10px;
-        }
-
-        .rating-value {
-            font-weight: 600;
-            color: #1f2937;
-            background-color: white;
-            padding: 1px 4px;
-            border-radius: 2px;
-            min-width: 20px;
-            text-align: center;
-            font-size: 10px;
-        }
-
-        .comments-cell {
-            max-width: 150px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-
-        .date-cell {
-            font-size: 12px;
-            color: #6b7280;
-        }
-
-        .delete-btn {
-            background-color: #ef4444;
-            color: white;
-            border: none;
-            padding: 6px 12px;
-            border-radius: 4px;
-            font-size: 12px;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-
-        .delete-btn:hover {
-            background-color: #dc2626;
-        }
-
-        .delete-btn:disabled {
-            background-color: #9ca3af;
-            cursor: not-allowed;
-        }
-
-        /* Pagination Styles */
-        .pagination {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 8px;
-            margin-top: 24px;
-        }
-
-        .pagination-btn {
-            padding: 8px 12px;
-            border: 1px solid #d1d5db;
-            background: white;
-            color: #374151;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: all 0.2s;
-        }
-
-        .pagination-btn:hover:not(:disabled) {
-            background-color: #f3f4f6;
-            border-color: #9ca3af;
-        }
-
-        .pagination-btn:disabled {
-            color: #9ca3af;
-            cursor: not-allowed;
-        }
-
-        .pagination-btn.active {
-            background-color: #3b82f6;
-            color: white;
-            border-color: #3b82f6;
-        }
-
-        .pagination-info {
-            color: #6b7280;
-            font-size: 14px;
-            margin: 0 16px;
-        }
-
-        /* Filter Styles */
-        .filter-section {
-            background-color: #f9fafb;
-            border: 1px solid #e5e7eb;
-            border-radius: 8px;
-            padding: 16px;
-            margin-bottom: 24px;
-        }
-
-        .filter-row {
-            display: flex;
-            align-items: end;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
-
-        .filter-group {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-            min-width: 200px;
-        }
-
-        .filter-group label {
-            font-size: 12px;
-            font-weight: 600;
-            color: #374151;
-        }
-
-        .filter-select {
-            padding: 8px 12px;
-            border: 1px solid #d1d5db;
-            border-radius: 6px;
-            font-size: 14px;
-            background-color: white;
-            color: #374151;
-        }
-
-        .filter-select:focus {
-            outline: none;
-            border-color: #3b82f6;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-        }
-
-        .filter-actions {
-            display: flex;
-            gap: 8px;
-        }
-
-        .filter-btn {
-            padding: 8px 16px;
-            border: none;
-            border-radius: 6px;
-            font-size: 14px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-
-        .filter-btn {
-            background-color: #3b82f6;
-            color: white;
-        }
-
-        .filter-btn:hover {
-            background-color: #2563eb;
-        }
-
-        .filter-btn.clear-btn {
-            background-color: #6b7280;
-        }
-
-        .filter-btn.clear-btn:hover {
-            background-color: #4b5563;
-        }
-
-        /* Users Table Styles */
-        .users-container {
-            background: white;
-            border-radius: 12px;
-            border: 1px solid #e5e7eb;
-            padding: 24px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-        }
-
-        .users-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 24px;
-            padding-bottom: 16px;
-            border-bottom: 1px solid #e5e7eb;
-        }
-
-        .users-header h2 {
-            font-size: 24px;
-            font-weight: 600;
-            color: #1f2937;
-            margin: 0;
-        }
-
-        .users-table-container {
-            overflow-x: auto;
-        }
-
-        .users-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 14px;
-        }
-
-        .users-table th {
-            background-color: #f9fafb;
-            padding: 12px 16px;
-            text-align: left;
-            font-weight: 600;
-            color: #374151;
-            border-bottom: 1px solid #e5e7eb;
-        }
-
-        .users-table td {
-            padding: 12px 16px;
-            border-bottom: 1px solid #f3f4f6;
-            vertical-align: top;
-        }
-
-        .users-table tr:hover {
-            background-color: #f9fafb;
-        }
-
-        .user-name-cell {
-            font-weight: 500;
-            color: #1f2937;
-        }
-
-        .user-username-cell {
-            font-family: monospace;
-            color: #6b7280;
-        }
-
-        .user-role-cell {
-            text-transform: capitalize;
-        }
-
-        .user-qualification-cell,
-        .user-experience-cell {
-            max-width: 200px;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-        }
-
-        .user-answered-questions-cell {
-            text-align: center;
-            font-weight: 600;
-            color: #1f2937;
-        }
-
-        .status-badge {
-            padding: 4px 8px;
-            border-radius: 12px;
-            font-size: 12px;
-            font-weight: 500;
-        }
-
-        .status-active {
-            background-color: #d1fae5;
-            color: #065f46;
-        }
-
-        .status-deleted {
-            background-color: #fee2e2;
-            color: #991b1b;
-        }
 
         /* Questions Table Styles */
         .questions-container {
@@ -1284,7 +666,7 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
+            background-color: #000000;
         }
 
         .fullscreen-overlay {
@@ -1340,8 +722,9 @@
             align-items: center;
             justify-content: center;
             position: relative;
-            padding: 80px 20px 60px 20px;
+            padding: 80px 60px 60px 60px;
             overflow: hidden;
+            background-color: #000000;
         }
 
         .fullscreen-image-container {
@@ -1351,6 +734,7 @@
             align-items: center;
             width: 100%;
             height: 100%;
+            background-color: #000000;
         }
 
         .fullscreen-image-container img {
@@ -1359,8 +743,8 @@
             width: auto;
             height: auto;
             border-radius: 8px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            background-color: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            background-color: #000000;
             object-fit: contain;
             display: block;
         }
@@ -1369,10 +753,10 @@
             background-color: rgba(255, 255, 255, 0.2);
             color: white;
             border: none;
-            width: 60px;
-            height: 60px;
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
-            font-size: 24px;
+            font-size: 18px;
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -1382,6 +766,7 @@
             top: 50%;
             transform: translateY(-50%);
             backdrop-filter: blur(10px);
+            z-index: 1002;
         }
 
         .fullscreen-nav-btn:hover {
@@ -1390,11 +775,11 @@
         }
 
         .fullscreen-nav-btn.prev-btn {
-            left: 30px;
+            left: 10px;
         }
 
         .fullscreen-nav-btn.next-btn {
-            right: 30px;
+            right: 10px;
         }
 
         .fullscreen-nav-btn:disabled {
@@ -1431,6 +816,164 @@
             margin: 0 auto;
         }
 
+        /* Preview Modal Styles */
+        .preview-container {
+            display: flex;
+            height: 100%;
+            gap: 24px;
+            padding: 20px 60px;
+            background-color: #000000;
+            position: relative;
+            z-index: 1;
+        }
+
+        .preview-left {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .preview-right {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input-image-section,
+        .output-images-section {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: white;
+            margin: 0 0 16px 0;
+            padding-bottom: 8px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .input-image-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #000000;
+            border-radius: 12px;
+            padding: 20px;
+            min-height: 400px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .preview-input-image {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .preview-input-image:hover {
+            transform: scale(1.02);
+        }
+
+        .no-image-placeholder {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 16px;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .output-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, max-content));
+            gap: 16px;
+            flex: 1;
+            overflow-y: auto;
+            padding-right: 8px;
+            background-color: #000000;
+            justify-content: start;
+        }
+
+        .output-item {
+            background: #000000;
+            border-radius: 12px;
+            padding: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            width: fit-content;
+            height: fit-content;
+        }
+
+        .output-item:hover {
+            background: #111111;
+            transform: translateY(-2px);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .output-item.highlighted {
+            background: #1a1a1a;
+            border-color: #4a9eff;
+            box-shadow: 0 0 20px rgba(74, 158, 255, 0.3);
+        }
+
+        .preview-input-image.highlighted {
+            border: 3px solid #4a9eff;
+            box-shadow: 0 0 20px rgba(74, 158, 255, 0.3);
+        }
+
+        .preview-output-image {
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-height: 200px;
+            object-fit: contain;
+            border-radius: 8px;
+            transition: transform 0.2s;
+        }
+
+        .output-item:hover .preview-output-image {
+            transform: scale(1.05);
+        }
+
+
+        /* Responsive design for preview */
+        @media (max-width: 768px) {
+            .preview-container {
+                flex-direction: column;
+                gap: 16px;
+            }
+            
+            .preview-left,
+            .preview-right {
+                flex: none;
+            }
+            
+            .input-image-container {
+                min-height: 250px;
+            }
+            
+            .output-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 12px;
+            }
+            
+            .preview-output-image {
+                height: 120px;
+            }
+        }
+
         .icon {
             width: 16px;
             height: 16px;
@@ -1452,6 +995,699 @@
             
             .main-content {
                 padding: 16px;
+            }
+        }
+        /* Thêm vào CSS hiện có */
+        .preview-input-image,
+        .preview-output-image,
+        .output-image-placeholder img,
+        .question-image,
+        .output-image {
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            image-rendering: high-quality;
+            transform: translateZ(0); /* Hardware acceleration */
+        }
+
+        /* Progressive loading effect */
+        .image-loading {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+
+        /* Lazy loading styles - tối ưu cao */
+        .lazy {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+            will-change: transform;
+            backface-visibility: hidden;
+            transform: translateZ(0);
+        }
+
+        .lazy.loaded {
+            opacity: 1;
+            animation: none;
+            background: none;
+        }
+
+        /* Image optimization styles */
+        img {
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            transform: translateZ(0);
+            will-change: transform;
+            backface-visibility: hidden;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Progressive loading effect */
+        .image-loading {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+
+        /* Image container optimization */
+        .image-placeholder {
+            contain: layout style paint;
+            content-visibility: auto;
+        }
+
+        .image-placeholder img {
+            contain: layout style paint;
+            content-visibility: auto;
+        }
+
+        /* Filter Section Styles - Modern Design */
+        .filter-section {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 32px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+        }
+
+        .filter-section:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transform: translateY(-2px);
+        }
+
+        .filter-row {
+            display: flex;
+            align-items: end;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            min-width: 200px;
+            flex: 1;
+        }
+
+        .filter-group label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 4px;
+        }
+
+        .filter-select {
+            padding: 12px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            font-size: 14px;
+            background-color: white;
+            color: #374151;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+            transform: translateY(-1px);
+        }
+
+        .filter-select:hover {
+            border-color: #9ca3af;
+        }
+
+        .filter-actions {
+            display: flex;
+            gap: 12px;
+            align-items: end;
+        }
+
+        .filter-btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .filter-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .filter-btn:hover::before {
+            left: 100%;
+        }
+
+        .filter-btn:not(.clear-btn) {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            box-shadow: 0 4px 14px 0 rgba(59, 130, 246, 0.4);
+        }
+
+        .filter-btn:not(.clear-btn):hover {
+            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px 0 rgba(59, 130, 246, 0.6);
+        }
+
+        .filter-btn.clear-btn {
+            background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+            color: white;
+            box-shadow: 0 4px 14px 0 rgba(107, 114, 128, 0.4);
+        }
+
+        .filter-btn.clear-btn:hover {
+            background: linear-gradient(135deg, #4b5563 0%, #374151 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px 0 rgba(107, 114, 128, 0.6);
+        }
+
+        .filter-btn:active {
+            transform: translateY(0);
+        }
+
+        .filter-btn.loading {
+            position: relative;
+            color: transparent;
+        }
+
+        .filter-btn.loading::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 16px;
+            height: 16px;
+            margin: -8px 0 0 -8px;
+            border: 2px solid transparent;
+            border-top: 2px solid currentColor;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive Filter */
+        @media (max-width: 768px) {
+            .filter-row {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 16px;
+            }
+            
+            .filter-group {
+                min-width: auto;
+            }
+            
+            .filter-actions {
+                justify-content: center;
+            }
+        }
+
+        /* Pagination Styles - Modern Design */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            margin: 32px 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border-radius: 16px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .pagination-btn {
+            padding: 12px 20px;
+            border: 2px solid #e5e7eb;
+            background: white;
+            color: #374151;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            min-width: 44px;
+            text-align: center;
+        }
+
+        .pagination-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .pagination-btn:hover::before {
+            left: 100%;
+        }
+
+        .pagination-btn:hover:not(:disabled) {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            border-color: #3b82f6;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px 0 rgba(59, 130, 246, 0.4);
+        }
+
+        .pagination-btn:disabled {
+            color: #9ca3af;
+            cursor: not-allowed;
+            background: #f9fafb;
+            border-color: #e5e7eb;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .pagination-btn:disabled::before {
+            display: none;
+        }
+
+        .pagination-btn.active {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            border-color: #3b82f6;
+            box-shadow: 0 4px 14px 0 rgba(59, 130, 246, 0.4);
+        }
+
+        .pagination-info {
+            color: #6b7280;
+            font-size: 14px;
+            font-weight: 500;
+            margin: 0 16px;
+            padding: 8px 16px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .pagination-input-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .pagination-input-group span {
+            color: #6b7280;
+            font-size: 12px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .pagination-input-group input {
+            width: 50px;
+            padding: 6px 8px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            text-align: center;
+            font-size: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .pagination-input-group input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+        }
+
+        .pagination-go-btn {
+            padding: 6px 12px;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .pagination-go-btn:hover {
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px 0 rgba(16, 185, 129, 0.4);
+        }
+
+        .pagination-btn.loading {
+            position: relative;
+            color: transparent;
+        }
+
+        .pagination-btn.loading::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 16px;
+            height: 16px;
+            margin: -8px 0 0 -8px;
+            border: 2px solid transparent;
+            border-top: 2px solid currentColor;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        /* Responsive Pagination */
+        @media (max-width: 768px) {
+            .pagination {
+                flex-wrap: wrap;
+                gap: 8px;
+                padding: 16px;
+            }
+            
+            .pagination-btn {
+                padding: 10px 16px;
+                font-size: 12px;
+                min-width: 40px;
+            }
+            
+            .pagination-info {
+                margin: 0 8px;
+                font-size: 12px;
+            }
+            
+            .pagination-input-group {
+                padding: 6px 12px;
+            }
+            
+            .pagination-input-group input {
+                width: 40px;
+                font-size: 11px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .pagination {
+                flex-direction: column;
+                gap: 12px;
+            }
+            
+            .pagination-btn {
+                width: 100%;
+                max-width: 200px;
+            }
+        }
+
+        /* Image optimization */
+        img {
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+        }
+
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        .preview-modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            overflow: hidden;
+        }
+
+        .preview-modal-content {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .preview-gallery-container {
+            display: flex;
+            width: 100%;
+            max-width: 1400px;
+            height: 80vh;
+            gap: 20px;
+            align-items: stretch;
+        }
+
+        .preview-left-panel {
+            flex: 0 0 40%;
+            display: flex;
+            flex-direction: column;
+            background-color: #1a1a1a;
+            border-radius: 8px;
+            padding: 15px;
+            overflow: hidden;
+        }
+
+        .preview-right-panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background-color: #1a1a1a;
+            border-radius: 8px;
+            padding: 15px;
+            overflow: hidden;
+        }
+
+        .preview-section-title {
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .preview-image-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-radius: 6px;
+            background-color: #2a2a2a;
+        }
+
+        .preview-modal-image {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .preview-modal-image:hover {
+            transform: scale(1.02);
+        }
+
+        .preview-outputs-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            height: 100%;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+
+        .preview-output-item {
+            display: flex;
+            flex-direction: column;
+            background-color: #2a2a2a;
+            border-radius: 6px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .preview-output-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .preview-output-item.active {
+            border: 2px solid #3b82f6;
+            box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+        }
+
+        .preview-output-image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .preview-output-label {
+            padding: 8px;
+            color: white;
+            font-size: 12px;
+            text-align: center;
+            background-color: #333;
+        }
+
+        .preview-close-modal {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 1001;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .preview-close-modal:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .preview-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 24px;
+            background: rgba(0, 0, 0, 0.5);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1001;
+            transition: background-color 0.2s;
+        }
+
+        .preview-nav:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .preview-nav.prev {
+            left: 20px;
+        }
+
+        .preview-nav.next {
+            right: 20px;
+        }
+
+        .preview-nav:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .preview-full-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1002;
+        }
+
+        .preview-full-image img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+
+        .preview-close-full-image {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 1003;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .preview-close-full-image:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        /* Responsive design for preview */
+        @media (max-width: 1024px) {
+            .preview-gallery-container {
+                flex-direction: column;
+                height: 90vh;
+            }
+            
+            .preview-left-panel {
+                flex: 0 0 30%;
+            }
+            
+            .preview-outputs-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .preview-outputs-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .preview-gallery-container {
+                height: 85vh;
+            }
+            
+            .preview-left-panel {
+                flex: 0 0 40%;
             }
         }
     </style>
@@ -1476,21 +1712,42 @@
         </div>
     </header>
 
-    <nav class="navigation">
+     <!-- <nav class="navigation">
         <div class="nav-tabs">
             <a href="#" class="nav-tab active" data-tab="questions">Evaluate</a>
-          
-            <a href="#" class="nav-tab" data-tab="profile">Profile</a>
-            <a href="#" class="nav-tab" data-tab="responses">All Responses</a>
-            <a href="#" class="nav-tab" data-tab="admin">All Request</a>
-            <a href="#" class="nav-tab" data-tab="users">All Users</a>
-
         </div>
-    </nav>
+    </nav> -->
 
     <main class="main-content">
         <!-- Questions Tab Content -->
         <div class="tab-content active" id="questionsTab">
+            <div class="questions-container">
+                <div class="questions-header">
+                    <h2>Evaluate Questions</h2>
+                    <!-- <div class="questions-stats">
+                        <span id="totalQuestions">Loading...</span> questions
+                    </div> -->
+                </div>
+
+                <!-- Filter Section for Questions -->
+                <div class="filter-section">
+                    <div class="filter-row">
+                        <div class="filter-group">
+                            <label for="questionStatusFilter">Filter by Status:</label>
+                            <select id="questionStatusFilter" class="filter-select">
+                                <option value="all">All</option>
+                                <option value="done">Done</option>
+                                <option value="in_progress">In Progress</option>
+                                <option value="pending">Pending</option>
+                            </select>
+                        </div>
+                        <div class="filter-actions">
+                            <button id="applyQuestionFilter" class="filter-btn">Apply Filter</button>
+                            <button id="clearQuestionFilter" class="filter-btn clear-btn">Clear Filter</button>
+                        </div>
+                    </div>
+                </div>
+
             <div class="questions-grid" id="questionsGrid">
                 <!-- Questions will be loaded dynamically from server -->
                 <div class="loading-placeholder">
@@ -1506,307 +1763,11 @@
                     </div>
                 </div>
 
-        <!-- Profile Tab Content -->
-        <div class="tab-content" id="profileTab">
-            <div class="profile-container">
-                <div class="profile-header">
-                    <div class="profile-avatar">
-                        <svg class="icon" fill="currentColor" viewBox="0 0 20 20" style="width: 64px; height: 64px;">
-                            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/>
-                            </svg>
-                        </div>
-                    <div class="profile-info">
-                        <h2 class="profile-name" id="profileName">Loading...</h2>
-                        <p class="profile-username" id="profileUsername">Loading...</p>
-                        </div>
-                        </div>
-                <div class="profile-details">
-                    <div class="profile-section">
-                        <div class="section-header">
-                            <h3>Experience</h3>
-                            <span class="edit-label" onclick="startEdit('experience')">✏️ Edit</span>
-                        </div>
-                        <div class="editable-content">
-                            <p id="profileExperience">Loading...</p>
-                        </div>
-                        <div class="edit-form" id="experienceEditForm">
-                            <textarea class="edit-textarea" id="experienceEditTextarea" placeholder="Describe your experience in image evaluation..."></textarea>
-                            <div class="edit-actions">
-                                <button class="edit-btn save-btn" onclick="saveEdit('experience')">Save</button>
-                                <button class="edit-btn cancel-btn" onclick="cancelEdit('experience')">Cancel</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="profile-section">
-                        <div class="section-header">
-                            <h3>Qualification</h3>
-                            <span class="edit-label" onclick="startEdit('qualification')">✏️ Edit</span>
-                        </div>
-                        <div class="editable-content">
-                            <p id="profileQualification">Loading...</p>
-                        </div>
-                        <div class="edit-form" id="qualificationEditForm">
-                            <textarea class="edit-textarea" id="qualificationEditTextarea" placeholder="Describe your educational background and qualifications..."></textarea>
-                            <div class="edit-actions">
-                                <button class="edit-btn save-btn" onclick="saveEdit('qualification')">Save</button>
-                                <button class="edit-btn cancel-btn" onclick="cancelEdit('qualification')">Cancel</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                    </div>
-                </div>
+        
 
-        <!-- All Responses Tab Content -->
-        <div class="tab-content" id="responsesTab">
-            <div class="responses-container">
-                <div class="responses-header">
-                    <h2>All Responses</h2>
-                    <div class="responses-stats">
-                        <span id="totalResponses">Loading...</span> responses
-                    </div>
-            </div>
 
-                <!-- Filter Section -->
-                <div class="filter-section">
-                    <div class="filter-row">
-                        <div class="filter-group">
-                            <label for="userFilter">Filter by User:</label>
-                            <select id="userFilter" class="filter-select">
-                                <option value="all">All Users</option>
-                            </select>
-                        </div>
-                        <div class="filter-group">
-                            <label for="questionFilter">Filter by Request:</label>
-                            <select id="questionFilter" class="filter-select">
-                                <option value="all">All Requests</option>
-                            </select>
-                        </div>
-                        <div class="filter-actions">
-                            <button id="applyFilter" class="filter-btn">Apply Filter</button>
-                            <button id="clearFilter" class="filter-btn clear-btn">Clear Filter</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="responses-table-container">
-                    <table class="responses-table">
-                        <thead id="responsesTableHead">
-                            <tr>
-                                <th>User</th>
-                                <th>Request #</th>
-                                <th>Prompt</th>
-                                <th>Comments</th>
-                                <th>Date</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="responsesTableBody">
-                            <tr>
-                                <td colspan="6" style="text-align: center; padding: 40px; color: #6b7280;">
-                                    Loading responses...
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                
-                <div class="pagination" id="pagination">
-                    <!-- Pagination will be generated here -->
-                </div>
-                    </div>
-                </div>
+      
 
-        <!-- All Users Tab Content -->
-        <div class="tab-content" id="usersTab">
-            <div class="users-container">
-                <div class="users-header">
-                    <h2>All Users</h2>
-                    <button id="addUserBtn" class="add-btn">Add New User</button>
-                        </div>
-                
-                <div class="users-table-container">
-                    <table class="users-table">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Username</th>
-                                <th>Role</th>
-                                <th>Qualification</th>
-                                <th>Experience</th>
-                                <th>Answered Questions</th>
-                                <th>Status</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="usersTableBody">
-                            <tr>
-                                <td colspan="8" style="text-align: center; padding: 40px; color: #6b7280;">
-                                    Loading users...
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                        </div>
-                        </div>
-                    </div>
-
-        <!-- All Questions Tab Content -->
-        <div class="tab-content" id="adminTab">
-            <div class="questions-container">
-                <div class="questions-header">
-                    <h2>All Requests</h2>
-                    <button id="addQuestionBtn" class="add-btn">Add New Request</button>
-                </div>
-
-                <div class="questions-table-container">
-                    <table class="questions-table">
-                        <thead>
-                            <tr>
-                                <th>Request #</th>
-                                <th>Prompt</th>
-                                <th>Input Image</th>
-                                <th>Output Images</th>
-                                <th>Status</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="questionsTableBody">
-                            <tr>
-                                <td colspan="6" style="text-align: center; padding: 40px; color: #6b7280;">
-                                    Loading questions...
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        <!-- Add User Modal -->
-        <div id="addUserModal" class="modal">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3>Add New User</h3>
-                    <span class="close" id="closeAddUserModal">&times;</span>
-                </div>
-                <form id="addUserForm">
-                    <div class="form-group">
-                        <label for="userName">Full Name:</label>
-                        <input type="text" id="userName" name="name" required placeholder="Enter full name (e.g., Nguyễn Hải Yến)">
-                    </div>
-                    <div class="form-group">
-                        <label for="userUsername">Username:</label>
-                        <input type="text" id="userUsername" name="username" readonly placeholder="Will be generated from name">
-                    </div>
-                    <div class="form-group">
-                        <label for="userRole">Role:</label>
-                        <select id="userRole" name="role" required>
-                            <option value="reviewer" selected>Reviewer</option>
-                            <option value="admin">Admin</option>
-                            
-                        </select>
-                    </div>
-                    <div style="margin-top: 16px; padding: 12px; background-color: #f3f4f6; border-radius: 6px; border-left: 4px solid #3b82f6;">
-                        <small style="color: #6b7280; font-size: 12px;">
-                            <strong>Note:</strong> Default password will be set to "password123" for all new users.
-                        </small>
-                    </div>
-                    <div class="form-group" style="display: none;">
-                        <label for="userPassword">Password:</label>
-                        <input type="text" id="userPassword" name="password" readonly value="password123">
-                    </div>
-                    <div class="form-actions">
-                        <button type="submit" class="submit-btn" id="addUserSubmitBtn" disabled>Add User</button>
-                        <button type="button" class="cancel-btn" id="cancelAddUserBtn">Cancel</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        <!-- Add Question Modal -->
-        <div id="addQuestionModal" class="modal">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3>Add New Request</h3>
-                    <span class="close" id="closeAddModal">&times;</span>
-                </div>
-                <form id="addQuestionForm">
-                    <div class="form-group">
-                        <label for="questionPrompt">Prompt:</label>
-                        <textarea id="questionPrompt" name="prompt" required placeholder="Enter the question prompt..."></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="questionImageInput">Input Image URL:</label>
-                        <input type="url" id="questionImageInput" name="imageInput" required placeholder="https://example.com/image.jpg">
-                    </div>
-                    <div class="form-group">
-                        <label>Output Images:</label>
-                        <div id="outputImagesContainer">
-                            <div class="output-image-input">
-                                <div class="output-input-row">
-                                    <input type="url" name="outputUrls[]" required placeholder="https://example.com/output1.jpg">
-                                    <input type="text" name="outputSrcs[]" required placeholder="Source (e.g., Pinterest, DALL-E)">
-                                </div>
-                                <button type="button" class="remove-output-btn" onclick="removeOutputImage(this)">Remove</button>
-                            </div>
-                        </div>
-                        <button type="button" id="addOutputBtn" class="add-output-btn">Add Another Output Image</button>
-                    </div>
-                    <div class="form-actions">
-                        <button type="submit" class="submit-btn">Add Question</button>
-                        <button type="button" class="cancel-btn" id="cancelAddBtn">Cancel</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        <!-- Image Modal for Questions -->
-        <div id="imageModal" class="modal">
-            <div class="modal-content image-modal-content">
-                <div class="modal-header">
-                    <h3 id="imageModalTitle">Image View</h3>
-                    <span class="close" id="closeImageModal">&times;</span>
-                </div>
-                <div class="image-modal-body">
-                    <button class="nav-btn prev-btn" id="prevImageBtn">&lt;</button>
-                    <div class="image-container">
-                        <img id="modalImage" src="" alt="Modal Image">
-                    </div>
-                    <button class="nav-btn next-btn" id="nextImageBtn">&gt;</button>
-                </div>
-                <div class="image-modal-footer">
-                    <span id="imageCounter">1 / 1</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Full Screen Image Modal -->
-        <div id="fullScreenModal" class="fullscreen-modal">
-            <div class="fullscreen-overlay">
-                <div class="fullscreen-header">
-                    <h3 id="fullScreenTitle">Image View</h3>
-                    <span class="fullscreen-close" id="closeFullScreenModal">&times;</span>
-                </div>
-                <div class="fullscreen-body">
-                    <button class="fullscreen-nav-btn prev-btn" id="fullScreenPrevBtn">&lt;</button>
-                    <div class="fullscreen-image-container">
-                        <img id="fullScreenImage" src="" alt="Full Screen Image">
-                    </div>
-                    <button class="fullscreen-nav-btn next-btn" id="fullScreenNextBtn">&gt;</button>
-                </div>
-                <div class="fullscreen-footer">
-                    <span id="fullScreenCounter">1 / 1</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="tab-content" id="adminTab">
-            <div style="text-align: center; padding: 40px; color: #6b7280;">
-                <h3>Admin Panel</h3>
-                <p>This feature is coming soon...</p>
-            </div>
-        </div>
     </main>
 
     <!-- Image Modal -->
@@ -1817,28 +1778,35 @@
         </div>
     </div>
 
-    <!-- Profile Completion Modal -->
-    <div id="profileModal" class="profile-modal">
-        <div class="profile-modal-content">
-            <div class="profile-modal-header">
-                <h2>Complete Your Profile</h2>
-                <p>Please provide your experience and qualification information to continue.</p>
+    <div id="previewModal" class="preview-modal">
+        <div class="preview-modal-content">
+            <button class="preview-close-modal" onclick="closePreviewModal()">&times;</button>
+            
+            <button class="preview-nav prev" onclick="navigatePreviewImage(-1)">&lt;</button>
+            <button class="preview-nav next" onclick="navigatePreviewImage(1)">&gt;</button>
+            
+            <div class="preview-gallery-container">
+                <div class="preview-left-panel">
+                    <div class="preview-section-title">Input Image</div>
+                    <div class="preview-image-container">
+                        <img id="previewInputImage" class="preview-modal-image" src="" alt="Input Image" onclick="showPreviewFullImage(this.src, 'Input Image')">
+                    </div>
+                </div>
+                
+                <div class="preview-right-panel">
+                    <div class="preview-section-title">Output Images</div>
+                    <div id="previewOutputsGrid" class="preview-outputs-grid">
+                        <!-- Output images will be dynamically populated here -->
+                    </div>
+                </div>
             </div>
-            <form id="profileForm" class="profile-form">
-                <div class="form-group">
-                    <label for="experience">Experience *</label>
-                    <textarea id="experience" name="experience" class="form-input" placeholder="Describe your experience in image evaluation..." required></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="qualification">Qualification *</label>
-                    <textarea id="qualification" name="qualification" class="form-input" placeholder="Describe your educational background and qualifications..." required></textarea>
-                </div>
-                <div class="form-actions">
-                    <button type="submit" class="submit-btn">Save Profile</button>
-                </div>
-            </form>
         </div>
     </div>
+    <div id="previewFullImageModal" class="preview-full-image">
+        <button class="preview-close-full-image" onclick="closePreviewFullImage()">&times;</button>
+        <img id="previewFullImage" src="" alt="Full Size Image">
+    </div>
+
 
     <script src="/auth.js"></script>
     <script>
@@ -1854,20 +1822,50 @@
         let currentUser = null;
         let currentPage = 1;
         let totalPages = 1;
+        let itemsPerPage = 9;
         let maxOutputs = 0;
-        let currentFilters = { userId: 'all', questionId: 'all' };
+        let currentFilters = { userId: 'all', questionId: 'all', status: 'all' };
+        let currentQuestionFilters = { status: 'all' };
+        let previewCurrentQuestion = null;
+        let previewCurrentImageIndex = 0;
+        let previewAllImages = [];
+
+        // Intersection Observer for advanced lazy loading
+        let imageObserver = null;
+        
+        // Function declaration - hoisted
+        function initImageObserver() {
+            if ('IntersectionObserver' in window) {
+                imageObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            if (img.dataset.src) {
+                                img.src = img.dataset.src;
+                                img.removeAttribute('data-src');
+                                img.classList.remove('lazy');
+                                imageObserver.unobserve(img);
+                            }
+                        }
+                    });
+                }, {
+                    rootMargin: '100px 0px', // Load sớm hơn
+                    threshold: 0.01,
+                    trackVisibility: true, // Tối ưu performance
+                    delay: 100 // Batch operations
+                });
+            }
+        }
 
         // Load questions from server when page loads
         document.addEventListener('DOMContentLoaded', async function() {
             console.log('DOM Content Loaded - Starting initialization...');
+            
+            // Initialize image observer for lazy loading
+            initImageObserver();
+            
             await loadUserInfo();
             loadQuestions();
-            
-            // Force update profile display after a short delay
-            setTimeout(() => {
-                console.log('Force updating profile display...');
-                updateProfileDisplay();
-            }, 1000);
         });
 
         // Function to load and display user information
@@ -1903,7 +1901,7 @@
                     // Hide admin-only tab contents for non-admin users
                     const isAdmin = currentUser && currentUser.role === 'admin';
                     if (!isAdmin) {
-                        const adminTabContents = ['responsesTab', 'adminTab', 'usersTab'];
+                        const adminTabContents = ['responsesTab', 'adminTab'];
                         adminTabContents.forEach(tabId => {
                             const tabContent = document.getElementById(tabId);
                             if (tabContent) {
@@ -1931,7 +1929,7 @@
         async function testLogin() {
             try {
                 console.log('Testing login with admin/admin...');
-                const response = await fetch('https://surveyform-1.onrender.com/login', {
+                const response = await fetch('http://localhost:3000/login', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -1958,7 +1956,7 @@
                 }
             } catch (error) {
                 console.error('Error testing login:', error);
-                console.log('Make sure server is running on https://surveyform-1.onrender.com');
+                console.log('Make sure server is running on http://localhost:3000');
             }
         }
 
@@ -1977,7 +1975,6 @@
             
             // Update current user and display immediately
             currentUser = testUser;
-            updateProfileDisplay();
             
             // Update user name in header
             const userNameElement = document.querySelector('.user-name');
@@ -1996,7 +1993,6 @@
             console.log('Session cleared');
             
             // Update display to show "Not specified"
-            updateProfileDisplay();
             
             // Clear user name in header
             const userNameElement = document.querySelector('.user-name');
@@ -2008,89 +2004,9 @@
         // Make functions available globally for console testing
         window.testLogin = testLogin;
         window.setTestUserData = setTestUserData;
-        window.debugProfileLoading = debugProfileLoading;
-        window.updateProfileDisplay = updateProfileDisplay;
         window.clearSession = clearSession;
 
-        // Function to update profile display immediately
-        function updateProfileDisplay() {
-            console.log('updateProfileDisplay called');
-            
-            // Check sessionStorage
-            const userInfo = sessionStorage.getItem('userInfo');
-            console.log('sessionStorage userInfo:', userInfo);
-            
-            if (userInfo) {
-                try {
-                    const parsedUser = JSON.parse(userInfo);
-                    console.log('Parsed user from sessionStorage:', parsedUser);
-                    currentUser = parsedUser;
-                } catch (error) {
-                    console.error('Error parsing userInfo:', error);
-                }
-            }
-            
-            console.log('currentUser:', currentUser);
-            
-            const profileExperience = document.getElementById('profileExperience');
-            const profileQualification = document.getElementById('profileQualification');
-            
-            console.log('Elements found:', {
-                profileExperience: !!profileExperience,
-                profileQualification: !!profileQualification
-            });
-            
-            if (profileExperience) {
-                const experienceText = currentUser && currentUser.experience ? currentUser.experience : 'Not specified';
-                profileExperience.textContent = experienceText;
-                console.log('Updated profileExperience with:', experienceText);
-            } else {
-                console.error('profileExperience element not found!');
-            }
-            
-            if (profileQualification) {
-                const qualificationText = currentUser && currentUser.qualification ? currentUser.qualification : 'Not specified';
-                profileQualification.textContent = qualificationText;
-                console.log('Updated profileQualification with:', qualificationText);
-            } else {
-                console.error('profileQualification element not found!');
-            }
-        }
 
-        // Function to debug and fix profile loading
-        function debugProfileLoading() {
-            console.log('=== DEBUG PROFILE LOADING ===');
-            
-            // Check all possible storage locations
-            console.log('sessionStorage userInfo:', sessionStorage.getItem('userInfo'));
-            console.log('localStorage userInfo:', localStorage.getItem('userInfo'));
-            
-            // Check current user
-            console.log('currentUser:', currentUser);
-            
-            // Check elements
-            const profileExperience = document.getElementById('profileExperience');
-            const profileQualification = document.getElementById('profileQualification');
-            console.log('profileExperience element:', profileExperience);
-            console.log('profileQualification element:', profileQualification);
-            
-            // Check if elements exist and their current content
-            if (profileExperience) {
-                console.log('profileExperience current text:', profileExperience.textContent);
-            }
-            if (profileQualification) {
-                console.log('profileQualification current text:', profileQualification.textContent);
-            }
-            
-            // Try to force update
-            updateProfileDisplay();
-            
-            // If no user data, try to load from server
-            if (!currentUser || !currentUser._id) {
-                console.log('No user data found, trying to load from server...');
-                loadUserFromServer();
-            }
-        }
 
         // Function to load fresh user data from server
         async function loadFreshUserData() {
@@ -2113,7 +2029,7 @@
                 
                 console.log('Loading fresh user data from server for:', userId);
                 
-                const response = await fetch(`https://surveyform-1.onrender.com/debug-user/${userId}`);
+                const response = await fetch(`http://localhost:3000/debug-user/${userId}`);
                 if (response.ok) {
                     const data = await response.json();
                     if (data.user) {
@@ -2159,14 +2075,13 @@
                 
                 console.log('Trying to load user data for username:', username);
                 
-                const response = await fetch(`https://surveyform-1.onrender.com/debug-user/${username}`);
+                const response = await fetch(`http://localhost:3000/debug-user/${username}`);
                 if (response.ok) {
                     const data = await response.json();
                     if (data.user) {
                         currentUser = data.user;
                         sessionStorage.setItem('userInfo', JSON.stringify(currentUser));
                         console.log('User data loaded from server:', currentUser);
-                        updateProfileDisplay();
                     }
                 }
             } catch (error) {
@@ -2215,8 +2130,6 @@
                 console.log('Updated profileQualification with:', qualificationText);
             }
             
-            // Also call updateProfileDisplay to ensure it's updated
-            updateProfileDisplay();
         }
 
         // Function to start editing a field
@@ -2371,10 +2284,6 @@
                             loadAllQuestions();
                         }
                         
-                        // Load users when switching to users tab
-                        if (targetTab === 'users') {
-                            loadAllUsers();
-                        }
                     }
                 });
             });
@@ -2409,7 +2318,7 @@
         async function debugUserInfo() {
             try {
                 const userId = currentUser._id || currentUser.username;
-                const response = await fetch(`https://surveyform-1.onrender.com/debug-user/${userId}`);
+                const response = await fetch(`http://localhost:3000/debug-user/${userId}`);
                 const data = await response.json();
                 console.log('Debug user info:', data);
                 return data;
@@ -2423,7 +2332,7 @@
         async function refreshUserData() {
             try {
                 const userId = currentUser._id || currentUser.username;
-                const response = await fetch(`https://surveyform-1.onrender.com/debug-user/${userId}`);
+                const response = await fetch(`http://localhost:3000/debug-user/${userId}`);
                 
                 if (response.ok) {
                     const data = await response.json();
@@ -2455,7 +2364,7 @@
                 
                 console.log('Sending update request:', requestBody);
                 
-                const response = await fetch('https://surveyform-1.onrender.com/update-profile', {
+                const response = await fetch('http://localhost:3000/update-profile', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(requestBody)
@@ -2557,6 +2466,27 @@
                 });
             }
             
+            // Setup question filter event listeners
+            const applyQuestionFilterBtn = document.getElementById('applyQuestionFilter');
+            const clearQuestionFilterBtn = document.getElementById('clearQuestionFilter');
+            
+            if (applyQuestionFilterBtn) {
+                applyQuestionFilterBtn.addEventListener('click', function() {
+                    const questionStatusFilter = document.getElementById('questionStatusFilter');
+                    currentQuestionFilters.status = questionStatusFilter.value;
+                    loadQuestions();
+                });
+            }
+            
+            if (clearQuestionFilterBtn) {
+                clearQuestionFilterBtn.addEventListener('click', function() {
+                    const questionStatusFilter = document.getElementById('questionStatusFilter');
+                    questionStatusFilter.value = 'all';
+                    currentQuestionFilters.status = 'all';
+                    loadQuestions();
+                });
+            }
+            
             // Setup questions modal event listeners
             // Setup add user modal
             const addUserBtn = document.getElementById('addUserBtn');
@@ -2603,9 +2533,8 @@
                     
                     if (name.length > 0) {
                         // Generate base username
-                        const baseUsername = generateUsername(name);
-                        // Check if unique and get final username
-                        const finalUsername = await generateUniqueUsername(baseUsername);
+                        // Generate simple username
+                        const finalUsername = name.toLowerCase().replace(/\s+/g, '') + Math.floor(Math.random() * 1000);
                         userUsernameInput.value = finalUsername;
                         
                         // Enable submit button
@@ -2667,7 +2596,7 @@
                     try {
                         console.log('Adding user with generated username:', username);
                         
-                        const response = await fetch('https://surveyform-1.onrender.com/add-user', {
+                        const response = await fetch('http://localhost:3000/add-user', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
@@ -2688,7 +2617,6 @@
                             document.getElementById('userPassword').value = 'password123';
                             // Disable submit button
                             document.getElementById('addUserSubmitBtn').disabled = true;
-                            loadAllUsers(); // Reload users table
                         } else {
                             const error = await response.json();
                             alert('Error adding user: ' + error.message);
@@ -2727,7 +2655,7 @@
                     }));
                     
                     try {
-                        const response = await fetch('https://surveyform-1.onrender.com/add-question', {
+                        const response = await fetch('http://localhost:3000/add-question', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
@@ -2813,9 +2741,11 @@
             }
         }
 
-        // Function to load questions from server
-        async function loadQuestions() {
+        // Function to load questions from server with pagination
+        async function loadQuestions(page = 1) {
             try {
+                console.log('Loading questions for page:', page);
+                
                 // Get current user info
                 const userInfo = sessionStorage.getItem('userInfo');
                 let userId = null;
@@ -2825,23 +2755,192 @@
                     userId = currentUser._id || currentUser.username;
                 }
                 
-                // Build URL with userId parameter
-                const url = userId ? 
-                    `https://surveyform-1.onrender.com/questions?userId=${encodeURIComponent(userId)}` :
-                    'https://surveyform-1.onrender.com/questions';
+                // Build URL with pagination and userId parameters
+                const url = `http://localhost:3000/questions?page=${page}&limit=${itemsPerPage}&userId=${encodeURIComponent(userId)}&status=${currentQuestionFilters.status}`;
+                console.log('URL:', url);
                 
                 const response = await fetch(url);
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 const data = await response.json();
+                
                 questions = data.questions || [];
-                console.log('Loaded questions:', questions); // Debug log
+                currentPage = data.pagination?.currentPage || page;
+                totalPages = data.pagination?.totalPages || 1;
+                
+                console.log(`Loaded ${questions.length} questions for page ${currentPage}/${totalPages}`);
+                console.log('Pagination info:', data.pagination);
+                
+                // Debug first question structure
+                if (questions.length > 0) {
+                    console.log('Debug - First question:', questions[0]);
+                    console.log('Debug - First question outputs structure:', questions[0].outputs);
+                    console.log('Debug - First question imageInput:', questions[0].imageInput);
+                    console.log('Debug - First output item:', questions[0].outputs?.[0]);
+                    console.log('Debug - All questions length:', questions.length);
+                }
                 
                 renderQuestions();
+                renderQuestionsPagination();
+                
+                // Update questions stats
+                const totalQuestionsElement = document.getElementById('totalQuestions');
+                if (totalQuestionsElement) {
+                    totalQuestionsElement.textContent = questions.length;
+                }
+                
+                // Preload images for better UX - tối ưu hơn
+                const imagesToPreload = [];
+                questions.forEach(question => {
+                    if (question.imageInput) imagesToPreload.push(question.imageInput);
+                    if (question.outputs) {
+                        question.outputs.forEach(output => {
+                            const imageUrl = typeof output === 'object' ? output.image : output;
+                            if (imageUrl) imagesToPreload.push(imageUrl);
+                        });
+                    }
+                });
+                
+                // Preload images in background
+                if (imagesToPreload.length > 0) {
+                    preloadImages(imagesToPreload).catch(error => {
+                        console.warn('Error preloading images:', error);
+                    });
+                }
             } catch (error) {
                 console.error('Error loading questions:', error);
                 showError('Failed to load questions. Please try again later.');
+            }
+        }
+
+        // Function to render pagination for questions
+        function renderQuestionsPagination() {
+            const questionsGrid = document.getElementById('questionsGrid');
+            
+            // Remove existing pagination if any
+            const existingPagination = document.getElementById('questionsPagination');
+            if (existingPagination) {
+                existingPagination.remove();
+            }
+            
+            if (totalPages <= 1) {
+                return;
+            }
+            
+            // Create pagination container
+            const paginationContainer = document.createElement('div');
+            paginationContainer.id = 'questionsPagination';
+            paginationContainer.className = 'pagination';
+            paginationContainer.style.marginTop = '24px';
+            
+            let paginationHtml = '';
+            
+            // Previous button
+            paginationHtml += `
+                <button class="pagination-btn" onclick="loadQuestions(${currentPage - 1})" 
+                        ${currentPage <= 1 ? 'disabled' : ''}>
+                    Previous
+                </button>
+            `;
+            
+            // Page info
+            paginationHtml += `
+                <div class="pagination-info">
+                    Page ${currentPage} of ${totalPages}
+                </div>
+            `;
+            
+            // Page input
+            paginationHtml += `
+                <div class="pagination-input-group">
+                    <span>Go to:</span>
+                    <input type="number" id="pageInput" min="1" max="${totalPages}" value="${currentPage}" 
+                           onkeypress="if(event.key==='Enter') goToPage()">
+                    <button class="pagination-go-btn" onclick="goToPage()">
+                        Go
+                    </button>
+                </div>
+            `;
+            
+            // Next button
+            paginationHtml += `
+                <button class="pagination-btn" onclick="loadQuestions(${currentPage + 1})" 
+                        ${currentPage >= totalPages ? 'disabled' : ''}>
+                    Next
+                </button>
+            `;
+            
+            paginationContainer.innerHTML = paginationHtml;
+            
+            // Insert pagination after questions grid
+            questionsGrid.parentNode.insertBefore(paginationContainer, questionsGrid.nextSibling);
+        }
+
+        // Function to go to specific page
+        function goToPage() {
+            const pageInput = document.getElementById('pageInput');
+            const page = parseInt(pageInput.value);
+            
+            if (page >= 1 && page <= totalPages) {
+                loadQuestions(page);
+            } else {
+                alert(`Please enter a page number between 1 and ${totalPages}`);
+                pageInput.value = currentPage;
+            }
+        }
+
+        // Function to preload images - tối ưu cao
+        function preloadImages(imageUrls) {
+            // Chỉ preload 3 ảnh đầu tiên để tăng tốc
+            const limitedUrls = imageUrls.slice(0, 3);
+            
+            const imagePromises = limitedUrls.map(url => {
+                if (!url || url.trim() === '') return Promise.resolve();
+                
+                return new Promise((resolve) => {
+                    const img = new Image();
+                    
+                    // Tối ưu loading
+                    img.crossOrigin = 'anonymous';
+                    img.loading = 'eager';
+                    img.decoding = 'async';
+                    img.fetchpriority = 'high';
+                    
+                    img.onload = () => {
+                        console.log('Preloaded image:', url);
+                        resolve();
+                    };
+                    
+                    img.onerror = () => {
+                        console.warn('Failed to preload image:', url);
+                        resolve(); // Don't reject on error
+                    };
+                    
+                    // Set src after setting up handlers
+                    img.src = url;
+                });
+            });
+            
+            return Promise.all(imagePromises);
+        }
+
+        // Function to create lazy image element - tối ưu cao
+        function createLazyImage(src, alt, className = '', style = '') {
+            const optimizedStyle = `${style} 
+                image-rendering: -webkit-optimize-contrast; 
+                image-rendering: crisp-edges; 
+                transform: translateZ(0); 
+                will-change: transform;
+                backface-visibility: hidden;
+                transition: opacity 0.3s ease;
+                opacity: 0;
+            `;
+            
+            if ('IntersectionObserver' in window) {
+                return `<img data-src="${src}" alt="${alt}" class="lazy ${className}" style="${optimizedStyle}" loading="lazy" decoding="async" fetchpriority="high">`;
+            } else {
+                return `<img src="${src}" alt="${alt}" class="${className}" style="${optimizedStyle}" loading="lazy" decoding="async" fetchpriority="high">`;
             }
         }
 
@@ -2849,7 +2948,31 @@
         function renderQuestions() {
             const questionsGrid = document.getElementById('questionsGrid');
             
-            if (questions.length === 0) {
+            // Apply status filter only if not 'all'
+            let filteredQuestions = questions;
+            if (currentQuestionFilters.status !== 'all') {
+                filteredQuestions = questions.filter(question => {
+                    switch (currentQuestionFilters.status) {
+                        case 'done':
+                            return question.isComplete === true;
+                        case 'in_progress':
+                            return question.hasAnswered === true && question.isComplete === false;
+                        case 'pending':
+                            return question.hasAnswered === false;
+                        default:
+                            return true;
+                    }
+                });
+            }
+            // If status is 'all', use all questions without filtering
+            
+            // Update questions stats
+            const totalQuestionsElement = document.getElementById('totalQuestions');
+            if (totalQuestionsElement) {
+                totalQuestionsElement.textContent = filteredQuestions.length;
+            }
+            
+            if (filteredQuestions.length === 0) {
                 questionsGrid.innerHTML = `
                     <div style="text-align: center; padding: 40px; color: #6b7280;">
                         <div style="margin-bottom: 16px;">
@@ -2865,69 +2988,107 @@
 
             // Grid always has 3 columns, no need for special single-question class
 
-            questionsGrid.innerHTML = questions.map((question, index) => `
-            <div class="question-card">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-                        <h2 class="question-title">Request #${question.questionNumber}</h2>
-                        ${question.hasAnswered ? 
-                            '<span style="background: #10b981; color: white; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: 500;">✓ Answered</span>' : 
-                            '<span style="background: #f59e0b; color: white; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: 500;">⏳ Pending</span>'
-                        }
-                    </div>
-                <p class="question-description">
-                        ${truncateText(question.prompt || 'No description available', 50)}
-                </p>
+            questionsGrid.innerHTML = filteredQuestions.map((question, index) => {
+                // Use stt_doc as question number, fallback to pagination calculation
+                const questionNumber = question.stt_doc || ((currentPage - 1) * itemsPerPage + index + 1);
                 
-                <div class="image-section">
-                    <div class="section-label">Input Image:</div>
-                        <div class="input-image-placeholder" onclick="uploadInputImage('${question._id}', ${question.questionNumber})">
-                            ${question.imageInput && question.imageInput.trim() !== '' ? 
-                                `<img src="${question.imageInput}" alt="Input Image" style="width: 100%; height: 100%; object-fit: cover; border-radius: 6px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">` :
-                                ''
+                return `
+                <div class="question-card">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                            <h2 class="question-title">Request #${questionNumber}</h2>
+                            ${question.isComplete ? 
+                                '<span style="background: #10b981; color: white; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: 500;">✓ Done</span>' : 
+                                question.hasAnswered ? 
+                                    '<span style="background: #f59e0b; color: white; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: 500;">🔄 In Progress</span>' :
+                                    '<span style="background: #6b7280; color: white; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: 500;">⏳ Pending</span>'
                             }
-                            <svg class="icon" fill="currentColor" viewBox="0 0 20 20" style="${question.imageInput && question.imageInput.trim() !== '' ? 'display: none;' : 'display: flex;'}">
-                            <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd"/>
-                        </svg>
-                    </div>
-                </div>
-
-                <div class="image-section">
-                    <div class="section-label">Output Images (3):</div>
-                    <div class="output-images">
-                            ${generateOutputImagePlaceholders(question.outputs || [], question._id, question.questionNumber)}
-                    </div>
-                </div>
-
-                    <button class="evaluate-btn ${question.hasAnswered ? 're-evaluate-btn' : ''}" onclick="evaluateImages('${question._id}', ${question.questionNumber})">
-                            <svg class="icon" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/>
-                        <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/>
-                            </svg>
-                    ${question.hasAnswered ? 'Re-Evaluate Images' : 'Evaluate Images'}
-                </button>
                         </div>
-            `).join('');
+                    <p class="question-description">
+                            ${truncateText(question.prompt || 'No description available', 50)}
+                    </p>
+                    
+                    <div class="image-section">
+                        <div class="section-label">Input Image:</div>
+                            <div class="input-image-placeholder" onclick="showImageModal(${index})">
+                                ${question.imageInput && question.imageInput.trim() !== '' ? 
+                                    createLazyImage(question.imageInput, "Input Image", '', 
+                                        `width: 100%; height: 100%; object-fit: cover; border-radius: 6px;`).replace('>', 
+                                        ` onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" 
+                                         onload="this.classList.add('loaded'); this.style.opacity='1';">`) :
+                                    ''
+                                }
+                                <svg class="icon" fill="currentColor" viewBox="0 0 20 20" style="${question.imageInput && question.imageInput.trim() !== '' ? 'display: none;' : 'display: flex;'}">
+                                <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd"/>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="image-section">
+                        <div class="section-label">Output Images :</div>
+                        <div class="output-images">
+                                ${generateOutputImagePlaceholders(question.outputs || [], question._id, questionNumber, index)}
+                        </div>
+                    </div>
+
+                        <button class="evaluate-btn ${question.isComplete ? 're-evaluate-btn' : ''}" onclick="evaluateImages('${question._id}', ${questionNumber})">
+                                <svg class="icon" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/>
+                            <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/>
+                                </svg>
+                        ${question.isComplete ? 'Re-Evaluate Images' : 'Evaluate Images'}
+                    </button>
+                            </div>
+                `;
+            }).join('');
+            
+            // Observe lazy images after rendering
+            if (imageObserver) {
+                const lazyImages = questionsGrid.querySelectorAll('img.lazy');
+                lazyImages.forEach(img => imageObserver.observe(img));
+            }
         }
 
         // Function to generate output image placeholders
-        function generateOutputImagePlaceholders(outputImages, questionId, questionNumber) {
+        function generateOutputImagePlaceholders(outputImages, questionId, questionNumber, questionIndex) {
+            console.log('generateOutputImagePlaceholders called:', { outputImages, questionId, questionNumber, questionIndex });
+            
             const maxImages = 3;
-            const totalImages = outputImages.length;
+            const totalImages = outputImages ? outputImages.length : 0;
             let html = '';
             
+            console.log('Total output images:', totalImages);
+            
             for (let i = 0; i < maxImages; i++) {
-                const imageObj = outputImages[i];
-                const imageUrl = imageObj && imageObj.image ? imageObj.image : '';
+                const imageObj = outputImages && outputImages[i] ? outputImages[i] : null;
+                console.log(`Processing output ${i}:`, imageObj);
+                
+                // Handle different output structures
+                let imageUrl = '';
+                if (imageObj) {
+                    if (typeof imageObj === 'string') {
+                        imageUrl = imageObj;
+                    } else if (imageObj.image) {
+                        imageUrl = imageObj.image;
+                    } else if (imageObj.url) {
+                        imageUrl = imageObj.url;
+                    }
+                }
+                
                 const hasImage = imageUrl && imageUrl.trim() !== '';
                 const isLastImage = i === maxImages - 1;
                 const hasMoreImages = totalImages > maxImages;
                 const remainingCount = totalImages - maxImages;
                 
+                console.log(`Output ${i} - imageUrl: ${imageUrl}, hasImage: ${hasImage}`);
+                
                 html += `
-                    <div class="output-image-placeholder" onclick="viewOutputImage('${questionId}', ${i}, ${questionNumber})" style="position: relative;">
+                    <div class="output-image-placeholder" onclick="showImageModal(${questionIndex})" style="position: relative;">
                         ${hasImage ? 
-                            `<img src="${imageUrl}" alt="Output Image ${i + 1}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">` :
-                            ''
+                            createLazyImage(imageUrl, `Output Image ${i + 1}`, '', 
+                                `width: 100%; height: 100%; object-fit: cover; border-radius: 4px;`).replace('>', 
+                                ` onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" 
+                                 onload="this.classList.add('loaded'); this.style.opacity='1';">`) :
+                ''
                         }
                         <svg class="icon" fill="currentColor" viewBox="0 0 20 20" style="${hasImage ? 'display: none;' : 'display: flex;'}">
                                 <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd"/>
@@ -2941,6 +3102,7 @@
                 `;
             }
             
+            console.log('Generated HTML for output images:', html);
             return html;
         }
 
@@ -3134,207 +3296,209 @@
             }
         }
 
-        // Function to load filter data (users and questions)
-        async function loadFilterData() {
-            try {
-                // Load users list
-                const usersResponse = await fetch('https://surveyform-1.onrender.com/users-list');
-                if (usersResponse.ok) {
-                    const usersData = await usersResponse.json();
-                    populateUserFilter(usersData.users);
-                }
+        // // Function to load filter data (users and questions)
+        // async function loadFilterData() {
+        //     try {
+        //         // Load users list
+        //         const usersResponse = await fetch('http://localhost:3000/users-list');
+        //         if (usersResponse.ok) {
+        //             const usersData = await usersResponse.json();
+        //             populateUserFilter(usersData.users);
+        //         }
                 
-                // Load questions list
-                const questionsResponse = await fetch('https://surveyform-1.onrender.com/questions-list');
-                if (questionsResponse.ok) {
-                    const questionsData = await questionsResponse.json();
-                    populateQuestionFilter(questionsData.questions);
-                }
-            } catch (error) {
-                console.error('Error loading filter data:', error);
-            }
-        }
+        //         // Load questions list
+        //         const questionsResponse = await fetch('http://localhost:3000/questions-list');
+        //         if (questionsResponse.ok) {
+        //             const questionsData = await questionsResponse.json();
+        //             populateQuestionFilter(questionsData.questions);
+        //         }
+        //     } catch (error) {
+        //         console.error('Error loading filter data:', error);
+        //     }
+        // }
 
         // Function to populate user filter
-        function populateUserFilter(users) {
-            const userFilter = document.getElementById('userFilter');
-            userFilter.innerHTML = '<option value="all">All Users</option>';
+        // function populateUserFilter(users) {
+        //     const userFilter = document.getElementById('userFilter');
+        //     userFilter.innerHTML = '<option value="all">All Users</option>';
             
-            users.forEach(user => {
-                const option = document.createElement('option');
-                option.value = user._id;
-                option.textContent = `${user.name} (@${user.username})`;
-                userFilter.appendChild(option);
-            });
-        }
+        //     users.forEach(user => {
+        //         const option = document.createElement('option');
+        //         option.value = user._id;
+        //         option.textContent = `${user.name} (@${user.username})`;
+        //         userFilter.appendChild(option);
+        //     });
+        // }
 
-        // Function to populate question filter
-        function populateQuestionFilter(questions) {
-            const questionFilter = document.getElementById('questionFilter');
-            questionFilter.innerHTML = '<option value="all">All Requests</option>';
+        // // Function to populate question filter
+        // function populateQuestionFilter(questions) {
+        //     const questionFilter = document.getElementById('questionFilter');
+        //     questionFilter.innerHTML = '<option value="all">All Requests</option>';
             
-            // Questions đã được sắp xếp theo createdAt từ server
-            questions.forEach((question, index) => {
-                const option = document.createElement('option');
-                option.value = question._id;
-                option.textContent = `Request #${index + 1}`;
-                questionFilter.appendChild(option);
-            });
-        }
+        //     // Questions đã được sắp xếp theo stt_doc từ server
+        //     questions.forEach((question, index) => {
+        //         const option = document.createElement('option');
+        //         option.value = question._id;
+        //         // Use stt_doc as question number, fallback to index + 1
+        //         const questionNumber = question.stt_doc || (index + 1);
+        //         option.textContent = `Request #${questionNumber}`;
+        //         questionFilter.appendChild(option);
+        //     });
+        // }
 
-        // Function to load all responses
-        async function loadAllResponses(page = 1) {
-            try {
-                const params = new URLSearchParams({
-                    page: page,
-                    limit: 10,
-                    userId: currentFilters.userId,
-                    questionId: currentFilters.questionId
-                });
+        // // Function to load all responses
+        // async function loadAllResponses(page = 1) {
+        //     try {
+        //         const params = new URLSearchParams({
+        //             page: page,
+        //             limit: 10,
+        //             userId: currentFilters.userId,
+        //             questionId: currentFilters.questionId
+        //         });
                 
-                const response = await fetch(`https://surveyform-1.onrender.com/all-responses?${params}`);
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                const data = await response.json();
+        //         const response = await fetch(`http://localhost:3000/all-responses?${params}`);
+        //         if (!response.ok) {
+        //             throw new Error(`HTTP error! status: ${response.status}`);
+        //         }
+        //         const data = await response.json();
                 
-                currentPage = data.pagination.currentPage;
-                totalPages = data.pagination.totalPages;
-                maxOutputs = data.maxOutputs || 0;
+        //         currentPage = data.pagination.currentPage;
+        //         totalPages = data.pagination.totalPages;
+        //         maxOutputs = data.maxOutputs || 0;
                 
-                renderResponsesTableHeader();
-                renderResponsesTable(data.responses);
-                renderPagination(data.pagination);
-                updateResponsesStats(data.pagination.totalResponses);
+        //         renderResponsesTableHeader();
+        //         renderResponsesTable(data.responses);
+        //         renderPagination(data.pagination);
+        //         updateResponsesStats(data.pagination.totalResponses);
                 
-            } catch (error) {
-                console.error('Error loading responses:', error);
-                showResponsesError('Failed to load responses. Please try again later.');
-            }
-        }
+        //     } catch (error) {
+        //         console.error('Error loading responses:', error);
+        //         showResponsesError('Failed to load responses. Please try again later.');
+        //     }
+        // }
 
         // Function to render responses table header
-        function renderResponsesTableHeader() {
-            const thead = document.getElementById('responsesTableHead');
-            const tr = thead.querySelector('tr');
+        // function renderResponsesTableHeader() {
+        //     const thead = document.getElementById('responsesTableHead');
+        //     const tr = thead.querySelector('tr');
             
-            // Clear existing output columns
-            const existingOutputs = tr.querySelectorAll('th[data-output]');
-            existingOutputs.forEach(th => th.remove());
+        //     // Clear existing output columns
+        //     const existingOutputs = tr.querySelectorAll('th[data-output]');
+        //     existingOutputs.forEach(th => th.remove());
             
-            // Add output columns theo thứ tự từ 1 đến maxOutputs
-            // Sử dụng insertBefore với thứ tự ngược lại để đảm bảo Output 1, 2, 3, 4
-            for (let i = maxOutputs; i >= 1; i--) {
-                const th = document.createElement('th');
-                th.textContent = `Output ${i}`;
-                th.setAttribute('data-output', i);
+        //     // Add output columns theo thứ tự từ 1 đến maxOutputs
+        //     // Sử dụng insertBefore với thứ tự ngược lại để đảm bảo Output 1, 2, 3, 4
+        //     for (let i = maxOutputs; i >= 1; i--) {
+        //         const th = document.createElement('th');
+        //         th.textContent = `Output ${i}`;
+        //         th.setAttribute('data-output', i);
                 
-                // Insert before Comments column (4th position: User, Question#, Prompt, Comments, Date, Actions)
-                const commentsTh = tr.children[3]; // Comments is at index 3
-                tr.insertBefore(th, commentsTh);
-            }
-        }
+        //         // Insert before Comments column (4th position: User, Question#, Prompt, Comments, Date, Actions)
+        //         const commentsTh = tr.children[3]; // Comments is at index 3
+        //         tr.insertBefore(th, commentsTh);
+        //     }
+        // }
 
         // Function to render responses table
-        function renderResponsesTable(responses) {
-            const tbody = document.getElementById('responsesTableBody');
+        // function renderResponsesTable(responses) {
+        //     const tbody = document.getElementById('responsesTableBody');
             
-            console.log('Rendering responses with maxOutputs:', maxOutputs);
-            console.log('Sample response ratings:', responses[0]?.ratings);
+        //     console.log('Rendering responses with maxOutputs:', maxOutputs);
+        //     console.log('Sample response ratings:', responses[0]?.ratings);
             
-            if (responses.length === 0) {
-                const totalCols = 6 + maxOutputs; // User, Question#, Prompt, Outputs, Comments, Date, Actions
-                tbody.innerHTML = `
-                    <tr>
-                        <td colspan="${totalCols}" style="text-align: center; padding: 40px; color: #6b7280;">
-                            No responses found
-                        </td>
-                    </tr>
-                `;
-                return;
-            }
+        //     if (responses.length === 0) {
+        //         const totalCols = 6 + maxOutputs; // User, Question#, Prompt, Outputs, Comments, Date, Actions
+        //         tbody.innerHTML = `
+        //             <tr>
+        //                 <td colspan="${totalCols}" style="text-align: center; padding: 40px; color: #6b7280;">
+        //                     No responses found
+        //                 </td>
+        //             </tr>
+        //         `;
+        //         return;
+        //     }
             
-            tbody.innerHTML = responses.map(response => {
-                const ratings = response.ratings || {};
+        //     tbody.innerHTML = responses.map(response => {
+        //         const ratings = response.ratings || {};
                 
-                // Tạo HTML cho từng output theo thứ tự từ 1 đến maxOutputs
-                const outputColumns = [];
-                for (let i = 1; i <= maxOutputs; i++) {
-                    const ratingKey = `image${i}`;
-                    const rating = ratings[ratingKey];
+        //         // Tạo HTML cho từng output theo thứ tự từ 1 đến maxOutputs
+        //         const outputColumns = [];
+        //         for (let i = 1; i <= maxOutputs; i++) {
+        //             const ratingKey = `image${i}`;
+        //             const rating = ratings[ratingKey];
                     
-                    if (rating) {
-                        const outputHtml = `
-                            <div class="output-rating">
-                                <div class="rating-item">
-                                    <span class="rating-label">Overall:</span>
-                                    <span class="rating-value">${rating.overall || 'N/A'}</span>
-                                </div>
-                                <div class="rating-item">
-                                    <span class="rating-label">Accuracy:</span>
-                                    <span class="rating-value">${rating.accuracy || 'N/A'}</span>
-                                </div>
-                                <div class="rating-item">
-                                    <span class="rating-label">Naturalness:</span>
-                                    <span class="rating-value">${rating.naturalness || 'N/A'}</span>
-                                </div>
-                                <div class="rating-item">
-                                    <span class="rating-label">Sharpness:</span>
-                                    <span class="rating-value">${rating.sharpness || 'N/A'}</span>
-                                </div>
-                                <div class="rating-item">
-                                    <span class="rating-label">Ranking:</span>
-                                    <span class="rating-value">${rating.ranking || 'N/A'}</span>
-                                </div>
-                            </div>
-                        `;
-                        outputColumns.push(outputHtml);
-                    } else {
-                        outputColumns.push('<span style="color: #6b7280;">No data</span>');
-                    }
-                }
+        //             if (rating) {
+        //                 const outputHtml = `
+        //                     <div class="output-rating">
+        //                         <div class="rating-item">
+        //                             <span class="rating-label">Overall:</span>
+        //                             <span class="rating-value">${rating.overall || 'N/A'}</span>
+        //                         </div>
+        //                         <div class="rating-item">
+        //                             <span class="rating-label">Accuracy:</span>
+        //                             <span class="rating-value">${rating.accuracy || 'N/A'}</span>
+        //                         </div>
+        //                         <div class="rating-item">
+        //                             <span class="rating-label">Naturalness:</span>
+        //                             <span class="rating-value">${rating.naturalness || 'N/A'}</span>
+        //                         </div>
+        //                         <div class="rating-item">
+        //                             <span class="rating-label">Sharpness:</span>
+        //                             <span class="rating-value">${rating.sharpness || 'N/A'}</span>
+        //                         </div>
+        //                         <div class="rating-item">
+        //                             <span class="rating-label">Ranking:</span>
+        //                             <span class="rating-value">${rating.ranking || 'N/A'}</span>
+        //                         </div>
+        //                     </div>
+        //                 `;
+        //                 outputColumns.push(outputHtml);
+        //             } else {
+        //                 outputColumns.push('<span style="color: #6b7280;">No data</span>');
+        //             }
+        //         }
                 
-                const date = new Date(response.createdAt).toLocaleDateString('en-US', {
-                    year: 'numeric',
-                    month: 'short',
-                    day: 'numeric',
-                    hour: '2-digit',
-                    minute: '2-digit'
-                });
+        //         const date = new Date(response.createdAt).toLocaleDateString('en-US', {
+        //             year: 'numeric',
+        //             month: 'short',
+        //             day: 'numeric',
+        //             hour: '2-digit',
+        //             minute: '2-digit'
+        //         });
                 
-                // Tạo output columns HTML theo thứ tự từ 1 đến maxOutputs
-                const outputColumnsHtml = outputColumns.map(html => `<td>${html}</td>`).join('');
+        //         // Tạo output columns HTML theo thứ tự từ 1 đến maxOutputs
+        //         const outputColumnsHtml = outputColumns.map(html => `<td>${html}</td>`).join('');
                 
-                return `
-                    <tr>
-                        <td>
-                            <div class="user-info">
-                                <div class="user-name">${response.userName || 'Unknown'}</div>
-                                <div class="user-username">@${response.userUsername || 'unknown'}</div>
-                            </div>
-                        </td>
-                        <td>Request #${response.questionNumber}</td>
-                        <td>
-                            <div class="question-prompt" title="${response.questionPrompt || 'No prompt'}">
-                                ${response.questionPrompt || 'No prompt'}
-                            </div>
-                        </td>
-                        ${outputColumnsHtml}
-                        <td>
-                            <div class="comments-cell" title="${response.comments || 'No comments'}">
-                                ${response.comments || 'No comments'}
-                            </div>
-                        </td>
-                        <td class="date-cell">${date}</td>
-                        <td>
-                            <button class="delete-btn" onclick="deleteResponse('${response._id}')" title="Delete response">
-                                Delete
-                            </button>
-                        </td>
-                    </tr>
-                `;
-            }).join('');
-        }
+        //         return `
+        //             <tr>
+        //                 <td>
+        //                     <div class="user-info">
+        //                         <div class="user-name">${response.userName || 'Unknown'}</div>
+        //                         <div class="user-username">@${response.userUsername || 'unknown'}</div>
+        //                     </div>
+        //                 </td>
+        //                 <td>Request #${response.questionNumber}</td>
+        //                 <td>
+        //                     <div class="question-prompt" title="${response.questionPrompt || 'No prompt'}">
+        //                         ${response.questionPrompt || 'No prompt'}
+        //                     </div>
+        //                 </td>
+        //                 ${outputColumnsHtml}
+        //                 <td>
+        //                     <div class="comments-cell" title="${response.comments || 'No comments'}">
+        //                         ${response.comments || 'No comments'}
+        //                     </div>
+        //                 </td>
+        //                 <td class="date-cell">${date}</td>
+        //                 <td>
+        //                     <button class="delete-btn" onclick="deleteResponse('${response._id}')" title="Delete response">
+        //                         Delete
+        //                     </button>
+        //                 </td>
+        //             </tr>
+        //         `;
+        //     }).join('');
+        // }
 
         // Function to render pagination
         function renderPagination(pagination) {
@@ -3413,185 +3577,16 @@
             `;
         }
 
-        // Function to generate username from full name
-        function generateUsername(fullName) {
-            // Remove diacritics and convert to lowercase
-            const normalized = fullName.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-            const words = normalized.toLowerCase().split(' ').filter(word => word.length > 0);
-            
-            if (words.length === 0) return 'user';
-            
-            if (words.length === 1) {
-                return words[0].substring(0, 6); // Take first 6 characters
-            }
-            
-            // Take first letter of each word except the last one, then full last word
-            let username = '';
-            
-            // Add first letter of each word except the last one
-            for (let i = 0; i < words.length - 1; i++) {
-                username += words[i].charAt(0);
-            }
-            
-            // Add the full last word
-            username += words[words.length - 1];
-            
-            // Limit to 6 characters total
-            username = username.substring(0, 6);
-            
-            // Remove any special characters and ensure only letters
-            username = username.replace(/[^a-z]/g, '');
-            
-            // If username is empty after cleaning, use fallback
-            if (username.length === 0) {
-                username = 'user' + Math.floor(Math.random() * 1000);
-            }
-            
-            return username;
-        }
 
-        // Function to check if username exists and generate unique one
-        async function generateUniqueUsername(baseUsername) {
-            try {
-                const response = await fetch('https://surveyform-1.onrender.com/check-username/' + baseUsername);
-                if (response.ok) {
-                    const data = await response.json();
-                    if (data.exists) {
-                        // Username exists, try with numbers
-                        let counter = 1;
-                        let newUsername = baseUsername + counter;
-                        
-                        while (true) {
-                            const checkResponse = await fetch('https://surveyform-1.onrender.com/check-username/' + newUsername);
-                            if (checkResponse.ok) {
-                                const checkData = await checkResponse.json();
-                                if (!checkData.exists) {
-                                    return newUsername;
-                                }
-                            }
-                            counter++;
-                            newUsername = baseUsername + counter;
-                        }
-                    } else {
-                        return baseUsername;
-                    }
-                }
-                return baseUsername;
-            } catch (error) {
-                console.error('Error checking username:', error);
-                return baseUsername;
-            }
-        }
 
-        // Function to load all users
-        async function loadAllUsers() {
-            try {
-                const response = await fetch('https://surveyform-1.onrender.com/all-users');
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                const data = await response.json();
-                
-                renderUsersTable(data.users);
-                
-            } catch (error) {
-                console.error('Error loading users:', error);
-                showUsersError('Failed to load users. Please try again later.');
-            }
-        }
 
-        // Function to render users table
-        function renderUsersTable(users) {
-            const tbody = document.getElementById('usersTableBody');
-            
-            if (users.length === 0) {
-                tbody.innerHTML = `
-                    <tr>
-                        <td colspan="8" style="text-align: center; padding: 40px; color: #6b7280;">
-                            No users found
-                        </td>
-                    </tr>
-                `;
-                return;
-            }
-            
-            tbody.innerHTML = users.map(user => {
-                const status = user.isDelete ? 'Deleted' : 'Active';
-                const statusClass = user.isDelete ? 'status-deleted' : 'status-active';
-                
-                return `
-                    <tr>
-                        <td class="user-name-cell">${user.name || 'Not specified'}</td>
-                        <td class="user-username-cell">${user.username || 'Not specified'}</td>
-                        <td class="user-role-cell">${user.role || 'reviewer'}</td>
-                        <td class="user-qualification-cell">${user.qualification || 'Not specified'}</td>
-                        <td class="user-experience-cell">${user.experience || 'Not specified'}</td>
-                        <td class="user-answered-questions-cell">
-                            ${user.answeredQuestionsCount || 0} / ${user.totalQuestions || 0}
-                        </td>
-                        <td>
-                            <span class="status-badge ${statusClass}">${status}</span>
-                        </td>
-                        <td>
-                            ${!user.isDelete ? `<button class="delete-btn" onclick="deleteUser('${user._id}')" title="Delete user">Delete</button>` : ''}
-                        </td>
-                    </tr>
-                `;
-            }).join('');
-        }
 
-        // Function to show users error
-        function showUsersError(message) {
-            const tbody = document.getElementById('usersTableBody');
-            tbody.innerHTML = `
-                <tr>
-                    <td colspan="8" style="text-align: center; padding: 40px; color: #6b7280;">
-                        <div style="display: flex; flex-direction: column; align-items: center; gap: 16px;">
-                            <svg class="icon" fill="currentColor" viewBox="0 0 20 20" style="width: 32px; height: 32px;">
-                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1 9a1 1 0 110-2 1 1 0 010 2z" clip-rule="evenodd"/>
-                            </svg>
-                            <div>${message}</div>
-                            <button onclick="loadAllUsers()" style="margin-top: 16px; padding: 8px 16px; background: #3b82f6; color: white; border: none; border-radius: 6px; cursor: pointer;">
-                                Retry
-                </button>
-            </div>
-                    </td>
-                </tr>
-            `;
-        }
 
-        // Function to delete user
-        async function deleteUser(userId) {
-            if (!confirm('Are you sure you want to delete this user?')) {
-                return;
-            }
-
-            try {
-                const response = await fetch('https://surveyform-1.onrender.com/delete-user', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ userId })
-                });
-
-                if (response.ok) {
-                    alert('User deleted successfully!');
-                    loadAllUsers(); // Reload users table
-                } else {
-                    const error = await response.json();
-                    alert('Error deleting user: ' + error.message);
-                }
-            } catch (error) {
-                console.error('Error deleting user:', error);
-                alert('Failed to delete user. Please try again.');
-            }
-        }
 
         // Function to load all questions
         async function loadAllQuestions() {
             try {
-                const response = await fetch('https://surveyform-1.onrender.com/all-questions');
+                const response = await fetch('http://localhost:3000/all-questions');
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
@@ -3624,7 +3619,8 @@
             }
             
             tbody.innerHTML = questions.map((question, index) => {
-                const questionNumber = index + 1;
+                // Use stt_doc as question number, fallback to index + 1
+                const questionNumber = question.stt_doc || (index + 1);
                 const status = question.isDelete ? 'Deleted' : 'Active';
                 const statusClass = question.isDelete ? 'status-deleted' : 'status-active';
                 
@@ -3676,7 +3672,7 @@
             }
             
             try {
-                const response = await fetch('https://surveyform-1.onrender.com/delete-question', {
+                const response = await fetch('http://localhost:3000/delete-question', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -3726,99 +3722,1095 @@
         let currentImages = [];
         let currentImageIndex = 0;
         let currentQuestionIndex = -1;
+        let currentQuestion = null;
+        let currentQuestionNumber = 0;
 
-        // Function to show image modal
-        function showImageModal(imageUrl, type, questionIndex, outputIndex = null) {
+        // Function to show image modal with all images (input + outputs)
+        function showImageModal(questionIndex) {
+            console.log('showImageModal called with questionIndex:', questionIndex);
+            
+            // Find the question in current page
+            const question = questions[questionIndex];
+            if (!question) {
+                console.error('Question not found at index:', questionIndex);
+                return;
+            }
+            
+            console.log('Found question:', question);
+            
+            // Use stt_doc as question number, fallback to pagination calculation
+            const actualQuestionNumber = question.stt_doc || ((currentPage - 1) * itemsPerPage + questionIndex + 1);
+            console.log('Actual question number:', actualQuestionNumber);
+            
+            // Show preview modal with input image on left and output grid on right
+            showPreviewModalMain(question, actualQuestionNumber);
+        }
+
+        // Function to show preview modal with input on left and output grid on right
+        function showPreviewModal(questionIndex) {
+            console.log('🔍 DEBUG showPreviewModal called with questionIndex:', questionIndex);
+            console.log('🔍 DEBUG questions array:', questions);
+            console.log('🔍 DEBUG questions length:', questions ? questions.length : 'undefined');
+            
+            // Find the question in current page
+            const question = questions[questionIndex];
+            console.log('🔍 DEBUG found question at index', questionIndex, ':', question);
+            
+            if (!question) {
+                console.error('❌ Question not found at index:', questionIndex);
+                alert('Question data not found. Please refresh the page.');
+                return;
+            }
+            
+            console.log('🔍 DEBUG question.imageInput:', question.imageInput);
+            console.log('🔍 DEBUG question.outputs:', question.outputs);
+            console.log('🔍 DEBUG question.outputs length:', question.outputs ? question.outputs.length : 'undefined');
+            
+            // Use stt_doc as question number, fallback to pagination calculation
+            const actualQuestionNumber = question.stt_doc || ((currentPage - 1) * itemsPerPage + questionIndex + 1);
+            console.log('🔍 DEBUG actual question number:', actualQuestionNumber);
+            
+            // Call the main showPreviewModal function with both parameters
+            showPreviewModalMain(question, actualQuestionNumber);
+        }
+        function preparePreviewAllImagesArray(question) {
+            previewAllImages = [];
+            
+            // Add input image
+            if (question.imageInput) {
+                previewAllImages.push({
+                    type: 'input',
+                    index: 0,
+                    url: question.imageInput,
+                    title: 'Input Image'
+                });
+            }
+            
+            // Add output images
+            if (question.outputs && question.outputs.length > 0) {
+                question.outputs.forEach((output, index) => {
+                    let imageUrl = '';
+                    if (typeof output === 'string') {
+                        imageUrl = output;
+                    } else if (output.image) {
+                        imageUrl = output.image;
+                    } else if (output.url) {
+                        imageUrl = output.url;
+                    }
+                    
+                    if (imageUrl) {
+                        previewAllImages.push({
+                            type: 'output',
+                            index: index,
+                            url: imageUrl,
+                            title: `Output Image ${index + 1}`
+                        });
+                    }
+                });
+            }
+            
+            console.log('Preview all images prepared:', previewAllImages);
+        }
+
+
+        // Function to create preview content with navigation
+        function createPreviewContentWithNavigation(question, questionNumber) {
+            const inputImage = question.imageInput || '';
+            const outputs = question.outputs || [];
+            
+            // Process output images - handle different output structures
+            const outputImages = outputs.map((output, index) => {
+                let imageUrl = '';
+                let outputType = 'output';
+                
+                if (typeof output === 'string') {
+                    imageUrl = output;
+                } else if (typeof output === 'object' && output) {
+                    // Handle different object structures
+                    imageUrl = output.url || output.image || '';
+                    outputType = output.type || 'output';
+                }
+                
+                return {
+                    url: imageUrl,
+                    title: `Output ${index + 1}`,
+                    type: outputType
+                };
+            }).filter(img => img.url && img.url.trim() !== '');
+            
+            // Collect all images for navigation
+            const allImages = [];
+            
+            // Add input image
+            if (inputImage && inputImage.trim() !== '') {
+                allImages.push({
+                    url: inputImage,
+                    title: 'Input Image',
+                    type: 'input'
+                });
+            }
+            
+            // Add output images
+            allImages.push(...outputImages);
+            
+            // Set current images for navigation
+            currentImages = allImages;
+            // Don't reset currentImageIndex, use existing value
+            if (currentImageIndex < 0 || currentImageIndex >= allImages.length) {
+                currentImageIndex = 0;
+            }
+            currentQuestionIndex = -1; // Not needed for preview
+            
+            // Get current image based on currentImageIndex
+            const currentImage = allImages[currentImageIndex] || allImages[0];
+            
+            // Determine which image to highlight
+            const isInputImage = currentImage && currentImage.type === 'input';
+            const isOutputImage = currentImage && currentImage.type === 'output';
+            
+            return `
+                <button class="fullscreen-nav-btn prev-btn" id="fullScreenPrevBtn">&lt;</button>
+                <div class="preview-container">
+                    <div class="preview-left">
+                        <div class="input-image-section">
+                            <h3 class="section-title">Input Image</h3>
+                            <div class="input-image-container">
+                                ${inputImage ? 
+                                    `<img src="${inputImage}" alt="Input Image" class="preview-input-image ${isInputImage ? 'highlighted' : ''}" onclick="showFullImage('${inputImage}', 'Input Image')">` :
+                                    '<div class="no-image-placeholder">No input image</div>'
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="preview-right">
+                        <div class="output-images-section">
+                            <h3 class="section-title">Output Images (${outputImages.length})</h3>
+                            <div class="output-grid">
+                                ${outputImages.map((img, index) => `
+                                    <div class="output-item ${isOutputImage && img.url === currentImage.url ? 'highlighted' : ''}" onclick="showFullImage('${img.url}', '${img.title}')">
+                                        <img src="${img.url}" alt="${img.title}" class="preview-output-image">
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="fullscreen-nav-btn next-btn" id="fullScreenNextBtn">&gt;</button>
+            `;
+        }
+
+
+        function showPreviewGallery(questionNumber) {
+    const modal = document.getElementById('previewModal');
+    const previewInputImage = document.getElementById('previewInputImage');
+    const previewOutputsGrid = document.getElementById('previewOutputsGrid');
+    
+    // Set input image
+    if (previewCurrentQuestion.imageInput) {
+        previewInputImage.src = previewCurrentQuestion.imageInput;
+        previewInputImage.alt = 'Input Image';
+    }
+    
+    // Clear and populate output images grid
+    previewOutputsGrid.innerHTML = '';
+    
+    if (previewCurrentQuestion.outputs && previewCurrentQuestion.outputs.length > 0) {
+        previewCurrentQuestion.outputs.forEach((output, i) => {
+            let imageUrl = '';
+            if (typeof output === 'string') {
+                imageUrl = output;
+            } else if (output.image) {
+                imageUrl = output.image;
+            } else if (output.url) {
+                imageUrl = output.url;
+            }
+            
+            if (imageUrl) {
+                const outputItem = document.createElement('div');
+                outputItem.classList.add('preview-output-item');
+                
+                outputItem.innerHTML = `
+                    <img class="preview-output-image" src="${imageUrl}" alt="Output Image ${i+1}" 
+                         onclick="showPreviewFullImage('${imageUrl}', 'Output Image ${i+1}')">
+                    <div class="preview-output-label">Output ${i+1}</div>
+                `;
+                
+                previewOutputsGrid.appendChild(outputItem);
+            }
+        });
+    } else {
+        previewOutputsGrid.innerHTML = '<div style="color: white; text-align: center; padding: 20px;">No output images available</div>';
+    }
+    
+    // Set current image index to 0 (input image)
+    previewCurrentImageIndex = 0;
+    
+    // Show modal
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+    
+    // Update navigation buttons
+    updatePreviewNavigationButtons();
+}
+
+// Navigate through images in preview
+function navigatePreviewImage(direction) {
+    previewCurrentImageIndex += direction;
+    
+    // Handle bounds with infinite loop
+    if (previewCurrentImageIndex < 0) {
+        previewCurrentImageIndex = previewAllImages.length - 1;
+    } else if (previewCurrentImageIndex >= previewAllImages.length) {
+        previewCurrentImageIndex = 0;
+    }
+    
+    const image = previewAllImages[previewCurrentImageIndex];
+    
+    if (image.type === 'input') {
+        // Show input image in preview
+        showPreviewImage('input', 0);
+    } else {
+        // Show output image in preview
+        showPreviewImage('output', image.index);
+    }
+}
+
+// Show specific image in preview
+function showPreviewImage(type, index) {
+    const previewInputImage = document.getElementById('previewInputImage');
+    const previewOutputItems = document.querySelectorAll('.preview-output-item');
+    
+    // Remove active class from all items
+    previewOutputItems.forEach(item => {
+        item.classList.remove('active');
+    });
+    
+    if (type === 'input') {
+        // Highlight input image (we can't add class to input image container easily)
+        // Instead, we'll scroll to top and ensure input image is visible
+        const previewLeftPanel = document.querySelector('.preview-left-panel');
+        if (previewLeftPanel) {
+            previewLeftPanel.scrollTop = 0;
+        }
+    } else {
+        // Highlight the clicked output image
+        if (previewOutputItems[index]) {
+            previewOutputItems[index].classList.add('active');
+            // Scroll to make the active item visible
+            previewOutputItems[index].scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'nearest',
+                inline: 'nearest'
+            });
+        }
+    }
+    
+    // Update navigation buttons
+    updatePreviewNavigationButtons();
+}
+
+// Update navigation buttons state
+function updatePreviewNavigationButtons() {
+    const prevButton = document.querySelector('.preview-nav.prev');
+    const nextButton = document.querySelector('.preview-nav.next');
+    
+    // Always enable both buttons since we're cycling through all images
+    if (prevButton) prevButton.disabled = false;
+    if (nextButton) nextButton.disabled = false;
+}
+
+// Show full image from preview
+function showPreviewFullImage(imageUrl, title) {
+    const fullImageModal = document.getElementById('previewFullImageModal');
+    const fullImage = document.getElementById('previewFullImage');
+    
+    fullImage.src = imageUrl;
+    fullImage.alt = title;
+    fullImageModal.style.display = 'flex';
+}
+
+// Close preview full image modal
+function closePreviewFullImage() {
+    const fullImageModal = document.getElementById('previewFullImageModal');
+    fullImageModal.style.display = 'none';
+}
+
+// Close preview modal
+function closePreviewModal() {
+    const modal = document.getElementById('previewModal');
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
+
+// Close modal when clicking outside the content
+document.getElementById('previewModal').addEventListener('click', function(e) {
+    if (e.target === this) {
+        closePreviewModal();
+    }
+});
+
+// Close full image modal when clicking outside the image
+document.getElementById('previewFullImageModal').addEventListener('click', function(e) {
+    if (e.target === this) {
+        closePreviewFullImage();
+    }
+});
+
+// Close modals with Escape key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closePreviewModal();
+        closePreviewFullImage();
+    }
+});
+
+// Replace the existing showImageModal function to use new preview modal
+function showImageModal(questionIndex) {
+    showPreviewModal(questionIndex);
+}
+
+// Cập nhật hàm evaluateImages để sử dụng preview modal
+function evaluateImages(questionId, questionNumber) {
+    console.log(`Starting evaluation for Request #${questionNumber}`);
+    // Redirect to evaluate.html with question data
+    const question = questions.find(q => q._id === questionId);
+    if (question) {
+        // Store question data in sessionStorage for evaluate.html to use
+        sessionStorage.setItem('evaluateQuestion', JSON.stringify({
+            id: questionId,
+            number: questionNumber,
+            prompt: question.prompt,
+            imageInput: question.imageInput,
+            outputs: question.outputs
+        }));
+        
+        // Redirect to evaluate.html
+        window.location.href = './evaluate.html';
+    } else {
+        alert('Question not found');
+    }
+        }
+
+        // Function to create preview content (original)
+        function createPreviewContent(question, questionNumber) {
+            const inputImage = question.imageInput || '';
+            const outputs = question.outputs || [];
+            
+            // Process output images - handle different output structures
+            const outputImages = outputs.map((output, index) => {
+                let imageUrl = '';
+                let outputType = 'output';
+                
+                if (typeof output === 'string') {
+                    imageUrl = output;
+                } else if (typeof output === 'object' && output) {
+                    // Handle different object structures
+                    imageUrl = output.url || output.image || '';
+                    outputType = output.type || 'output';
+                }
+                
+                return {
+                    url: imageUrl,
+                    title: `Output ${index + 1}`,
+                    type: outputType
+                };
+            }).filter(img => img.url && img.url.trim() !== '');
+            
+            return `
+                <div class="preview-container">
+                    <div class="preview-left">
+                        <div class="input-image-section">
+                            <h3 class="section-title">Input Image</h3>
+                            <div class="input-image-container">
+                                ${inputImage ? 
+                                    `<img src="${inputImage}" alt="Input Image" class="preview-input-image" onclick="showFullImage('${inputImage}', 'Input Image')">` :
+                                    '<div class="no-image-placeholder">No input image</div>'
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="preview-right">
+                        <div class="output-images-section">
+                            <h3 class="section-title">Output Images (${outputImages.length})</h3>
+                            <div class="output-grid">
+                                ${outputImages.map((img, index) => `
+                                    <div class="output-item" onclick="showFullImage('${img.url}', '${img.title}')">
+                                        <img src="${img.url}" alt="${img.title}" class="preview-output-image">
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Function to show full image in modal
+        function showFullImage(imageUrl, title) {
+            // Find the question that contains this image
+            const question = questions.find(q => {
+                // Check if it's the input image
+                if (q.imageInput === imageUrl) return true;
+                
+                // Check if it's one of the output images
+                if (q.outputs && q.outputs.some(output => {
+                    const outputUrl = typeof output === 'object' ? (output.url || output.image) : output;
+                    return outputUrl === imageUrl;
+                })) return true;
+                
+                return false;
+            });
+            
+            if (!question) {
+                // Fallback to single image view
+                showSingleImage(imageUrl, title);
+                return;
+            }
+            
+            // Get question number
+            const questionNumber = question.stt_doc || questions.indexOf(question) + 1;
+            
+            // Collect all images (input + outputs)
+            const allImages = [];
+            
+            // Add input image
+            if (question.imageInput && question.imageInput.trim() !== '') {
+                allImages.push({
+                    url: question.imageInput,
+                    title: 'Input Image',
+                    type: 'input'
+                });
+            }
+            
+            // Add output images
+            if (question.outputs && question.outputs.length > 0) {
+                question.outputs.forEach((output, index) => {
+                    const outputUrl = typeof output === 'object' ? (output.url || output.image) : output;
+                    if (outputUrl && outputUrl.trim() !== '') {
+                        allImages.push({
+                            url: outputUrl,
+                            title: `Output ${index + 1}`,
+                            type: 'output'
+                        });
+                    }
+                });
+            }
+            
+            // Find current image index
+            const currentIndex = allImages.findIndex(img => img.url === imageUrl);
+            
+            if (currentIndex !== -1) {
+                // Show all images with navigation
+                showAllImagesWithNavigation(allImages, currentIndex, questionNumber);
+            } else {
+                // Fallback to single image view
+                showSingleImage(imageUrl, title);
+            }
+        }
+
+        // Function to show single image (fallback)
+        function showSingleImage(imageUrl, title) {
             const modal = document.getElementById('fullScreenModal');
-            const modalImage = document.getElementById('fullScreenImage');
+            const modalBody = document.querySelector('.fullscreen-body');
             const modalTitle = document.getElementById('fullScreenTitle');
             const imageCounter = document.getElementById('fullScreenCounter');
             
-            currentQuestionIndex = questionIndex;
+            // Reset modal body to original state
+            modalBody.innerHTML = `
+                <button class="fullscreen-nav-btn prev-btn" id="fullScreenPrevBtn">&lt;</button>
+                <div class="fullscreen-image-container">
+                    <img id="fullScreenImage" src="${imageUrl}" alt="Full Screen Image">
+                </div>
+                <button class="fullscreen-nav-btn next-btn" id="fullScreenNextBtn">&gt;</button>
+            `;
             
-            if (type === 'input') {
-                // Single input image
-                currentImages = [imageUrl];
-                currentImageIndex = 0;
-                modalTitle.textContent = `Request #${questionIndex + 1} - Input Image`;
-            } else if (type === 'output') {
-                // Multiple output images
-                const question = window.allQuestionsData ? window.allQuestionsData[questionIndex] : null;
-                if (question && question.outputs) {
-                    currentImages = question.outputs.map(output => 
-                        typeof output === 'object' ? output.image : output
-                    );
-                    currentImageIndex = outputIndex || 0;
-                    modalTitle.textContent = `Request #${questionIndex + 1} - Output Images`;
-                } else {
-                    currentImages = [imageUrl];
-                    currentImageIndex = 0;
-                    modalTitle.textContent = `Request #${questionIndex + 1} - Output Image`;
-                }
-            }
-            
-            // Update modal content
-            modalImage.src = currentImages[currentImageIndex];
-            imageCounter.textContent = `${currentImageIndex + 1} / ${currentImages.length}`;
-            
-            // Show/hide navigation buttons
+            // Get the newly created elements
             const prevBtn = document.getElementById('fullScreenPrevBtn');
             const nextBtn = document.getElementById('fullScreenNextBtn');
             
-            prevBtn.style.display = currentImages.length > 1 ? 'flex' : 'none';
-            nextBtn.style.display = currentImages.length > 1 ? 'flex' : 'none';
+            // Set current images and index
+            currentImages = [imageUrl];
+            currentImageIndex = 0;
             
-            prevBtn.disabled = currentImageIndex === 0;
-            nextBtn.disabled = currentImageIndex === currentImages.length - 1;
+            // Update modal content
+            modalTitle.textContent = title;
+            if (imageCounter) imageCounter.textContent = '1 / 1';
+            
+            // Hide navigation buttons for single image
+            if (prevBtn) prevBtn.style.display = 'none';
+            if (nextBtn) nextBtn.style.display = 'none';
+            if (imageCounter) imageCounter.style.display = 'block';
             
             modal.style.display = 'block';
         }
 
-        // Function to navigate to previous image
-        function showPreviousImage() {
-            if (currentImageIndex > 0) {
-                currentImageIndex--;
-                updateModalImage();
-            }
+        // Function to show all images with navigation
+        function showAllImagesWithNavigation(allImages, startIndex, questionNumber) {
+            const modal = document.getElementById('fullScreenModal');
+            const modalBody = document.querySelector('.fullscreen-body');
+            const modalTitle = document.getElementById('fullScreenTitle');
+            const imageCounter = document.getElementById('fullScreenCounter');
+            
+            // Reset modal body to original state
+            modalBody.innerHTML = `
+                <button class="fullscreen-nav-btn prev-btn" id="fullScreenPrevBtn">&lt;</button>
+                <div class="fullscreen-image-container">
+                    <img id="fullScreenImage" src="" alt="Full Screen Image">
+                </div>
+                <button class="fullscreen-nav-btn next-btn" id="fullScreenNextBtn">&gt;</button>
+            `;
+            
+            const modalImage = document.getElementById('fullScreenImage');
+            const prevBtn = document.getElementById('fullScreenPrevBtn');
+            const nextBtn = document.getElementById('fullScreenNextBtn');
+            
+            // Set current images and index
+            currentImages = allImages;
+            currentImageIndex = startIndex;
+            currentQuestionIndex = -1; // Not needed for this view
+            
+            // Update modal content
+            const currentImage = currentImages[currentImageIndex];
+            modalImage.src = currentImage.url;
+            modalTitle.textContent = `Request #${questionNumber} - ${currentImage.title}`;
+            if (imageCounter) imageCounter.textContent = `${currentImageIndex + 1} / ${currentImages.length}`;
+            
+            // Show navigation buttons
+            if (prevBtn) prevBtn.style.display = 'flex';
+            if (nextBtn) nextBtn.style.display = 'flex';
+            if (imageCounter) imageCounter.style.display = 'block';
+            
+            // Enable/disable navigation buttons
+            if (prevBtn) prevBtn.disabled = false;
+            if (nextBtn) nextBtn.disabled = false;
+            
+            modal.style.display = 'block';
         }
 
-        // Function to navigate to next image
+        // Function to show all question images in modal
+        function showAllQuestionImages(questionIndex, startIndex = 0, actualQuestionNumber, allImages) {
+            console.log('showAllQuestionImages called:', { questionIndex, startIndex, actualQuestionNumber, allImages });
+            
+            const modal = document.getElementById('fullScreenModal');
+            const modalBody = document.querySelector('.fullscreen-body');
+            const modalTitle = document.getElementById('fullScreenTitle');
+            const imageCounter = document.getElementById('fullScreenCounter');
+            
+            // Reset modal body to original state
+            modalBody.innerHTML = `
+                <button class="fullscreen-nav-btn prev-btn" id="fullScreenPrevBtn">&lt;</button>
+                <div class="fullscreen-image-container">
+                    <img id="fullScreenImage" src="" alt="Full Screen Image">
+                </div>
+                <button class="fullscreen-nav-btn next-btn" id="fullScreenNextBtn">&gt;</button>
+            `;
+            
+            const modalImage = document.getElementById('fullScreenImage');
+            const prevBtn = document.getElementById('fullScreenPrevBtn');
+            const nextBtn = document.getElementById('fullScreenNextBtn');
+            
+            // Set current images and index
+            currentImages = allImages;
+            currentImageIndex = startIndex;
+            currentQuestionIndex = questionIndex; // Store for title calculation
+            
+            console.log('Current images set:', currentImages);
+            console.log('Current image index:', currentImageIndex);
+            console.log('Current question index:', currentQuestionIndex);
+            
+            // Update modal content
+            const currentImage = currentImages[currentImageIndex];
+            console.log('Current image:', currentImage);
+            
+            modalImage.src = currentImage.url;
+            modalTitle.textContent = `Request #${actualQuestionNumber} - ${currentImage.title || currentImage.type || 'Image'}`;
+            if (imageCounter) imageCounter.textContent = `${currentImageIndex + 1} / ${currentImages.length}`;
+            
+            // Show/hide navigation buttons (always show if more than 1 image)
+            if (prevBtn) prevBtn.style.display = currentImages.length > 1 ? 'flex' : 'none';
+            if (nextBtn) nextBtn.style.display = currentImages.length > 1 ? 'flex' : 'none';
+            
+            // Never disable buttons for infinite loop
+            if (prevBtn) prevBtn.disabled = false;
+            if (nextBtn) nextBtn.disabled = false;
+            
+            modal.style.display = 'block';
+        }
+
+        // Function to navigate to previous image (with infinite loop)
+        function showPreviousImage() {
+            console.log('showPreviousImage called - currentImageIndex:', currentImageIndex);
+            
+            // Check if we're at the first image in single view
+            if (currentImageIndex === 0) {
+                // Check if preview container doesn't exist (meaning we're in single view)
+                const previewContainer = document.querySelector('.preview-container');
+                if (!previewContainer) {
+                    // We're at the first image (Input) in single view, switch back to preview
+                    console.log('Switching from single image view back to preview');
+                    switchToPreviewView();
+                    return;
+                }
+            }
+            
+            // Regular navigation
+            if (currentImageIndex > 0) {
+                currentImageIndex--;
+            } else {
+                // Loop to last image
+                currentImageIndex = currentImages.length - 1;
+            }
+            
+            console.log('showPreviousImage - new currentImageIndex:', currentImageIndex);
+            updateModalImage();
+        }
+
+        // Function to navigate to next image (with infinite loop)
         function showNextImage() {
+            console.log('showNextImage called - currentImageIndex:', currentImageIndex, 'max:', currentImages.length - 1);
+            
+            // Check if we're in preview mode (check if preview container exists)
+            const previewContainer = document.querySelector('.preview-container');
+            if (previewContainer) {
+                // We're in preview mode, switch to single image view (Input first)
+                console.log('Switching from preview to single image view (Input)');
+                switchToSingleImageView(0); // Start with Input image (index 0)
+                return;
+            }
+            
+            // Regular single image navigation
             if (currentImageIndex < currentImages.length - 1) {
                 currentImageIndex++;
-                updateModalImage();
+            } else {
+                // At last image, switch back to preview mode
+                console.log('At last image, switching back to preview mode');
+                switchToPreviewView();
+                return;
             }
+            
+            console.log('showNextImage - new currentImageIndex:', currentImageIndex);
+            updateModalImage();
+        }
+
+        // Function to switch from preview to single image view
+        function switchToSingleImageView(startIndex = 0) {
+            const modal = document.getElementById('fullScreenModal');
+            const modalBody = document.querySelector('.fullscreen-body');
+            const modalTitle = document.getElementById('fullScreenTitle');
+            const imageCounter = document.getElementById('fullScreenCounter');
+            
+            // Reset modal body to single image view
+            modalBody.innerHTML = `
+                <button class="fullscreen-nav-btn prev-btn" id="fullScreenPrevBtn">&lt;</button>
+                <div class="fullscreen-image-container">
+                    <img id="fullScreenImage" src="" alt="Full Screen Image">
+                </div>
+                <button class="fullscreen-nav-btn next-btn" id="fullScreenNextBtn">&gt;</button>
+            `;
+            
+            // Set current image index
+            currentImageIndex = startIndex;
+            
+            // Get the newly created elements
+            const modalImage = document.getElementById('fullScreenImage');
+            const prevBtn = document.getElementById('fullScreenPrevBtn');
+            const nextBtn = document.getElementById('fullScreenNextBtn');
+            
+            // Update modal content
+            const currentImage = currentImages[currentImageIndex];
+            if (currentImage) {
+                modalImage.src = currentImage.url;
+                modalTitle.textContent = `Request #${currentQuestionNumber} - ${currentImage.title}`;
+                if (imageCounter) imageCounter.textContent = `${currentImageIndex + 1} / ${currentImages.length}`;
+            }
+            
+            // Show navigation buttons
+            if (prevBtn) prevBtn.style.display = 'flex';
+            if (nextBtn) nextBtn.style.display = 'flex';
+            if (imageCounter) imageCounter.style.display = 'block';
+            
+            // Enable navigation buttons
+            if (prevBtn) prevBtn.disabled = false;
+            if (nextBtn) nextBtn.disabled = false;
+            
+            // Add event listeners for the new buttons
+            setTimeout(() => {
+                const newPrevBtn = document.getElementById('fullScreenPrevBtn');
+                const newNextBtn = document.getElementById('fullScreenNextBtn');
+                
+                if (newPrevBtn) {
+                    newPrevBtn.onclick = showPreviousImage;
+                }
+                if (newNextBtn) {
+                    newNextBtn.onclick = showNextImage;
+                }
+            }, 0);
+        }
+
+        // Function to switch from single image view back to preview
+        function switchToPreviewView() {
+            const modal = document.getElementById('fullScreenModal');
+            const modalBody = document.querySelector('.fullscreen-body');
+            const modalTitle = document.getElementById('fullScreenTitle');
+            
+            // Create preview content with navigation
+            const previewContent = createPreviewContentWithNavigation(currentQuestion, currentQuestionNumber);
+            
+            // Replace modal body with preview content
+            modalBody.innerHTML = previewContent;
+            
+            // Update modal title
+            modalTitle.textContent = `Request #${currentQuestionNumber} - Preview`;
+            
+            // Hide the image counter for preview mode
+            const imageCounter = document.getElementById('fullScreenCounter');
+            if (imageCounter) imageCounter.style.display = 'none';
+            
+            // Add event listeners for the new navigation buttons
+            setTimeout(() => {
+                const newPrevBtn = document.getElementById('fullScreenPrevBtn');
+                const newNextBtn = document.getElementById('fullScreenNextBtn');
+                
+                if (newPrevBtn) {
+                    newPrevBtn.onclick = showPreviousImage;
+                }
+                if (newNextBtn) {
+                    newNextBtn.onclick = showNextImage;
+                }
+                
+                // Add click handlers for images in preview
+                addPreviewImageClickHandlers();
+            }, 0);
+        }
+
+        // Function to add click handlers for images in preview
+        function addPreviewImageClickHandlers() {
+            // Input image click handler
+            const inputImage = document.querySelector('.preview-input-image');
+            if (inputImage) {
+                inputImage.onclick = function() {
+                    // Find input image index
+                    const inputIndex = currentImages.findIndex(img => img.type === 'input');
+                    if (inputIndex !== -1) {
+                        switchToSingleImageView(inputIndex);
+                    }
+                };
+            }
+            
+            // Output images click handlers
+            const outputItems = document.querySelectorAll('.output-item');
+            outputItems.forEach((item, index) => {
+                item.onclick = function() {
+                    // Find corresponding output image index
+                    const outputIndex = currentImages.findIndex((img, idx) => 
+                        img.type === 'output' && 
+                        currentImages.filter((img, i) => i <= idx && img.type === 'output').length === index + 1
+                    );
+                    if (outputIndex !== -1) {
+                        switchToSingleImageView(outputIndex);
+                    }
+                };
+            });
+        }
+
+        // Function to show preview modal with input on left and output grid on right
+        function showPreviewModalMain(question, questionNumber) {
+            console.log('showPreviewModal called:', { question, questionNumber });
+            
+            const modal = document.getElementById('fullScreenModal');
+            const modalTitle = document.getElementById('fullScreenTitle');
+            const modalBody = document.querySelector('.fullscreen-body');
+            
+            // Set current question và number
+            currentQuestion = question;
+            currentQuestionNumber = questionNumber;
+            
+            // Process images for navigation
+            const inputImage = question.imageInput || '';
+            const outputs = question.outputs || [];
+            
+            // Collect all images for navigation
+            currentImages = [];
+            
+            // Add input image
+            if (inputImage && inputImage.trim() !== '') {
+                currentImages.push({
+                    url: inputImage,
+                    title: 'Input Image',
+                    type: 'input'
+                });
+            }
+            
+            // Add output images
+            outputs.forEach((output, index) => {
+                let imageUrl = '';
+                
+                if (typeof output === 'string') {
+                    imageUrl = output;
+                } else if (output.image) {
+                    imageUrl = output.image;
+                } else if (output.url) {
+                    imageUrl = output.url;
+                }
+                
+                if (imageUrl && imageUrl.trim() !== '') {
+                    currentImages.push({
+                        url: imageUrl,
+                        title: `Output ${index + 1}`,
+                        type: 'output'
+                    });
+                }
+            });
+            
+            currentImageIndex = 0;
+            
+            // Update modal title
+            modalTitle.textContent = `Request #${questionNumber} - Preview`;
+            
+            // Create preview content
+            const previewContent = createPreviewContentWithNavigation(question, questionNumber);
+            
+            // Replace modal body with preview content
+            modalBody.innerHTML = previewContent;
+            
+            // Hide the image counter for preview mode
+            const imageCounter = document.getElementById('fullScreenCounter');
+            if (imageCounter) imageCounter.style.display = 'none';
+            
+            // Show navigation buttons but keep them functional
+            const prevBtn = document.getElementById('fullScreenPrevBtn');
+            const nextBtn = document.getElementById('fullScreenNextBtn');
+            
+            if (prevBtn) prevBtn.style.display = 'flex';
+            if (nextBtn) nextBtn.style.display = 'flex';
+            
+            // Add event listeners
+            setTimeout(() => {
+                const newPrevBtn = document.getElementById('fullScreenPrevBtn');
+                const newNextBtn = document.getElementById('fullScreenNextBtn');
+                
+                if (newPrevBtn) {
+                    newPrevBtn.onclick = showPreviousImage;
+                }
+                if (newNextBtn) {
+                    newNextBtn.onclick = showNextImage;
+                }
+                
+                // Add click handlers for images in preview
+                addPreviewImageClickHandlers();
+            }, 0);
+            
+            modal.style.display = 'block';
+        }
+
+        // Function to create preview content with navigation
+        function createPreviewContentWithNavigation(question, questionNumber) {
+            const inputImage = question.imageInput || '';
+            const outputs = question.outputs || [];
+            
+            console.log('🔍 DEBUG createPreviewContentWithNavigation - inputImage:', inputImage);
+            console.log('🔍 DEBUG createPreviewContentWithNavigation - outputs:', outputs);
+            
+            // Process output images
+            const outputImages = outputs.map((output, index) => {
+                let imageUrl = '';
+                
+                if (typeof output === 'string') {
+                    imageUrl = output;
+                } else if (output.image) {
+                    imageUrl = output.image;
+                } else if (output.url) {
+                    imageUrl = output.url;
+                }
+                
+                console.log(`🔍 DEBUG output ${index}:`, { output, imageUrl });
+                
+                return {
+                    url: imageUrl,
+                    title: `Output ${index + 1}`,
+                    type: 'output'
+                };
+            }).filter(img => img.url && img.url.trim() !== '');
+            
+            console.log('🔍 DEBUG filtered outputImages:', outputImages);
+            
+            return `
+                <div class="preview-container">
+                    <div class="preview-left">
+                        <div class="input-image-section">
+                            <h3 class="section-title">Input Image</h3>
+                            <div class="input-image-container">
+                                ${inputImage ? 
+                                    `<img src="${inputImage}" alt="Input Image" class="preview-input-image" style="cursor: pointer;" onerror="console.error('Failed to load input image:', this.src); this.style.display='none';" onload="console.log('Input image loaded successfully:', this.src);">` :
+                                    '<div class="no-image-placeholder">No input image</div>'
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="preview-right">
+                        <div class="output-images-section">
+                            <h3 class="section-title">Output Images (${outputImages.length})</h3>
+                            <div class="output-grid">
+                                ${outputImages.map((img, index) => `
+                                    <div class="output-item" style="cursor: pointer;">
+                                        <img src="${img.url}" alt="${img.title}" class="preview-output-image" onerror="console.error('Failed to load output image:', this.src); this.style.display='none';" onload="console.log('Output image loaded successfully:', this.src);">
+        
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="fullscreen-nav-btn next-btn" id="fullScreenNextBtn">&gt;</button>
+                
+                
+            `;
         }
 
         // Function to update modal image
         function updateModalImage() {
+            console.log('updateModalImage called - currentImageIndex:', currentImageIndex);
+            console.log('Current images length:', currentImages.length);
+            
             const modalImage = document.getElementById('fullScreenImage');
+            const modalTitle = document.getElementById('fullScreenTitle');
             const imageCounter = document.getElementById('fullScreenCounter');
             const prevBtn = document.getElementById('fullScreenPrevBtn');
             const nextBtn = document.getElementById('fullScreenNextBtn');
             
-            modalImage.src = currentImages[currentImageIndex];
-            imageCounter.textContent = `${currentImageIndex + 1} / ${currentImages.length}`;
-            
-            // Show/hide navigation buttons based on position
-            if (currentImages.length > 1) {
-                // Show previous button only if not at first image
-                prevBtn.style.display = currentImageIndex > 0 ? 'flex' : 'none';
-                // Show next button only if not at last image
-                nextBtn.style.display = currentImageIndex < currentImages.length - 1 ? 'flex' : 'none';
-            } else {
-                // Hide both buttons if only one image
-                prevBtn.style.display = 'none';
-                nextBtn.style.display = 'none';
+            if (!currentImages || currentImages.length === 0) {
+                console.log('Current images not found');
+                return;
             }
             
-            prevBtn.disabled = currentImageIndex === 0;
-            nextBtn.disabled = currentImageIndex === currentImages.length - 1;
+            const currentImage = currentImages[currentImageIndex];
+            console.log('Current image:', currentImage);
+            
+            // Check if we're in preview mode (no modalImage element)
+            if (!modalImage) {
+                // We're in preview mode, update the preview content
+                updatePreviewContent(currentImage);
+                return;
+            }
+            
+            // Regular image mode
+            modalImage.src = currentImage.url;
+            
+            // Update title based on image structure
+                        // Update title based on image structure
+            if (currentQuestionNumber > 0) {
+                // Always include Request number when available
+                modalTitle.textContent = `Request #${currentQuestionNumber} - ${currentImage.title || currentImage.type || 'Image'}`;
+            } else if (currentQuestionIndex >= 0) {
+                // For images from showAllQuestionImages
+                const question = questions[currentQuestionIndex];
+                const actualQuestionNumber = question ? (question.stt_doc || ((currentPage - 1) * itemsPerPage + currentQuestionIndex + 1)) : (currentPage - 1) * itemsPerPage + currentQuestionIndex + 1;
+                modalTitle.textContent = `Request #${actualQuestionNumber} - ${currentImage.title || currentImage.type || 'Image'}`;
+            } else if (currentImage.title) {
+                // Fallback - only show title if no question number available
+                modalTitle.textContent = currentImage.title;
+            } else {
+                // Final fallback
+                modalTitle.textContent = 'Image';
+            }
+            
+            if (imageCounter) imageCounter.textContent = `${currentImageIndex + 1} / ${currentImages.length}`;
+            
+            // Show/hide navigation buttons based on image count
+            if (currentImages.length > 1) {
+                // Always show both buttons for infinite loop
+                if (prevBtn) prevBtn.style.display = 'flex';
+                if (nextBtn) nextBtn.style.display = 'flex';
+            } else {
+                // Hide both buttons if only one image
+                if (prevBtn) prevBtn.style.display = 'none';
+                if (nextBtn) nextBtn.style.display = 'none';
+            }
+            
+            // Never disable buttons for infinite loop
+            if (prevBtn) prevBtn.disabled = false;
+            if (nextBtn) nextBtn.disabled = false;
+        }
+
+        // Function to update preview content
+        function updatePreviewContent(currentImage) {
+            const modalTitle = document.getElementById('fullScreenTitle');
+            const imageCounter = document.getElementById('fullScreenCounter');
+            
+            // Update title
+            if (currentImage.title) {
+                modalTitle.textContent = currentImage.title;
+            } else {
+                modalTitle.textContent = 'Preview';
+            }
+            
+            // Update counter
+            if (imageCounter) {
+                imageCounter.textContent = `${currentImageIndex + 1} / ${currentImages.length}`;
+            }
+            
+            // Update highlighted images
+            updateHighlightedImages(currentImage);
+        }
+
+        // Function to update highlighted images in preview
+        function updateHighlightedImages(currentImage) {
+            // Remove all highlights
+            const inputImage = document.querySelector('.preview-input-image');
+            const outputItems = document.querySelectorAll('.output-item');
+            
+            if (inputImage) {
+                inputImage.classList.remove('highlighted');
+            }
+            
+            outputItems.forEach(item => {
+                item.classList.remove('highlighted');
+            });
+            
+            // Add highlight to current image
+            if (currentImage) {
+                if (currentImage.type === 'input') {
+                    if (inputImage) {
+                        inputImage.classList.add('highlighted');
+                    }
+                } else if (currentImage.type === 'output') {
+                    outputItems.forEach(item => {
+                        const img = item.querySelector('.preview-output-image');
+                        if (img && img.src === currentImage.url) {
+                            item.classList.add('highlighted');
+                        }
+                    });
+                }
+            }
         }
 
         // Function to close image modal
         function closeImageModal() {
             const modal = document.getElementById('fullScreenModal');
+            const modalBody = document.querySelector('.fullscreen-body');
+            
+            // Reset modal body to original state
+            modalBody.innerHTML = `
+                <button class="fullscreen-nav-btn prev-btn" id="fullScreenPrevBtn">&lt;</button>
+                <div class="fullscreen-image-container">
+                    <img id="fullScreenImage" src="" alt="Full Screen Image">
+                </div>
+                <button class="fullscreen-nav-btn next-btn" id="fullScreenNextBtn">&gt;</button>
+            `;
+            
+            // Get the newly created elements
+            const prevBtn = document.getElementById('fullScreenPrevBtn');
+            const nextBtn = document.getElementById('fullScreenNextBtn');
+            const imageCounter = document.getElementById('fullScreenCounter');
+            
+            // Show navigation elements
+            if (prevBtn) prevBtn.style.display = 'flex';
+            if (nextBtn) nextBtn.style.display = 'flex';
+            if (imageCounter) imageCounter.style.display = 'block';
+            
             modal.style.display = 'none';
             currentImages = [];
             currentImageIndex = 0;
@@ -3832,7 +4824,7 @@
             }
             
             try {
-                const response = await fetch('https://surveyform-1.onrender.com/delete-response', {
+                const response = await fetch('http://localhost:3000/delete-response', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ responseId })
